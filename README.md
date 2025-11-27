@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 Site Web INSES - Institut Supérieur de l'Espoir
 
-## Getting Started
+Site web moderne et responsive pour l'Institut Supérieur de l'Espoir (INSES), institution de formation professionnelle dans le secteur de la santé à Douala, Cameroun.
 
-First, run the development server:
+## 🚀 Technologies Utilisées
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icônes**: Lucide React
+- **Fonts**: Inter & Poppins (Google Fonts)
+
+## 🎨 Identité Visuelle
+
+- **Couleurs principales**:
+  - Rouge: #DC2626
+  - Noir: #0F172A
+- **Logo**: INSES (Rouge et Noir)
+
+## 📄 Pages Créées
+
+1. **Accueil** (`/`) - Hero, statistiques, formations, valeurs
+2. **À Propos** (`/about`) - Mission, vision, pédagogie, partenaires
+3. **Formations** (`/formations`) - Liste des 6 formations
+4. **Formation Détaillée** (`/formations/[slug]`) - Pages dynamiques
+5. **Galerie** (`/gallery`) - Photos et vidéos
+6. **Inscription** (`/inscription`) - Formulaire complet
+7. **Contact** (`/contact`) - Formulaire + infos de contact
+
+## 🚦 Démarrage
 
 ```bash
+# Installation des dépendances
+npm install
+
+# Lancement du serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Le site sera accessible sur [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📊 Formations Disponibles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Délégué Médical
+2. Secrétariat Médical
+3. Massothérapie
+4. Aide Chimiste Biologiste
+5. Diététique et Nutrition
+6. Vendeur en Pharmacie
 
-## Learn More
+## 📸 Images
 
-To learn more about Next.js, take a look at the following resources:
+Consultez `IMAGES_DOCUMENTATION.md` pour la liste complète des images nécessaires avec dimensions et formats.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📱 Contact INSES
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Téléphone**: +237 674 93 66 04
+- **Email**: contact@inses.cm
+- **Localisation**: Douala-Bonabéri, Cameroun
 
-## Deploy on Vercel
+## 🔄 Prochaines Étapes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [ ] Ajouter les images réelles (voir IMAGES_DOCUMENTATION.md)
+- [ ] Intégrer Google Maps API
+- [ ] Configurer l'envoi d'emails pour les formulaires
+- [ ] Ajouter PostgreSQL + Prisma (phase future)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Déploiement
+
+Déployable sur Vercel, Netlify, ou tout hébergement Next.js.
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+© 2025 Institut Supérieur de l'Espoir (INSES). Tous droits réservés.
