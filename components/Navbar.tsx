@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { siteInfo } from "@/data/site-data";
@@ -18,6 +19,7 @@ const navigation = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,16 +100,27 @@ export default function Navbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-10">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-[#4A4A4A] hover:text-[#B22234] font-medium text-[15px] transition-colors relative group"
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#B22234] group-hover:w-full transition-all duration-300" />
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const isActive = pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href));
+
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`font-medium text-[15px] transition-colors relative group ${
+                      isActive
+                        ? "text-[#B22234]"
+                        : "text-[#4A4A4A] hover:text-[#B22234]"
+                    }`}
+                  >
+                    {item.name}
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#B22234] transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`} />
+                  </Link>
+                );
+              })}
               <motion.a
                 href={`https://wa.me/${siteInfo.whatsapp.replace(/\s/g, "")}`}
                 target="_blank"
@@ -163,22 +176,31 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  {navigation.map((item, index) => (
-                    <motion.div
-                      key={item.name}
-                      initial={{ x: 50, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="block py-3 px-4 text-[#4A4A4A] hover:bg-[#D3D3D3]/20 hover:text-[#B22234] font-medium transition-all"
+                  {navigation.map((item, index) => {
+                    const isActive = pathname === item.href ||
+                      (item.href !== "/" && pathname.startsWith(item.href));
+
+                    return (
+                      <motion.div
+                        key={item.name}
+                        initial={{ x: 50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: index * 0.1 }}
                       >
-                        {item.name}
-                      </Link>
-                    </motion.div>
-                  ))}
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className={`block py-3 px-4 font-medium transition-all border-l-4 ${
+                            isActive
+                              ? "bg-[#B22234]/10 text-[#B22234] border-[#B22234]"
+                              : "text-[#4A4A4A] hover:bg-[#D3D3D3]/20 hover:text-[#B22234] border-transparent hover:border-[#B22234]/30"
+                          }`}
+                        >
+                          {item.name}
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
 
                   <motion.a
                     href={`https://wa.me/${siteInfo.whatsapp.replace(/\s/g, "")}`}
