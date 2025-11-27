@@ -25,9 +25,9 @@ public/
 - **Emplacement**: `public/images/logo/`
 - **Dimensions**: 512x512px (PNG) ou vectoriel (SVG préféré)
 - **Format**: PNG transparent ou SVG
-- **Couleurs**: Rouge (#DC2626) et Noir (#0F172A)
+- **Couleurs**: Rouge Crimson (#D80536) et Bleu Marine (#2B2E42)
 - **Usage**: Header, Footer, Favicon
-- **Notes**: Le logo doit avoir le sigle "INSES" en rouge et noir
+- **Notes**: Le logo doit utiliser la palette de couleurs INSES 2025 - Rouge crimson principal et bleu marine
 
 ### Logo Variations
 - **logo-inses-white.png**: Version blanche pour fond sombre (512x512px)
@@ -93,53 +93,7 @@ public/
 
 ### Formations Individuelles
 
-#### 1. Délégué Médical
-**Fichier**: `formation-delegue-medical.jpg`
-- **Emplacement**: `public/images/formations/`
-- **Dimensions**: 1200x800px
-- **Format**: JPG (max 400KB)
-- **Description**: Professionnel en visite médicale ou présentation pharmaceutique
-- **Alt text**: "Formation Délégué Médical - INSES"
-
-#### 2. Secrétariat Médical
-**Fichier**: `formation-secretariat-medical.jpg`
-- **Emplacement**: `public/images/formations/`
-- **Dimensions**: 1200x800px
-- **Format**: JPG (max 400KB)
-- **Description**: Secrétaire médicale à l'accueil ou au bureau
-- **Alt text**: "Formation Secrétariat Médical - INSES"
-
-#### 3. Massothérapie
-**Fichier**: `formation-massotherapie.jpg`
-- **Emplacement**: `public/images/formations/`
-- **Dimensions**: 1200x800px
-- **Format**: JPG (max 400KB)
-- **Description**: Salle de massage ou étudiant en pratique massage
-- **Alt text**: "Formation Massothérapie - INSES"
-
-#### 4. Aide Chimiste Biologiste
-**Fichier**: `formation-aide-chimiste-biologiste.jpg`
-- **Emplacement**: `public/images/formations/`
-- **Dimensions**: 1200x800px
-- **Format**: JPG (max 400KB)
-- **Description**: Étudiant manipulant équipements de laboratoire
-- **Alt text**: "Formation Aide Chimiste Biologiste - INSES"
-
-#### 5. Diététique et Nutrition
-**Fichier**: `formation-dietetique-nutrition.jpg`
-- **Emplacement**: `public/images/formations/`
-- **Dimensions**: 1200x800px
-- **Format**: JPG (max 400KB)
-- **Description**: Diététicien(ne) en consultation ou avec aliments nutritifs
-- **Alt text**: "Formation Diététique et Nutrition - INSES"
-
-#### 6. Vendeur en Pharmacie
-**Fichier**: `formation-vendeur-pharmacie.jpg`
-- **Emplacement**: `public/images/formations/`
-- **Dimensions**: 1200x800px
-- **Format**: JPG (max 400KB)
-- **Description**: Vendeur/vendeuse en pharmacie au comptoir
-- **Alt text**: "Formation Vendeur en Pharmacie - INSES"
+, 
 
 ---
 

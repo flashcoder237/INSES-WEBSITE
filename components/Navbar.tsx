@@ -35,9 +35,9 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         className="bg-gradient-to-r from-[#2B2E42] to-[#2B2E42] text-white py-2 hidden md:block"
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-10">
               <a
                 href={`tel:${siteInfo.phone}`}
                 className="flex items-center gap-2 hover:text-[#EDF2F4] transition"
@@ -65,11 +65,11 @@ export default function Navbar() {
         transition={{ delay: 0.1 }}
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white shadow-lg py-3"
+            ? "bg-white shadow-2xl py-3"
             : "bg-white/95 backdrop-blur-sm py-4"
         }`}
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3">
@@ -77,7 +77,7 @@ export default function Navbar() {
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center"
               >
-                <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] text-white font-bold text-2xl md:text-3xl px-4 py-2 rounded-lg shadow-lg">
+                <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] text-white font-bold text-lg md:text-lg px-6 py-2 rounded-lg shadow-2xl">
                   INSES
                 </div>
               </motion.div>
@@ -92,7 +92,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-12">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -109,7 +109,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:shadow-lg transition-all"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:shadow-2xl transition-all"
               >
                 WhatsApp
               </motion.a>
@@ -145,8 +145,8 @@ export default function Navbar() {
               className="fixed top-0 right-0 bottom-0 w-80 bg-white shadow-2xl z-50 md:hidden overflow-y-auto"
             >
               <div className="p-6">
-                <div className="flex justify-between items-center mb-8">
-                  <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] text-white font-bold text-2xl px-4 py-2 rounded-lg">
+                <div className="flex justify-between items-center mb-10">
+                  <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] text-white font-bold text-lg px-6 py-2 rounded-lg">
                     INSES
                   </div>
                   <button
@@ -157,7 +157,7 @@ export default function Navbar() {
                   </button>
                 </div>
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-10">
                   {navigation.map((item, index) => (
                     <motion.div
                       key={item.name}
@@ -168,7 +168,7 @@ export default function Navbar() {
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="block py-3 px-4 rounded-lg text-[#8D9AAE] hover:bg-[#EDF2F4] hover:text-[#D80536] font-medium transition-all"
+                        className="block py-3 px-6 rounded-lg text-[#8D9AAE] hover:bg-[#EDF2F4] hover:text-[#D80536] font-medium transition-all"
                       >
                         {item.name}
                       </Link>

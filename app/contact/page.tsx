@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import {
   Mail,
   Phone,
@@ -62,6 +63,14 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-[#2B2E42] via-[#2B2E42] to-[#2B2E42] overflow-hidden">
         <div className="absolute inset-0">
+          <Image
+            src="/images/hero/hero-contact.jpg"
+            alt="Contactez l'Institut INSES"
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+          />
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <motion.div
             animate={{
@@ -77,7 +86,7 @@ export default function ContactPage() {
           />
         </div>
 
-        <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="container mx-auto px-6 py-24 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,7 +97,7 @@ export default function ContactPage() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block mb-6"
+              className="inline-block mb-10"
             >
               <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
                 <span className="text-[#EDF2F4] font-medium">
@@ -97,14 +106,14 @@ export default function ContactPage() {
               </div>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-[family-name:var(--font-poppins)]">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-10 font-[family-name:var(--font-poppins)]">
               Prenez{" "}
               <span className="bg-gradient-to-r from-[#EE2449] to-white bg-clip-text text-transparent">
                 Contact
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed font-light">
               Nous sommes là pour répondre à toutes vos questions
             </p>
           </motion.div>
@@ -112,23 +121,23 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Info + Form */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
             {/* Contact Info */}
             <div className="lg:col-span-1 space-y-6">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] p-8 rounded-2xl shadow-xl text-white"
+                className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] p-12 rounded-3xl shadow-2xl text-white"
               >
-                <h2 className="text-2xl font-bold mb-6">
+                <h2 className="text-2xl font-bold mb-10">
                   Informations de Contact
                 </h2>
 
                 <div className="space-y-6">
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-10">
                     <MapPin className="flex-shrink-0 mt-1" size={24} />
                     <div>
                       <h3 className="font-semibold mb-1">Adresse</h3>
@@ -136,7 +145,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-10">
                     <Phone className="flex-shrink-0 mt-1" size={24} />
                     <div>
                       <h3 className="font-semibold mb-1">Téléphone</h3>
@@ -164,7 +173,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-10">
                     <Mail className="flex-shrink-0 mt-1" size={24} />
                     <div>
                       <h3 className="font-semibold mb-1">Email</h3>
@@ -177,7 +186,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-10">
                     <Clock className="flex-shrink-0 mt-1" size={24} />
                     <div>
                       <h3 className="font-semibold mb-1">Horaires d&apos;ouverture</h3>
@@ -214,11 +223,11 @@ export default function ContactPage() {
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-green-50 border-2 border-green-500 rounded-2xl p-6 mb-8 flex items-center gap-4"
+                  className="bg-green-50 border-2 border-green-500 rounded-3xl p-6 mb-10 flex items-center gap-10"
                 >
                   <CheckCircle className="text-green-500 flex-shrink-0" size={32} />
                   <div>
-                    <h3 className="text-xl font-bold text-green-900 mb-1">
+                    <h3 className="text-2xl font-bold text-green-900 mb-1">
                       Message envoyé !
                     </h3>
                     <p className="text-green-700">
@@ -232,11 +241,11 @@ export default function ContactPage() {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-xl p-8"
+                className="bg-white rounded-3xl shadow-2xl p-12"
               >
-                <div className="flex items-center gap-3 mb-8">
+                <div className="flex items-center gap-3 mb-10">
                   <MessageSquare className="text-[#D80536]" size={32} />
-                  <h2 className="text-3xl font-bold text-[#2B2E42]">
+                  <h2 className="text-2xl font-bold text-[#2B2E42]">
                     Envoyez-nous un message
                   </h2>
                 </div>
@@ -256,12 +265,12 @@ export default function ContactPage() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
+                      className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
                       placeholder="Votre nom complet"
                     />
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 gap-10">
                     <div>
                       <label
                         htmlFor="email"
@@ -276,7 +285,7 @@ export default function ContactPage() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
+                        className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
                         placeholder="votre@email.com"
                       />
                     </div>
@@ -294,7 +303,7 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
+                        className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
                         placeholder="+237 6XX XX XX XX"
                       />
                     </div>
@@ -313,7 +322,7 @@ export default function ContactPage() {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
+                      className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
                     >
                       <option value="">Sélectionnez un sujet</option>
                       <option value="inscription">Demande d&apos;inscription</option>
@@ -337,7 +346,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={6}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all resize-none"
+                      className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all resize-none"
                       placeholder="Écrivez votre message ici..."
                     />
                   </div>
@@ -347,7 +356,7 @@ export default function ContactPage() {
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-[#D80536] to-[#2B2E42] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-gradient-to-r from-[#D80536] to-[#2B2E42] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-2xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       "Envoi en cours..."
@@ -366,21 +375,21 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-20"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <Map className="text-[#D80536]" size={32} />
-              <h2 className="text-4xl font-bold text-[#2B2E42] font-[family-name:var(--font-poppins)]">
+              <h2 className="text-2xl font-bold text-[#2B2E42] font-[family-name:var(--font-poppins)]">
                 Notre Localisation
               </h2>
             </div>
-            <p className="text-xl text-[#8D9AAE]">
+            <p className="text-lg text-[#8D9AAE] font-light">
               Visitez-nous à Douala-Bonabéri
             </p>
           </motion.div>
@@ -389,7 +398,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative h-96 bg-gradient-to-br from-[#EDF2F4] to-gray-100 rounded-2xl shadow-xl overflow-hidden"
+            className="relative h-96 bg-gradient-to-br from-[#EDF2F4] to-gray-100 rounded-3xl shadow-2xl overflow-hidden"
           >
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">

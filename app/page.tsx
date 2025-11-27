@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Users,
   Award,
@@ -24,6 +25,15 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#2B2E42] via-[#D80536] to-[#2B2E42] overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0">
+          {/* Hero Background Image */}
+          <Image
+            src="/images/hero/hero-home.jpg"
+            alt="Étudiants INSES - Institut Supérieur de l'Espoir"
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+          />
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
 
           {/* Animated blobs */}
@@ -57,7 +67,7 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="container mx-auto px-6 py-24 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -69,9 +79,9 @@ export default function Home() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-block mb-6"
+                className="inline-block mb-10"
               >
-                <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-xl">
+                <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20 shadow-2xl">
                   <span className="text-[#EDF2F4] font-medium flex items-center gap-2">
                     <TrendingUp size={16} />
                     Excellence en Formation Professionnelle
@@ -80,7 +90,7 @@ export default function Home() {
               </motion.div>
 
               {/* Main Title */}
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 font-[family-name:var(--font-poppins)] leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-10 font-[family-name:var(--font-poppins)] leading-tight">
                 Institut Supérieur de{" "}
                 <span className="bg-gradient-to-r from-[#EE2449] to-[#EDF2F4] bg-clip-text text-transparent">
                   l&apos;Espoir
@@ -88,23 +98,43 @@ export default function Home() {
               </h1>
 
               {/* Subtitle */}
-              <p className="text-xl md:text-3xl text-[#EDF2F4] mb-8 leading-relaxed font-light">
+              <p className="text-xl md:text-2xl text-[#EDF2F4] mb-10 leading-relaxed font-light">
                 Formez-vous aux métiers de la santé avec excellence
               </p>
 
               {/* Description */}
-              <p className="text-lg md:text-xl text-[#EDF2F4]/80 mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-[#EDF2F4]/80 mb-16 max-w-3xl mx-auto leading-relaxed font-light">
                 L&apos;INSES offre des formations professionnelles de qualité dans le
                 secteur de la santé à Douala, Cameroun. Rejoignez une institution
                 qui forme les professionnels de demain.
               </p>
 
+              {/* Stats intégrées dans le hero - Style UQAC */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto">
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                    className="text-center"
+                  >
+                    <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-[#EDF2F4] text-sm font-medium uppercase tracking-wider">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href="/formations"
-                    className="bg-white text-[#D80536] px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(216,5,54,0.4)] transition-all flex items-center gap-3 group"
+                    className="bg-white text-[#D80536] px-8 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(216,5,54,0.4)] transition-all flex items-center gap-3 group"
                   >
                     Découvrir nos formations
                     <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
@@ -113,7 +143,7 @@ export default function Home() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Link
                     href="/inscription"
-                    className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-[#D80536] transition-all backdrop-blur-sm"
+                    className="bg-transparent border-2 border-white text-white px-8 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-[#D80536] transition-all backdrop-blur-sm"
                   >
                     S&apos;inscrire maintenant
                   </Link>
@@ -135,51 +165,126 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Stats Section - Modern Card Style */}
-      <section className="py-20 bg-[#EDF2F4]">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all text-center border border-[#8D9AAE]/20"
-              >
-                <div className="text-5xl md:text-6xl font-bold bg-gradient-to-br from-[#D80536] to-[#EE2449] bg-clip-text text-transparent mb-3 font-[family-name:var(--font-poppins)]">
-                  {stat.value}
-                </div>
-                <div className="text-[#8D9AAE] font-semibold text-sm uppercase tracking-wide">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section - Why Choose INSES */}
+      {/* Domaines de Formation - Style UQAC */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <div className="inline-block px-6 py-2 bg-[#EDF2F4] text-[#D80536] rounded-full text-sm font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#2B2E42] mb-6">
+              Choisir un programme d'études
+            </h2>
+            <p className="text-xl text-[#8D9AAE] max-w-3xl mx-auto font-light">
+              Découvrez nos formations dans le secteur de la santé
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Soins et Santé */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8 }}
+              className="group bg-gradient-to-br from-[#EDF2F4] to-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-[#D80536] to-[#EE2449] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Heart className="text-white" size={32} />
+              </div>
+              <h3 className="text-2xl font-bold text-[#2B2E42] mb-4">
+                Soins et Santé
+              </h3>
+              <p className="text-[#8D9AAE] mb-6 font-light leading-relaxed">
+                Massothérapie, Diététique et Nutrition
+              </p>
+              <Link
+                href="/formations#sante"
+                className="inline-flex items-center gap-2 text-[#D80536] font-semibold group-hover:gap-4 transition-all"
+              >
+                En savoir plus
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+
+            {/* Médical et Pharmaceutique */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              whileHover={{ y: -8 }}
+              className="group bg-gradient-to-br from-white to-[#EDF2F4] p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-[#2B2E42] to-[#D80536] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <BookOpen className="text-white" size={32} />
+              </div>
+              <h3 className="text-2xl font-bold text-[#2B2E42] mb-4">
+                Médical et Pharmaceutique
+              </h3>
+              <p className="text-[#8D9AAE] mb-6 font-light leading-relaxed">
+                Délégué Médical, Vendeur en Pharmacie
+              </p>
+              <Link
+                href="/formations#medical"
+                className="inline-flex items-center gap-2 text-[#D80536] font-semibold group-hover:gap-4 transition-all"
+              >
+                En savoir plus
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+
+            {/* Sciences et Technologies */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ y: -8 }}
+              className="group bg-gradient-to-br from-[#EDF2F4] to-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all border border-gray-100"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-[#D80536] to-[#EE2449] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Award className="text-white" size={32} />
+              </div>
+              <h3 className="text-2xl font-bold text-[#2B2E42] mb-4">
+                Sciences et Technologies
+              </h3>
+              <p className="text-[#8D9AAE] mb-6 font-light leading-relaxed">
+                Aide Chimiste Biologiste, Secrétariat Médical
+              </p>
+              <Link
+                href="/formations#sciences"
+                className="inline-flex items-center gap-2 text-[#D80536] font-semibold group-hover:gap-4 transition-all"
+              >
+                En savoir plus
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section - Why Choose INSES */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <div className="inline-block px-6 py-2 bg-[#EDF2F4] text-[#D80536] rounded-full text-sm font-bold mb-10">
               NOTRE EXCELLENCE
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-[#2B2E42] mb-6 font-[family-name:var(--font-poppins)]">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2B2E42] mb-10 font-[family-name:var(--font-poppins)]">
               Pourquoi choisir l&apos;INSES ?
             </h2>
             <div className="w-24 h-1.5 bg-gradient-to-r from-[#D80536] to-[#EE2449] mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
             {aboutInfo.values.map((value, index) => (
               <motion.div
                 key={index}
@@ -190,9 +295,9 @@ export default function Home() {
                 whileHover={{ y: -8 }}
                 className="group relative"
               >
-                <div className="bg-gradient-to-br from-white to-[#EDF2F4] p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-[#8D9AAE]/20 h-full">
+                <div className="bg-gradient-to-br from-white to-[#EDF2F4] p-12 rounded-3xl shadow-2xl hover:shadow-2xl transition-all border border-[#8D9AAE]/20 h-full">
                   {/* Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#D80536] to-[#EE2449] rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#D80536] to-[#EE2449] rounded-xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform shadow-2xl">
                     {index === 0 && <Award className="text-white" size={32} />}
                     {index === 1 && <Target className="text-white" size={32} />}
                     {index === 2 && <Lightbulb className="text-white" size={32} />}
@@ -223,10 +328,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="bg-gradient-to-br from-[#2B2E42] to-[#D80536] p-1 rounded-3xl shadow-2xl"
           >
-            <div className="bg-white p-8 md:p-12 rounded-3xl">
+            <div className="bg-white p-12 md:p-12 rounded-3xl">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
-                  <div className="inline-block px-4 py-2 bg-[#EDF2F4] text-[#D80536] rounded-full text-sm font-bold">
+                  <div className="inline-block px-6 py-2 bg-[#EDF2F4] text-[#D80536] rounded-full text-sm font-bold">
                     NOTRE MÉTHODE
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold text-[#2B2E42]">
@@ -234,7 +339,7 @@ export default function Home() {
                   </h3>
 
                   <div className="space-y-4">
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-10">
                       <CheckCircle className="text-[#D80536] flex-shrink-0 mt-1" size={24} />
                       <div>
                         <h4 className="font-bold text-[#2B2E42] mb-2 text-lg">
@@ -246,7 +351,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-10">
                       <CheckCircle className="text-[#D80536] flex-shrink-0 mt-1" size={24} />
                       <div>
                         <h4 className="font-bold text-[#2B2E42] mb-2 text-lg">
@@ -258,7 +363,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-10">
                       <CheckCircle className="text-[#D80536] flex-shrink-0 mt-1" size={24} />
                       <div>
                         <h4 className="font-bold text-[#2B2E42] mb-2 text-lg">
@@ -272,9 +377,9 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] p-8 rounded-2xl text-white shadow-xl">
-                  <Users size={48} className="mb-6" />
-                  <h4 className="text-2xl font-bold mb-6">Nos Partenaires</h4>
+                <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] p-12 rounded-3xl text-white shadow-2xl">
+                  <Users size={48} className="mb-10" />
+                  <h4 className="text-2xl font-bold mb-10">Nos Partenaires</h4>
                   <ul className="space-y-4">
                     {aboutInfo.partners.map((partner, index) => (
                       <li key={index} className="flex items-start gap-3">
@@ -292,26 +397,26 @@ export default function Home() {
 
       {/* Formations Section - New Card Design */}
       <section className="py-24 bg-[#EDF2F4]">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <div className="inline-block px-6 py-2 bg-white text-[#D80536] rounded-full text-sm font-bold mb-6 shadow-lg">
+            <div className="inline-block px-6 py-2 bg-white text-[#D80536] rounded-full text-sm font-bold mb-10 shadow-2xl">
               NOS PROGRAMMES
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-[#2B2E42] mb-6 font-[family-name:var(--font-poppins)]">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#2B2E42] mb-10 font-[family-name:var(--font-poppins)]">
               Nos Formations
             </h2>
-            <p className="text-xl text-[#8D9AAE] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-[#8D9AAE] max-w-3xl mx-auto leading-relaxed font-light">
               Choisissez parmi nos 6 filières professionnelles dans le secteur de
               la santé et construisez votre avenir
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {formations.map((formation, index) => (
               <FormationCard
                 key={formation.id}
@@ -325,11 +430,11 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center mt-16"
+            className="text-center mt-24"
           >
             <Link
               href="/formations"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#D80536] to-[#EE2449] text-white px-10 py-5 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all group"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#D80536] to-[#EE2449] text-white px-8 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-2xl transition-all group"
             >
               Voir toutes les formations
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
@@ -343,27 +448,27 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#2B2E42] via-[#D80536] to-[#2B2E42]" />
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
 
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 font-[family-name:var(--font-poppins)]">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 font-[family-name:var(--font-poppins)]">
               Prêt à commencer votre parcours ?
             </h2>
-            <p className="text-xl md:text-2xl text-[#EDF2F4] mb-12 leading-relaxed">
+            <p className="text-xl md:text-2xl text-[#EDF2F4] mb-20 leading-relaxed font-light">
               Rejoignez l&apos;INSES et construisez votre avenir dans le secteur de
               la santé
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-10 justify-center items-center">
               <motion.a
                 href="/inscription"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-[#D80536] px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(255,255,255,0.3)] transition-all"
+                className="bg-white text-[#D80536] px-8 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-[0_20px_60px_rgba(255,255,255,0.3)] transition-all"
               >
                 Inscrivez-vous maintenant
               </motion.a>
@@ -371,7 +476,7 @@ export default function Home() {
                 href="/contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-[#D80536] transition-all backdrop-blur-sm"
+                className="bg-transparent border-2 border-white text-white px-8 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-[#D80536] transition-all backdrop-blur-sm"
               >
                 Contactez-nous
               </motion.a>

@@ -19,7 +19,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gradient-to-br from-[#2B2E42] via-[#2B2E42] to-[#2B2E42] text-white">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-6 py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* About Section */}
           <motion.div
@@ -28,14 +28,14 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] text-white font-bold text-3xl px-4 py-2 rounded-lg shadow-lg inline-block mb-4">
+            <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] text-white font-bold text-lg px-6 py-2 rounded-lg shadow-2xl inline-block mb-4">
               INSES
             </div>
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <p className="text-gray-300 mb-10 leading-relaxed">
               {siteInfo.fullName} - Former les professionnels de santé de demain
               avec excellence et innovation.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-10">
               {siteInfo.socialMedia.facebook && (
                 <motion.a
                   whileHover={{ scale: 1.1, y: -2 }}
@@ -90,7 +90,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-white">Liens Rapides</h3>
+            <h3 className="text-2xl font-bold mb-10 text-white">Liens Rapides</h3>
             <ul className="space-y-3">
               {[
                 { name: "Accueil", href: "/" },
@@ -123,7 +123,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-white">Nos Formations</h3>
+            <h3 className="text-2xl font-bold mb-10 text-white">Nos Formations</h3>
             <ul className="space-y-3">
               {formations.slice(0, 6).map((formation) => (
                 <li key={formation.id}>
@@ -149,7 +149,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-white">Contactez-Nous</h3>
+            <h3 className="text-2xl font-bold mb-10 text-white">Contactez-Nous</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={20} className="text-[#EE2449] mt-1 flex-shrink-0" />
@@ -189,7 +189,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-6 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all inline-block"
+              className="mt-6 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full font-medium shadow-2xl hover:shadow-2xl transition-all inline-block"
             >
               WhatsApp
             </motion.a>

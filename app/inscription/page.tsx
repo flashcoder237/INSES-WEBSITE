@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import {
   User,
   Mail,
@@ -74,6 +75,14 @@ export default function InscriptionPage() {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-[#2B2E42] via-[#2B2E42] to-[#2B2E42] overflow-hidden">
         <div className="absolute inset-0">
+          <Image
+            src="/images/hero/hero-inscription.jpg"
+            alt="Inscription INSES - Rejoignez-nous"
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+          />
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
           <motion.div
             animate={{
@@ -89,7 +98,7 @@ export default function InscriptionPage() {
           />
         </div>
 
-        <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="container mx-auto px-6 py-24 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,7 +109,7 @@ export default function InscriptionPage() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block mb-6"
+              className="inline-block mb-10"
             >
               <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
                 <span className="text-[#EDF2F4] font-medium">
@@ -109,14 +118,14 @@ export default function InscriptionPage() {
               </div>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-[family-name:var(--font-poppins)]">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-10 font-[family-name:var(--font-poppins)]">
               Formulaire{" "}
               <span className="bg-gradient-to-r from-[#EE2449] to-white bg-clip-text text-transparent">
                 d&apos;Inscription
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed font-light">
               Remplissez le formulaire pour commencer votre parcours à l&apos;INSES
             </p>
           </motion.div>
@@ -124,19 +133,19 @@ export default function InscriptionPage() {
       </section>
 
       {/* Form Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             {/* Success Message */}
             {submitStatus === "success" && (
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-green-50 border-2 border-green-500 rounded-2xl p-6 mb-8 flex items-center gap-4"
+                className="bg-green-50 border-2 border-green-500 rounded-3xl p-6 mb-10 flex items-center gap-10"
               >
                 <CheckCircle className="text-green-500 flex-shrink-0" size={32} />
                 <div>
-                  <h3 className="text-xl font-bold text-green-900 mb-1">
+                  <h3 className="text-2xl font-bold text-green-900 mb-1">
                     Inscription envoyée !
                   </h3>
                   <p className="text-green-700">
@@ -150,17 +159,17 @@ export default function InscriptionPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-2xl shadow-2xl p-8 md:p-12"
+              className="bg-white rounded-3xl shadow-2xl p-12 md:p-12"
             >
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Informations personnelles */}
                 <div>
-                  <h2 className="text-2xl font-bold text-[#2B2E42] mb-6 flex items-center gap-3">
+                  <h2 className="text-2xl font-bold text-[#2B2E42] mb-10 flex items-center gap-3">
                     <User className="text-[#D80536]" size={28} />
                     Informations Personnelles
                   </h2>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 gap-10">
                     <div>
                       <label
                         htmlFor="firstName"
@@ -175,7 +184,7 @@ export default function InscriptionPage() {
                         required
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
+                        className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
                         placeholder="Votre prénom"
                       />
                     </div>
@@ -194,7 +203,7 @@ export default function InscriptionPage() {
                         required
                         value={formData.lastName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
+                        className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
                         placeholder="Votre nom"
                       />
                     </div>
@@ -313,7 +322,7 @@ export default function InscriptionPage() {
                       required
                       value={formData.address}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
+                      className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
                       placeholder="Quartier, rue, numéro..."
                     />
                   </div>
@@ -321,12 +330,12 @@ export default function InscriptionPage() {
 
                 {/* Formation souhaitée */}
                 <div>
-                  <h2 className="text-2xl font-bold text-[#2B2E42] mb-6 flex items-center gap-3">
+                  <h2 className="text-2xl font-bold text-[#2B2E42] mb-10 flex items-center gap-3">
                     <GraduationCap className="text-[#D80536]" size={28} />
                     Formation Souhaitée
                   </h2>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 gap-10">
                     <div>
                       <label
                         htmlFor="formation"
@@ -340,7 +349,7 @@ export default function InscriptionPage() {
                         required
                         value={formData.formation}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
+                        className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
                       >
                         <option value="">Sélectionnez une formation</option>
                         {formations.map((formation) => (
@@ -364,7 +373,7 @@ export default function InscriptionPage() {
                         required
                         value={formData.level}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
+                        className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all"
                       >
                         <option value="">Sélectionnez votre niveau</option>
                         <option value="bepc">BEPC</option>
@@ -379,7 +388,7 @@ export default function InscriptionPage() {
 
                 {/* Message */}
                 <div>
-                  <h2 className="text-2xl font-bold text-[#2B2E42] mb-6 flex items-center gap-3">
+                  <h2 className="text-2xl font-bold text-[#2B2E42] mb-10 flex items-center gap-3">
                     <FileText className="text-[#D80536]" size={28} />
                     Message (Optionnel)
                   </h2>
@@ -390,7 +399,7 @@ export default function InscriptionPage() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={5}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all resize-none"
+                    className="w-full px-6 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#D80536] focus:border-transparent transition-all resize-none"
                     placeholder="Avez-vous des questions ou des informations supplémentaires à nous communiquer ?"
                   />
                 </div>
@@ -416,13 +425,13 @@ export default function InscriptionPage() {
                 </div>
 
                 {/* Submit Button */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-10 justify-center">
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="bg-gradient-to-r from-[#D80536] to-[#2B2E42] text-white px-12 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-gradient-to-r from-[#D80536] to-[#2B2E42] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-2xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? "Envoi en cours..." : "Envoyer ma demande"}
                   </motion.button>
@@ -431,7 +440,7 @@ export default function InscriptionPage() {
                     href="/contact"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="bg-transparent border-2 border-[#2B2E42] text-[#2B2E42] px-12 py-4 rounded-full font-semibold text-lg hover:bg-[#2B2E42] hover:text-white transition-all text-center"
+                    className="bg-transparent border-2 border-[#2B2E42] text-[#2B2E42] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#2B2E42] hover:text-white transition-all text-center"
                   >
                     Besoin d&apos;aide ?
                   </motion.a>

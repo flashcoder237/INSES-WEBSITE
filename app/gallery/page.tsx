@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Image as ImageIcon, Play } from "lucide-react";
 import { useState } from "react";
 
@@ -129,7 +130,7 @@ export default function GalleryPage() {
           />
         </div>
 
-        <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="container mx-auto px-6 py-24 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -140,21 +141,21 @@ export default function GalleryPage() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block mb-6"
+              className="inline-block mb-10"
             >
               <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
                 <span className="text-[#EDF2F4] font-medium">Galerie Photos</span>
               </div>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-[family-name:var(--font-poppins)]">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-10 font-[family-name:var(--font-poppins)]">
               Notre{" "}
               <span className="bg-gradient-to-r from-[#EE2449] to-white bg-clip-text text-transparent">
                 Galerie
               </span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed font-light">
               Découvrez la vie au campus INSES en images
             </p>
           </motion.div>
@@ -162,13 +163,13 @@ export default function GalleryPage() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
           {/* Category Filter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap justify-center gap-3 mb-12"
+            className="flex flex-wrap justify-center gap-3 mb-20"
           >
             {galleryCategories.map((category) => (
               <button
@@ -176,7 +177,7 @@ export default function GalleryPage() {
                 onClick={() => setActiveCategory(category)}
                 className={`px-6 py-3 rounded-full font-medium transition-all ${
                   activeCategory === category
-                    ? "bg-gradient-to-r from-[#D80536] to-[#2B2E42] text-white shadow-lg"
+                    ? "bg-gradient-to-r from-[#D80536] to-[#2B2E42] text-white shadow-2xl"
                     : "bg-gray-100 text-[#8D9AAE] hover:bg-gray-200"
                 }`}
               >
@@ -186,7 +187,7 @@ export default function GalleryPage() {
           </motion.div>
 
           {/* Gallery Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
             {filteredItems.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -194,20 +195,16 @@ export default function GalleryPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 whileHover={{ scale: 1.02 }}
-                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer aspect-video bg-gradient-to-br from-[#EDF2F4] to-gray-100"
+                className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-2xl transition-all cursor-pointer aspect-video bg-gradient-to-br from-[#EDF2F4] to-gray-100"
               >
-                {/* Placeholder Content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                  <ImageIcon size={60} className="text-[#D80536] mb-4" />
-                  <p className="text-center font-medium text-[#8D9AAE] mb-2">
-                    {item.title}
-                  </p>
-                  <p className="text-sm text-[#8D9AAE]">{item.filename}</p>
-                  <p className="text-xs text-gray-400 mt-1">{item.size}</p>
-                  <span className="mt-3 px-3 py-1 bg-[#EDF2F4] text-[#D80536] text-xs rounded-full">
-                    {item.category}
-                  </span>
-                </div>
+                {/* Gallery Image */}
+                <Image
+                  src={`/images/gallery/${item.filename}`}
+                  alt={item.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#2B2E42]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
@@ -225,14 +222,14 @@ export default function GalleryPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-20"
+            className="mt-24"
           >
-            <h2 className="text-4xl font-bold text-[#2B2E42] mb-12 text-center font-[family-name:var(--font-poppins)]">
+            <h2 className="text-2xl font-bold text-[#2B2E42] mb-20 text-center font-[family-name:var(--font-poppins)]">
               Vidéos
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <div className="relative aspect-video bg-gradient-to-br from-[#EDF2F4] to-gray-100 rounded-2xl shadow-xl overflow-hidden flex items-center justify-center group cursor-pointer">
+            <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+              <div className="relative aspect-video bg-gradient-to-br from-[#EDF2F4] to-gray-100 rounded-3xl shadow-2xl overflow-hidden flex items-center justify-center group cursor-pointer">
                 <div className="text-center">
                   <div className="w-20 h-20 bg-[#D80536] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <Play size={32} className="text-white ml-1" />
@@ -246,7 +243,7 @@ export default function GalleryPage() {
                 </div>
               </div>
 
-              <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-[#EDF2F4] rounded-2xl shadow-xl overflow-hidden flex items-center justify-center group cursor-pointer">
+              <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-[#EDF2F4] rounded-3xl shadow-2xl overflow-hidden flex items-center justify-center group cursor-pointer">
                 <div className="text-center">
                   <div className="w-20 h-20 bg-[#2B2E42] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <Play size={32} className="text-white ml-1" />
@@ -265,26 +262,26 @@ export default function GalleryPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[#2B2E42] via-[#2B2E42] to-[#2B2E42] text-white">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-gradient-to-br from-[#2B2E42] via-[#2B2E42] to-[#2B2E42] text-white">
+        <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-[family-name:var(--font-poppins)]">
+            <h2 className="text-3xl md:text-4xl font-bold mb-10 font-[family-name:var(--font-poppins)]">
               Venez nous rendre visite
             </h2>
-            <p className="text-xl text-gray-200 mb-12">
+            <p className="text-xl text-gray-200 mb-20 font-light">
               Découvrez nos installations et rencontrez notre équipe pédagogique
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-10 justify-center">
               <motion.a
                 href="/contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-[#D80536] px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transition-all"
+                className="bg-white text-[#D80536] px-8 py-4 rounded-full font-semibold text-lg shadow-2xl hover:shadow-2xl transition-all"
               >
                 Prendre rendez-vous
               </motion.a>
