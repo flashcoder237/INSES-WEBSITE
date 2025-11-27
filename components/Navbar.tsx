@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { siteInfo } from "@/data/site-data";
-
+import Image from "next/image";
 const navigation = [
   { name: "Accueil", href: "/" },
   { name: "À Propos", href: "/about" },
@@ -29,27 +29,27 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Bar */}
+      {/* Top Bar - Stanford Style */}
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="bg-gradient-to-r from-[#2B2E42] to-[#2B2E42] text-white py-2 hidden md:block"
+        className="bg-[#800020] text-white py-2.5 hidden md:block"
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-8">
           <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center gap-10">
+            <div className="flex items-center gap-8">
               <a
                 href={`tel:${siteInfo.phone}`}
-                className="flex items-center gap-2 hover:text-[#EDF2F4] transition"
+                className="flex items-center gap-2 hover:text-[#D3D3D3] transition"
               >
-                <Phone size={16} />
+                <Phone size={14} />
                 <span>{siteInfo.phone}</span>
               </a>
               <a
                 href={`mailto:${siteInfo.email}`}
-                className="flex items-center gap-2 hover:text-[#EDF2F4] transition"
+                className="flex items-center gap-2 hover:text-[#D3D3D3] transition"
               >
-                <Mail size={16} />
+                <Mail size={14} />
                 <span>{siteInfo.email}</span>
               </a>
             </div>
@@ -58,58 +58,63 @@ export default function Navbar() {
         </div>
       </motion.div>
 
-      {/* Main Navigation */}
+      {/* Main Navigation - Clean Stanford Style */}
       <motion.nav
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1 }}
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`sticky top-0 z-50 transition-all duration-300 border-b ${
           scrolled
-            ? "bg-white shadow-2xl py-3"
-            : "bg-white/95 backdrop-blur-sm py-4"
+            ? "bg-white shadow-sm py-4 border-[#D3D3D3]"
+            : "bg-white py-6 border-transparent"
         }`}
       >
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-8">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-4">
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
                 className="flex items-center"
               >
-                <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] text-white font-bold text-lg md:text-lg px-6 py-2 rounded-lg shadow-2xl">
-                  INSES
-                </div>
+                <Image
+              src={"/images/logo/logo-inses.png"}
+              alt={`Logo INSES`}
+              className="object-cover opacity-90"
+              width="100"
+              height="50"
+            />
+               
               </motion.div>
               <div className="hidden lg:flex flex-col">
-                <span className="text-sm text-[#8D9AAE] font-medium">
+                <span className="text-xs text-[#4A4A4A] font-semibold uppercase tracking-wide">
                   Institut Supérieur
                 </span>
-                <span className="text-sm text-[#8D9AAE] font-medium">
+                <span className="text-xs text-[#4A4A4A] font-semibold uppercase tracking-wide">
                   de l&apos;Espoir
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-12">
+            <div className="hidden md:flex items-center gap-10">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-[#8D9AAE] hover:text-[#D80536] font-medium transition-colors relative group"
+                  className="text-[#4A4A4A] hover:text-[#B22234] font-medium text-[15px] transition-colors relative group"
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D80536] group-hover:w-full transition-all duration-300" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#B22234] group-hover:w-full transition-all duration-300" />
                 </Link>
               ))}
               <motion.a
                 href={`https://wa.me/${siteInfo.whatsapp.replace(/\s/g, "")}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md hover:shadow-2xl transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-green-600 text-white px-5 py-2 font-medium text-[15px] hover:bg-green-700 transition-colors"
               >
                 WhatsApp
               </motion.a>
@@ -118,9 +123,9 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="md:hidden p-2 hover:bg-[#D3D3D3]/20 transition-colors"
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              {isOpen ? <X size={28} color="#4A4A4A" /> : <Menu size={28} color="#4A4A4A" />}
             </button>
           </div>
         </div>
@@ -142,22 +147,22 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 bottom-0 w-80 bg-white shadow-2xl z-50 md:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-80 bg-white shadow-xl z-50 md:hidden overflow-y-auto border-l border-[#D3D3D3]"
             >
               <div className="p-6">
-                <div className="flex justify-between items-center mb-10">
-                  <div className="bg-gradient-to-br from-[#D80536] to-[#2B2E42] text-white font-bold text-lg px-6 py-2 rounded-lg">
+                <div className="flex justify-between items-center mb-10 pb-6 border-b border-[#D3D3D3]">
+                  <div className="bg-[#B22234] text-white font-bold text-lg px-5 py-2">
                     INSES
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    className="p-2 hover:bg-[#D3D3D3]/30 transition-colors"
                   >
-                    <X size={24} />
+                    <X size={24} color="#4A4A4A" />
                   </button>
                 </div>
 
-                <div className="flex flex-col gap-10">
+                <div className="flex flex-col gap-2">
                   {navigation.map((item, index) => (
                     <motion.div
                       key={item.name}
@@ -168,7 +173,7 @@ export default function Navbar() {
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="block py-3 px-6 rounded-lg text-[#8D9AAE] hover:bg-[#EDF2F4] hover:text-[#D80536] font-medium transition-all"
+                        className="block py-3 px-4 text-[#4A4A4A] hover:bg-[#D3D3D3]/20 hover:text-[#B22234] font-medium transition-all"
                       >
                         {item.name}
                       </Link>
@@ -182,20 +187,20 @@ export default function Navbar() {
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: navigation.length * 0.1 }}
-                    className="mt-4 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-full font-medium text-center shadow-md"
+                    className="mt-4 bg-green-600 text-white py-3 px-6 font-medium text-center hover:bg-green-700 transition-colors"
                   >
                     Contactez-nous sur WhatsApp
                   </motion.a>
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-gray-200">
-                  <div className="space-y-3 text-sm text-[#8D9AAE]">
+                <div className="mt-8 pt-8 border-t border-[#D3D3D3]">
+                  <div className="space-y-3 text-sm text-[#4A4A4A]">
                     <div className="flex items-center gap-2">
-                      <Phone size={16} className="text-[#D80536]" />
+                      <Phone size={16} className="text-[#B22234]" />
                       <a href={`tel:${siteInfo.phone}`}>{siteInfo.phone}</a>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Mail size={16} className="text-[#D80536]" />
+                      <Mail size={16} className="text-[#B22234]" />
                       <a href={`mailto:${siteInfo.email}`}>{siteInfo.email}</a>
                     </div>
                   </div>

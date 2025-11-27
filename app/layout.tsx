@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${poppins.variable} font-inter antialiased bg-white text-[#2B2E42]`}
+        className={`${inter.variable} ${poppins.variable} font-inter antialiased bg-white text-[#4A4A4A]`}
       >
         <Navbar />
         <main className="min-h-screen">{children}</main>

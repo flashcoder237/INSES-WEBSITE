@@ -25,14 +25,14 @@ export default function FormationDetailPage({
 
   if (!formation) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-[#4A4A4A] mb-4">
             Formation non trouvée
           </h1>
           <Link
             href="/formations"
-            className="text-red-600 hover:text-red-700 font-medium"
+            className="text-[#B22234] hover:text-[#800020] font-semibold"
           >
             Retour aux formations
           </Link>
@@ -43,25 +43,9 @@ export default function FormationDetailPage({
 
   return (
     <div className="overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 90, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute -top-1/2 -right-1/4 w-96 h-96 bg-red-500/20 rounded-full blur-3xl"
-          />
-        </div>
-
-        <div className="container mx-auto px-6 py-24 relative z-10">
+      {/* Hero Section - Stanford Style */}
+      <section className="relative min-h-[60vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
+        <div className="container mx-auto px-8 py-32 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -70,9 +54,9 @@ export default function FormationDetailPage({
           >
             <Link
               href="/formations"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-10 transition-colors"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors text-sm uppercase tracking-wide"
             >
-              <ArrowRight size={20} className="rotate-180" />
+              <ArrowRight size={18} className="rotate-180" />
               Retour aux formations
             </Link>
 
@@ -80,34 +64,32 @@ export default function FormationDetailPage({
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block mb-10"
+              className="inline-block mb-6"
             >
-              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-                <span className="text-red-200 font-medium">
-                  Formation Professionnelle
-                </span>
+              <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
+                Formation Professionnelle
               </div>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-10 font-[family-name:var(--font-poppins)]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               {formation.title}
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
               {formation.shortDescription}
             </p>
 
-            <div className="flex flex-wrap gap-10 text-white">
+            <div className="flex flex-wrap gap-6 text-white text-[15px]">
               <div className="flex items-center gap-2">
-                <Clock size={20} />
+                <Clock size={18} />
                 <span>Durée: {formation.duration}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Award size={20} />
+                <Award size={18} />
                 <span>Niveau: {formation.level}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Briefcase size={20} />
+                <Briefcase size={18} />
                 <span>{formation.career.length} débouchés</span>
               </div>
             </div>
@@ -115,9 +97,9 @@ export default function FormationDetailPage({
         </div>
       </section>
 
-      {/* Description complète */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      {/* Description complète - Stanford Style */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -125,11 +107,11 @@ export default function FormationDetailPage({
               viewport={{ once: true }}
               className="mb-20"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-10 font-[family-name:var(--font-poppins)]">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
                 Présentation de la formation
               </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-red-600 to-gray-900 mb-10" />
-              <p className="text-lg text-gray-700 leading-relaxed font-light">
+              <div className="w-20 h-1 bg-[#B22234] mb-8" />
+              <p className="text-lg text-[#4A4A4A]/70 leading-relaxed">
                 {formation.fullDescription}
               </p>
             </motion.div>
@@ -139,15 +121,15 @@ export default function FormationDetailPage({
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative h-96 bg-gradient-to-br from-red-100 to-gray-100 rounded-3xl shadow-2xl overflow-hidden mb-20"
+              className="relative h-96 bg-[#F5F5F5] overflow-hidden border-t-4 border-[#B22234]"
             >
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <GraduationCap size={80} className="text-red-600 mx-auto mb-4" />
-                  <p className="text-gray-600 font-medium">
+                  <GraduationCap size={64} className="text-[#B22234] mx-auto mb-4" />
+                  <p className="text-[#4A4A4A]/70 font-medium">
                     [Image: {formation.title}]
                   </p>
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-[#4A4A4A]/50 mt-2">
                     formation-{formation.slug}.jpg - 1200x800px
                   </p>
                 </div>
@@ -157,28 +139,29 @@ export default function FormationDetailPage({
         </div>
       </section>
 
-      {/* Compétences acquises */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-red-50">
-        <div className="container mx-auto px-6">
+      {/* Compétences acquises - Stanford Style */}
+      <section className="py-32 bg-[#F5F5F5]">
+        <div className="container mx-auto px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-20"
+              className="mb-20"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-gray-900 rounded-xl flex items-center justify-center mx-auto mb-10">
-                <Target className="text-white" size={32} />
+              <div className="w-14 h-14 bg-[#B22234] flex items-center justify-center mx-auto mb-6">
+                <Target className="text-white" size={28} />
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4 font-[family-name:var(--font-poppins)]">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-4 text-center">
                 Compétences acquises
               </h2>
-              <p className="text-lg text-gray-600 font-light">
+              <div className="w-20 h-1 bg-[#B22234] mx-auto mb-6" />
+              <p className="text-lg text-[#4A4A4A]/70 text-center">
                 Ce que vous saurez faire à la fin de cette formation
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-10">
+            <div className="grid md:grid-cols-2 gap-6">
               {formation.skills.map((skill, index) => (
                 <motion.div
                   key={index}
@@ -186,10 +169,10 @@ export default function FormationDetailPage({
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-start gap-10 bg-white p-6 rounded-xl shadow-2xl hover:shadow-2xl transition-shadow"
+                  className="flex items-start gap-4 bg-white p-6 border-l-4 border-[#B22234] hover:shadow-md transition-shadow"
                 >
-                  <CheckCircle className="text-red-600 flex-shrink-0 mt-1" size={24} />
-                  <span className="text-gray-700 text-lg font-light">{skill}</span>
+                  <CheckCircle className="text-[#B22234] flex-shrink-0 mt-1" size={20} />
+                  <span className="text-[#4A4A4A]/80 text-[15px]">{skill}</span>
                 </motion.div>
               ))}
             </div>
@@ -197,28 +180,29 @@ export default function FormationDetailPage({
         </div>
       </section>
 
-      {/* Débouchés professionnels */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      {/* Débouchés professionnels - Stanford Style */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-20"
+              className="mb-20"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-10">
-                <Briefcase className="text-white" size={32} />
+              <div className="w-14 h-14 bg-[#800020] flex items-center justify-center mx-auto mb-6">
+                <Briefcase className="text-white" size={28} />
               </div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-4 font-[family-name:var(--font-poppins)]">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-4 text-center">
                 Débouchés professionnels
               </h2>
-              <p className="text-lg text-gray-600 font-light">
+              <div className="w-20 h-1 bg-[#B22234] mx-auto mb-6" />
+              <p className="text-lg text-[#4A4A4A]/70 text-center">
                 Les opportunités de carrière qui s&apos;offrent à vous
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-10">
+            <div className="grid md:grid-cols-2 gap-6">
               {formation.career.map((career, index) => (
                 <motion.div
                   key={index}
@@ -226,14 +210,14 @@ export default function FormationDetailPage({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-gradient-to-br from-red-50 to-white p-6 rounded-xl shadow-2xl border border-red-100"
+                  className="bg-white p-6 border-t-4 border-[#B22234] hover:shadow-md transition-shadow"
                 >
-                  <div className="flex items-start gap-10">
-                    <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Briefcase className="text-red-600" size={20} />
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-[#B22234] flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="text-white" size={18} />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 font-light">{career}</h3>
+                      <h3 className="text-xl font-bold text-[#4A4A4A]">{career}</h3>
                     </div>
                   </div>
                 </motion.div>
@@ -243,31 +227,32 @@ export default function FormationDetailPage({
         </div>
       </section>
 
-      {/* Formation Details */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-6">
+      {/* Formation Details - Stanford Style */}
+      <section className="py-32 bg-[#F5F5F5]">
+        <div className="container mx-auto px-8">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-20"
+              className="mb-20"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4 font-[family-name:var(--font-poppins)]">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6 text-center">
                 Informations pratiques
               </h2>
+              <div className="w-20 h-1 bg-[#B22234] mx-auto" />
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-12">
+            <div className="grid md:grid-cols-3 gap-10">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white p-12 rounded-xl shadow-2xl text-center"
+                className="bg-white p-10 border-t-4 border-[#B22234] text-center"
               >
-                <Clock size={40} className="text-red-600 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Durée</h3>
-                <p className="text-gray-600">{formation.duration}</p>
+                <Clock size={32} className="text-[#B22234] mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">Durée</h3>
+                <p className="text-[#4A4A4A]/70">{formation.duration}</p>
               </motion.div>
 
               <motion.div
@@ -275,11 +260,11 @@ export default function FormationDetailPage({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="bg-white p-12 rounded-xl shadow-2xl text-center"
+                className="bg-white p-10 border-t-4 border-[#800020] text-center"
               >
-                <Award size={40} className="text-red-600 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Niveau requis</h3>
-                <p className="text-gray-600">{formation.level}</p>
+                <Award size={32} className="text-[#800020] mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">Niveau requis</h3>
+                <p className="text-[#4A4A4A]/70">{formation.level}</p>
               </motion.div>
 
               <motion.div
@@ -287,47 +272,47 @@ export default function FormationDetailPage({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="bg-white p-12 rounded-xl shadow-2xl text-center"
+                className="bg-white p-10 border-t-4 border-[#CD5C5C] text-center"
               >
-                <BookOpen size={40} className="text-red-600 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Formation</h3>
-                <p className="text-gray-600">Théorie + Pratique + Stages</p>
+                <BookOpen size={32} className="text-[#CD5C5C] mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">Formation</h3>
+                <p className="text-[#4A4A4A]/70">Théorie + Pratique + Stages</p>
               </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 text-white">
-        <div className="container mx-auto px-6">
+      {/* CTA Section - Stanford Style */}
+      <section className="py-32 bg-[#B22234] text-white">
+        <div className="container mx-auto px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-10 font-[family-name:var(--font-poppins)]">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">
               Intéressé par cette formation ?
             </h2>
-            <p className="text-xl text-gray-200 mb-20">
+            <p className="text-xl text-white/90 mb-12">
               Inscrivez-vous dès maintenant ou contactez-nous pour plus
               d&apos;informations
             </p>
-            <div className="flex flex-col sm:flex-row gap-10 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
                 href="/inscription"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-red-600 px-8 py-4 rounded-full font-semibold text-lg shadow-2xl hover:shadow-2xl transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-white text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
               >
                 S&apos;inscrire maintenant
               </motion.a>
               <motion.a
                 href="/contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-red-600 transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#B22234] transition-colors"
               >
                 Nous contacter
               </motion.a>
@@ -336,21 +321,22 @@ export default function FormationDetailPage({
         </div>
       </section>
 
-      {/* Autres formations */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      {/* Autres formations - Stanford Style */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="mb-20"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-[family-name:var(--font-poppins)]">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6 text-center">
               Découvrez nos autres formations
             </h2>
+            <div className="w-20 h-1 bg-[#B22234] mx-auto" />
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
             {formations
               .filter((f) => f.slug !== slug)
               .slice(0, 3)
@@ -361,22 +347,22 @@ export default function FormationDetailPage({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
+                  whileHover={{ y: -4 }}
                 >
                   <Link href={`/formations/${otherFormation.slug}`}>
-                    <div className="bg-gradient-to-br from-white to-gray-50 p-6 rounded-xl shadow-2xl hover:shadow-2xl transition-all border border-gray-100 h-full">
-                      <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-gray-900 rounded-lg flex items-center justify-center mb-4">
+                    <div className="bg-white p-6 border-t-4 border-[#B22234] hover:shadow-md transition-all h-full">
+                      <div className="w-12 h-12 bg-[#B22234] flex items-center justify-center mb-4">
                         <GraduationCap className="text-white" size={24} />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-xl font-bold text-[#4A4A4A] mb-3">
                         {otherFormation.title}
                       </h3>
-                      <p className="text-gray-600 text-sm mb-4">
+                      <p className="text-[#4A4A4A]/70 text-sm mb-4">
                         {otherFormation.shortDescription}
                       </p>
-                      <div className="flex items-center gap-2 text-red-600 font-semibold text-sm">
+                      <div className="flex items-center gap-2 text-[#B22234] font-semibold text-sm uppercase tracking-wide">
                         En savoir plus
-                        <ArrowRight size={16} />
+                        <ArrowRight size={14} />
                       </div>
                     </div>
                   </Link>

@@ -112,59 +112,40 @@ export default function GalleryPage() {
 
   return (
     <div className="overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-[#2B2E42] via-[#2B2E42] to-[#2B2E42] overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 90, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute -top-1/2 -right-1/4 w-96 h-96 bg-[#D80536]/20 rounded-full blur-3xl"
-          />
-        </div>
-
-        <div className="container mx-auto px-6 py-24 relative z-10">
+      {/* Hero Section - Stanford Style */}
+      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
+        <div className="container mx-auto px-8 py-32 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block mb-10"
+              className="inline-block mb-6"
             >
-              <div className="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
-                <span className="text-[#EDF2F4] font-medium">Galerie Photos</span>
+              <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
+                Galerie Photos
               </div>
             </motion.div>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-10 font-[family-name:var(--font-poppins)]">
-              Notre{" "}
-              <span className="bg-gradient-to-r from-[#EE2449] to-white bg-clip-text text-transparent">
-                Galerie
-              </span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Notre <span className="text-white">Galerie</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed font-light">
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
               Découvrez la vie au campus INSES en images
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
+      {/* Gallery Section - Stanford Style */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-8">
           {/* Category Filter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -175,10 +156,10 @@ export default function GalleryPage() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                className={`px-6 py-2 font-medium transition-all text-sm uppercase tracking-wide ${
                   activeCategory === category
-                    ? "bg-gradient-to-r from-[#D80536] to-[#2B2E42] text-white shadow-2xl"
-                    : "bg-gray-100 text-[#8D9AAE] hover:bg-gray-200"
+                    ? "bg-[#B22234] text-white"
+                    : "bg-white border border-[#D3D3D3] text-[#4A4A4A] hover:bg-[#F5F5F5]"
                 }`}
               >
                 {category}
@@ -187,15 +168,15 @@ export default function GalleryPage() {
           </motion.div>
 
           {/* Gallery Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredItems.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{ scale: 1.02 }}
-                className="group relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-2xl transition-all cursor-pointer aspect-video bg-gradient-to-br from-[#EDF2F4] to-gray-100"
+                whileHover={{ y: -4 }}
+                className="group relative overflow-hidden hover:shadow-md transition-all cursor-pointer aspect-video bg-[#F5F5F5]"
               >
                 {/* Gallery Image */}
                 <Image
@@ -207,51 +188,54 @@ export default function GalleryPage() {
                 />
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2B2E42]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                <div className="absolute inset-0 bg-[#4A4A4A]/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                   <div className="text-white">
                     <p className="font-semibold text-lg">{item.title}</p>
-                    <p className="text-sm text-gray-300">{item.category}</p>
+                    <p className="text-sm text-white/80">{item.category}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Video Section Placeholder */}
+          {/* Video Section - Stanford Style */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-24"
+            className="mt-32"
           >
-            <h2 className="text-2xl font-bold text-[#2B2E42] mb-20 text-center font-[family-name:var(--font-poppins)]">
-              Vidéos
-            </h2>
+            <div className="mb-20">
+              <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
+                Vidéos
+              </h2>
+              <div className="w-20 h-1 bg-[#B22234]" />
+            </div>
 
-            <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-              <div className="relative aspect-video bg-gradient-to-br from-[#EDF2F4] to-gray-100 rounded-3xl shadow-2xl overflow-hidden flex items-center justify-center group cursor-pointer">
+            <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+              <div className="relative aspect-video bg-[#F5F5F5] overflow-hidden flex items-center justify-center group cursor-pointer hover:shadow-md transition-all">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-[#D80536] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <div className="w-20 h-20 bg-[#B22234] flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <Play size={32} className="text-white ml-1" />
                   </div>
-                  <p className="font-medium text-[#8D9AAE]">
+                  <p className="font-medium text-[#4A4A4A]">
                     Visite virtuelle du campus
                   </p>
-                  <p className="text-sm text-[#8D9AAE] mt-2">
+                  <p className="text-sm text-[#4A4A4A]/60 mt-2">
                     campus-tour.mp4 - 1920x1080px
                   </p>
                 </div>
               </div>
 
-              <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-[#EDF2F4] rounded-3xl shadow-2xl overflow-hidden flex items-center justify-center group cursor-pointer">
+              <div className="relative aspect-video bg-[#F5F5F5] overflow-hidden flex items-center justify-center group cursor-pointer hover:shadow-md transition-all">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-[#2B2E42] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <div className="w-20 h-20 bg-[#800020] flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                     <Play size={32} className="text-white ml-1" />
                   </div>
-                  <p className="font-medium text-[#8D9AAE]">
+                  <p className="font-medium text-[#4A4A4A]">
                     Témoignages d&apos;anciens étudiants
                   </p>
-                  <p className="text-sm text-[#8D9AAE] mt-2">
+                  <p className="text-sm text-[#4A4A4A]/60 mt-2">
                     testimonials.mp4 - 1920x1080px
                   </p>
                 </div>
@@ -261,35 +245,35 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-[#2B2E42] via-[#2B2E42] to-[#2B2E42] text-white">
-        <div className="container mx-auto px-6">
+      {/* CTA Section - Stanford Style */}
+      <section className="py-32 bg-[#B22234] text-white">
+        <div className="container mx-auto px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-4xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-10 font-[family-name:var(--font-poppins)]">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">
               Venez nous rendre visite
             </h2>
-            <p className="text-xl text-gray-200 mb-20 font-light">
+            <p className="text-xl text-white/90 mb-12">
               Découvrez nos installations et rencontrez notre équipe pédagogique
             </p>
-            <div className="flex flex-col sm:flex-row gap-10 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4">
               <motion.a
                 href="/contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-[#D80536] px-8 py-4 rounded-full font-semibold text-lg shadow-2xl hover:shadow-2xl transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-white text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
               >
                 Prendre rendez-vous
               </motion.a>
               <motion.a
                 href="/formations"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-[#D80536] transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#B22234] transition-colors"
               >
                 Voir nos formations
               </motion.a>
@@ -300,4 +284,3 @@ export default function GalleryPage() {
     </div>
   );
 }
-
