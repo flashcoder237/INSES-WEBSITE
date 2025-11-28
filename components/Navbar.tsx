@@ -4,9 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, Search } from "lucide-react";
 import { siteInfo } from "@/data/site-data";
 import Image from "next/image";
+import ThemeToggle from "./ThemeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
+import SearchModal from "./SearchModal";
 const navigation = [
   { name: "Accueil", href: "/" },
   { name: "À Propos", href: "/about" },
@@ -18,6 +21,7 @@ const navigation = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -27,6 +31,21 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+      if (e.key === "Escape") {
+        setIsSearchOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return (
@@ -67,8 +86,8 @@ export default function Navbar() {
         transition={{ delay: 0.1 }}
         className={`sticky top-0 z-50 transition-all duration-300 border-b ${
           scrolled
-            ? "bg-white shadow-sm py-4 border-[#D3D3D3]"
-            : "bg-white py-6 border-transparent"
+            ? "bg-white dark:bg-[#1A1A1A] shadow-sm py-4 border-[#D3D3D3] dark:border-[#4A4A4A]"
+            : "bg-white dark:bg-[#1A1A1A] py-6 border-transparent"
         }`}
       >
         <div className="container mx-auto px-8">
@@ -99,7 +118,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-10">
+            <div className="hidden md:flex items-center gap-6">
               {navigation.map((item) => {
                 const isActive = pathname === item.href ||
                   (item.href !== "/" && pathname.startsWith(item.href));
@@ -111,7 +130,7 @@ export default function Navbar() {
                     className={`font-medium text-[15px] transition-colors relative group ${
                       isActive
                         ? "text-[#B22234]"
-                        : "text-[#4A4A4A] hover:text-[#B22234]"
+                        : "text-[#4A4A4A] dark:text-white hover:text-[#B22234]"
                     }`}
                   >
                     {item.name}
@@ -121,6 +140,29 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+
+              {/* Divider */}
+              <div className="w-px h-6 bg-[#D3D3D3] dark:bg-[#4A4A4A]" />
+
+              {/* Search Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsSearchOpen(true)}
+                className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#B22234]/10 dark:hover:bg-[#B22234]/20 flex items-center justify-center transition-colors group"
+                aria-label="Search"
+                title="Rechercher (Ctrl+K)"
+              >
+                <Search size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#B22234]" />
+              </motion.button>
+
+              {/* Language Switcher */}
+              <LanguageSwitcher />
+
+              {/* Theme Toggle */}
+              <ThemeToggle />
+
+              {/* WhatsApp Button */}
               <motion.a
                 href={`https://wa.me/${siteInfo.whatsapp.replace(/\s/g, "")}`}
                 target="_blank"
@@ -160,18 +202,18 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 bottom-0 w-80 bg-white shadow-xl z-50 md:hidden overflow-y-auto border-l border-[#D3D3D3]"
+              className="fixed top-0 right-0 bottom-0 w-80 bg-white dark:bg-[#2A2A2A] shadow-xl z-50 md:hidden overflow-y-auto border-l border-[#D3D3D3] dark:border-[#4A4A4A]"
             >
               <div className="p-6">
-                <div className="flex justify-between items-center mb-10 pb-6 border-b border-[#D3D3D3]">
+                <div className="flex justify-between items-center mb-10 pb-6 border-b border-[#D3D3D3] dark:border-[#4A4A4A]">
                   <div className="bg-[#B22234] text-white font-bold text-lg px-5 py-2">
                     INSES
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 hover:bg-[#D3D3D3]/30 transition-colors"
+                    className="p-2 hover:bg-[#D3D3D3]/30 dark:hover:bg-[#4A4A4A]/30 transition-colors"
                   >
-                    <X size={24} color="#4A4A4A" />
+                    <X size={24} className="text-[#4A4A4A] dark:text-white" />
                   </button>
                 </div>
 
@@ -193,7 +235,7 @@ export default function Navbar() {
                           className={`block py-3 px-4 font-medium transition-all border-l-4 ${
                             isActive
                               ? "bg-[#B22234]/10 text-[#B22234] border-[#B22234]"
-                              : "text-[#4A4A4A] hover:bg-[#D3D3D3]/20 hover:text-[#B22234] border-transparent hover:border-[#B22234]/30"
+                              : "text-[#4A4A4A] dark:text-white hover:bg-[#D3D3D3]/20 dark:hover:bg-[#4A4A4A]/40 hover:text-[#B22234] border-transparent hover:border-[#B22234]/30"
                           }`}
                         >
                           {item.name}
@@ -215,8 +257,8 @@ export default function Navbar() {
                   </motion.a>
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-[#D3D3D3]">
-                  <div className="space-y-3 text-sm text-[#4A4A4A]">
+                <div className="mt-8 pt-8 border-t border-[#D3D3D3] dark:border-[#4A4A4A]">
+                  <div className="space-y-3 text-sm text-[#4A4A4A] dark:text-white">
                     <div className="flex items-center gap-2">
                       <Phone size={16} className="text-[#B22234]" />
                       <a href={`tel:${siteInfo.phone}`}>{siteInfo.phone}</a>
@@ -226,12 +268,31 @@ export default function Navbar() {
                       <a href={`mailto:${siteInfo.email}`}>{siteInfo.email}</a>
                     </div>
                   </div>
+
+                  {/* Mobile Controls */}
+                  <div className="mt-6 flex items-center gap-3">
+                    <ThemeToggle />
+                    <LanguageSwitcher />
+                    <button
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsSearchOpen(true);
+                      }}
+                      className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#B22234]/10 dark:hover:bg-[#B22234]/20 flex items-center justify-center transition-colors"
+                      aria-label="Search"
+                    >
+                      <Search size={18} className="text-[#4A4A4A] dark:text-white" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>
   );
 }

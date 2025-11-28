@@ -13,6 +13,11 @@
   --white: #FFFFFF;
 }
 
+.dark {
+  --background: #1A1A1A;
+  --foreground: #FFFFFF;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
