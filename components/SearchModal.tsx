@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, GraduationCap, FileText, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { formations } from "@/data/site-data";
+import { useFormations } from "@/hooks/useFormations";
 import { useI18n } from "./providers/I18nProvider";
 
 interface SearchModalProps {
@@ -14,16 +14,18 @@ interface SearchModalProps {
 
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const formations = useFormations();
 
-  const pages = [
-    { title: t('nav.home'), href: "/", description: "Page d'accueil de l'INSES" },
-    { title: t('nav.about'), href: "/about", description: "Découvrez notre institut" },
-    { title: t('nav.formations'), href: "/formations", description: "Nos programmes de formation" },
-    { title: t('nav.gallery'), href: "/gallery", description: "Photos et vidéos du campus" },
-    { title: t('nav.inscription'), href: "/inscription", description: "Inscrivez-vous à l'INSES" },
-    { title: t('nav.contact'), href: "/contact", description: "Contactez-nous" },
-  ];
+  const pages = useMemo(() => [
+    { title: t('nav.home'), href: "/", description: t('search.homeDescription') },
+    { title: t('nav.about'), href: "/about", description: t('search.aboutDescription') },
+    { title: t('nav.formations'), href: "/formations", description: t('search.formationsDescription') },
+    { title: t('nav.news'), href: "/actualites", description: t('search.newsDescription') },
+    { title: t('nav.gallery'), href: "/gallery", description: t('search.galleryDescription') },
+    { title: t('nav.inscription'), href: "/inscription", description: t('search.inscriptionDescription') },
+    { title: t('nav.contact'), href: "/contact", description: t('search.contactDescription') },
+  ], [t, locale]);
 
   const [filteredFormations, setFilteredFormations] = useState(formations);
   const [filteredPages, setFilteredPages] = useState(pages);
@@ -52,7 +54,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
     setFilteredFormations(matchedFormations);
     setFilteredPages(matchedPages);
-  }, [searchQuery]);
+  }, [searchQuery, formations, pages]);
 
   useEffect(() => {
     if (isOpen) {

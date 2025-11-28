@@ -33,7 +33,14 @@
     "pages": "Pages",
     "noResults": "Aucun résultat trouvé",
     "tryOtherKeywords": "Essayez avec d'autres mots-clés",
-    "instructions": "Tapez pour rechercher • ESC pour fermer"
+    "instructions": "Tapez pour rechercher • ESC pour fermer",
+    "homeDescription": "Page d'accueil de l'INSES",
+    "aboutDescription": "Découvrez notre institut",
+    "formationsDescription": "Nos programmes de formation",
+    "newsDescription": "Actualités et événements de l'institut",
+    "galleryDescription": "Photos et vidéos du campus",
+    "inscriptionDescription": "Inscrivez-vous à l'INSES",
+    "contactDescription": "Contactez-nous"
   },
   "theme": {
     "light": "Mode clair",

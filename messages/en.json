@@ -33,7 +33,14 @@
     "pages": "Pages",
     "noResults": "No results found",
     "tryOtherKeywords": "Try different keywords",
-    "instructions": "Type to search • ESC to close"
+    "instructions": "Type to search • ESC to close",
+    "homeDescription": "INSES home page",
+    "aboutDescription": "Discover our institute",
+    "formationsDescription": "Our training programs",
+    "newsDescription": "Institute news and events",
+    "galleryDescription": "Campus photos and videos",
+    "inscriptionDescription": "Register at INSES",
+    "contactDescription": "Contact us"
   },
   "theme": {
     "light": "Light mode",

@@ -13,7 +13,7 @@ interface NewsCardProps {
 }
 
 const categoryColors = {
-  event: "bg-blue-600",
+  event: "bg-orange-600",
   announcement: "bg-[#B22234]",
   success: "bg-green-600",
 };

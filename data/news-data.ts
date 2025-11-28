@@ -1,6 +1,12 @@
 export type NewsCategory = "event" | "announcement" | "success";
 
-export interface News {
+export interface NewsTranslation {
+  title: string;
+  excerpt: string;
+  content: string;
+}
+
+export interface News extends NewsTranslation {
   id: number;
   slug: string;
   category: NewsCategory;
@@ -53,12 +59,6 @@ export const newsBase: Omit<News, "title" | "excerpt" | "content">[] = [
     date: "2024-06-15",
   },
 ];
-
-export interface NewsTranslation {
-  title: string;
-  excerpt: string;
-  content: string;
-}
 
 // French translations
 export const newsTranslationsFr: NewsTranslation[] = [
