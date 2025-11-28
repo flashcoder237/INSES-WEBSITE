@@ -15,18 +15,18 @@ export default function PageLoader() {
     // Reset loading state on route change
     setIsLoading(true);
 
-    // Simulate minimum loading time for smooth transition
+    // Simulate minimum loading time for smooth transition (at least one full rotation)
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 4000); // 2 seconds to complete one full rotation
 
     return () => clearTimeout(timer);
   }, [pathname]);
 
   useEffect(() => {
-    // Hide loader when page is fully loaded
+    // Hide loader when page is fully loaded (minimum 2 seconds to show full rotation)
     const handleLoad = () => {
-      setTimeout(() => setIsLoading(false), 500);
+      setTimeout(() => setIsLoading(false), 2000);
     };
 
     if (document.readyState === "complete") {
