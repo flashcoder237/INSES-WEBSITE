@@ -5,23 +5,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, GraduationCap, FileText, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { formations } from "@/data/site-data";
+import { useI18n } from "./providers/I18nProvider";
 
 interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const pages = [
-  { title: "Accueil", href: "/", description: "Page d'accueil de l'INSES" },
-  { title: "À Propos", href: "/about", description: "Découvrez notre institut" },
-  { title: "Formations", href: "/formations", description: "Nos programmes de formation" },
-  { title: "Galerie", href: "/gallery", description: "Photos et vidéos du campus" },
-  { title: "Inscription", href: "/inscription", description: "Inscrivez-vous à l'INSES" },
-  { title: "Contact", href: "/contact", description: "Contactez-nous" },
-];
-
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const { t } = useI18n();
+
+  const pages = [
+    { title: t('nav.home'), href: "/", description: "Page d'accueil de l'INSES" },
+    { title: t('nav.about'), href: "/about", description: "Découvrez notre institut" },
+    { title: t('nav.formations'), href: "/formations", description: "Nos programmes de formation" },
+    { title: t('nav.gallery'), href: "/gallery", description: "Photos et vidéos du campus" },
+    { title: t('nav.inscription'), href: "/inscription", description: "Inscrivez-vous à l'INSES" },
+    { title: t('nav.contact'), href: "/contact", description: "Contactez-nous" },
+  ];
+
   const [filteredFormations, setFilteredFormations] = useState(formations);
   const [filteredPages, setFilteredPages] = useState(pages);
 
@@ -95,7 +98,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Rechercher des formations, pages..."
+                  placeholder={t('search.placeholder')}
                   className="flex-1 bg-transparent border-none outline-none text-lg text-[#4A4A4A] dark:text-white placeholder:text-[#4A4A4A]/50 dark:placeholder:text-white/50"
                   autoFocus
                 />
@@ -114,7 +117,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
               {filteredFormations.length > 0 && (
                 <div>
                   <h3 className="text-sm font-bold text-[#4A4A4A] dark:text-white uppercase tracking-wide mb-3">
-                    Formations ({filteredFormations.length})
+                    {t('search.formations')} ({filteredFormations.length})
                   </h3>
                   <div className="space-y-2">
                     {filteredFormations.map((formation) => (
@@ -152,7 +155,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
               {filteredPages.length > 0 && (
                 <div>
                   <h3 className="text-sm font-bold text-[#4A4A4A] dark:text-white uppercase tracking-wide mb-3">
-                    Pages ({filteredPages.length})
+                    {t('search.pages')} ({filteredPages.length})
                   </h3>
                   <div className="space-y-2">
                     {filteredPages.map((page) => (
@@ -193,10 +196,10 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   <div className="text-center py-12">
                     <Search size={48} className="text-[#4A4A4A]/30 dark:text-white/30 mx-auto mb-4" />
                     <h3 className="text-lg font-bold text-[#4A4A4A] dark:text-white mb-2">
-                      Aucun résultat trouvé
+                      {t('search.noResults')}
                     </h3>
                     <p className="text-[#4A4A4A]/70 dark:text-white/70">
-                      Essayez avec d&apos;autres mots-clés
+                      {t('search.tryOtherKeywords')}
                     </p>
                   </div>
                 )}
@@ -205,7 +208,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
             {/* Footer */}
             <div className="p-4 border-t border-[#D3D3D3] dark:border-[#4A4A4A] bg-[#F5F5F5] dark:bg-[#1A1A1A]">
               <p className="text-xs text-[#4A4A4A]/60 dark:text-white/60 text-center">
-                Tapez pour rechercher • ESC pour fermer
+                {t('search.instructions')}
               </p>
             </div>
           </motion.div>

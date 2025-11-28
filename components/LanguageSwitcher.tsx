@@ -3,14 +3,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Check } from "lucide-react";
+import { useI18n } from "./providers/I18nProvider";
 
 const languages = [
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "en", name: "English", flag: "🇬🇧" },
+  { code: "fr" as const, name: "Français", flag: "🇫🇷" },
+  { code: "en" as const, name: "English", flag: "🇬🇧" },
 ];
 
 export default function LanguageSwitcher() {
-  const [currentLang, setCurrentLang] = useState("fr");
+  const { locale, setLocale, t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -20,8 +21,8 @@ export default function LanguageSwitcher() {
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
         className="w-10 h-10 bg-[#D3D3D3]/20 hover:bg-[#B22234]/10 flex items-center justify-center transition-colors group"
-        aria-label="Change language"
-        title="Changer la langue"
+        aria-label={t('language.select')}
+        title={t('language.select')}
       >
         <Globe size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#B22234]" />
       </motion.button>
@@ -47,20 +48,18 @@ export default function LanguageSwitcher() {
                 <button
                   key={lang.code}
                   onClick={() => {
-                    setCurrentLang(lang.code);
+                    setLocale(lang.code);
                     setIsOpen(false);
-                    // Here you would implement actual language switching
-                    console.log("Switching to:", lang.code);
                   }}
                   className={`w-full px-4 py-3 flex items-center gap-3 hover:bg-[#F5F5F5] dark:hover:bg-[#3A3A3A] transition-colors text-left ${
-                    currentLang === lang.code
+                    locale === lang.code
                       ? "bg-[#B22234]/10 text-[#B22234]"
                       : "text-[#4A4A4A] dark:text-white"
                   }`}
                 >
                   <span className="text-xl">{lang.flag}</span>
                   <span className="font-medium text-sm flex-1">{lang.name}</span>
-                  {currentLang === lang.code && (
+                  {locale === lang.code && (
                     <Check size={16} className="text-[#B22234]" />
                   )}
                 </button>

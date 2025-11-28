@@ -13,9 +13,20 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { siteInfo, formations } from "@/data/site-data";
+import { useI18n } from "./providers/I18nProvider";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useI18n();
+
+  const navigation = [
+    { name: t('nav.home'), href: "/" },
+    { name: t('nav.about'), href: "/about" },
+    { name: t('nav.formations'), href: "/formations" },
+    { name: t('nav.gallery'), href: "/gallery" },
+    { name: t('nav.inscription'), href: "/inscription" },
+    { name: t('nav.contact'), href: "/contact" },
+  ];
 
   return (
     <footer className="bg-[#4A4A4A] dark:bg-[#0A0A0A] text-white">
@@ -90,16 +101,9 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-white">Liens Rapides</h3>
+            <h3 className="text-xl font-bold mb-6 text-white">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
-              {[
-                { name: "Accueil", href: "/" },
-                { name: "À Propos", href: "/about" },
-                { name: "Formations", href: "/formations" },
-                { name: "Galerie", href: "/gallery" },
-                { name: "Inscription", href: "/inscription" },
-                { name: "Contact", href: "/contact" },
-              ].map((link) => (
+              {navigation.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
@@ -119,7 +123,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-white">Nos Formations</h3>
+            <h3 className="text-xl font-bold mb-6 text-white">{t('footer.ourFormations')}</h3>
             <ul className="space-y-2">
               {formations.slice(0, 6).map((formation) => (
                 <li key={formation.id}>
@@ -141,7 +145,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-xl font-bold mb-6 text-white">Contactez-Nous</h3>
+            <h3 className="text-xl font-bold mb-6 text-white">{t('footer.contactUs')}</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#B22234] mt-1 flex-shrink-0" />
@@ -183,7 +187,7 @@ export default function Footer() {
               whileTap={{ scale: 0.98 }}
               className="mt-6 bg-green-600 text-white px-6 py-3 font-medium hover:bg-green-700 transition-colors inline-block"
             >
-              WhatsApp
+              {t('nav.whatsapp')}
             </motion.a>
           </motion.div>
         </div>
@@ -197,8 +201,7 @@ export default function Footer() {
           className="border-t border-white/20 mt-12 pt-8 text-white/60 text-sm"
         >
           <p>
-            &copy; {currentYear} {siteInfo.fullName} ({siteInfo.name}). Tous
-            droits réservés.
+            &copy; {currentYear} {siteInfo.fullName} ({siteInfo.name}). {t('footer.rights')}.
           </p>
         </motion.div>
       </div>

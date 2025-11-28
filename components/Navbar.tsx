@@ -10,20 +10,23 @@ import Image from "next/image";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import SearchModal from "./SearchModal";
-const navigation = [
-  { name: "Accueil", href: "/" },
-  { name: "À Propos", href: "/about" },
-  { name: "Formations", href: "/formations" },
-  { name: "Galerie", href: "/gallery" },
-  { name: "Inscription", href: "/inscription" },
-  { name: "Contact", href: "/contact" },
-];
+import { useI18n } from "./providers/I18nProvider";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { t } = useI18n();
+
+  const navigation = [
+    { name: t('nav.home'), href: "/" },
+    { name: t('nav.about'), href: "/about" },
+    { name: t('nav.formations'), href: "/formations" },
+    { name: t('nav.gallery'), href: "/gallery" },
+    { name: t('nav.inscription'), href: "/inscription" },
+    { name: t('nav.contact'), href: "/contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -150,8 +153,8 @@ export default function Navbar() {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsSearchOpen(true)}
                 className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#B22234]/10 dark:hover:bg-[#B22234]/20 flex items-center justify-center transition-colors group"
-                aria-label="Search"
-                title="Rechercher (Ctrl+K)"
+                aria-label={t('nav.search')}
+                title={t('nav.searchShortcut')}
               >
                 <Search size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#B22234]" />
               </motion.button>
@@ -171,7 +174,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.98 }}
                 className="bg-green-600 text-white px-5 py-2 font-medium text-[15px] hover:bg-green-700 transition-colors"
               >
-                WhatsApp
+                {t('nav.whatsapp')}
               </motion.a>
             </div>
 
@@ -253,7 +256,7 @@ export default function Navbar() {
                     transition={{ delay: navigation.length * 0.1 }}
                     className="mt-4 bg-green-600 text-white py-3 px-6 font-medium text-center hover:bg-green-700 transition-colors"
                   >
-                    Contactez-nous sur WhatsApp
+                    {t('footer.whatsappContact')}
                   </motion.a>
                 </div>
 
@@ -279,7 +282,7 @@ export default function Navbar() {
                         setIsSearchOpen(true);
                       }}
                       className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#B22234]/10 dark:hover:bg-[#B22234]/20 flex items-center justify-center transition-colors"
-                      aria-label="Search"
+                      aria-label={t('nav.search')}
                     >
                       <Search size={18} className="text-[#4A4A4A] dark:text-white" />
                     </button>
