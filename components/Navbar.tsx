@@ -11,18 +11,26 @@ import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
 import SearchModal from "./SearchModal";
 import { useI18n } from "./providers/I18nProvider";
+import { useTheme } from "next-themes";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { t } = useI18n();
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navigation = [
     { name: t('nav.home'), href: "/" },
     { name: t('nav.about'), href: "/about" },
     { name: t('nav.formations'), href: "/formations" },
+    { name: t('nav.news'), href: "/actualites" },
     { name: t('nav.gallery'), href: "/gallery" },
     { name: t('nav.inscription'), href: "/inscription" },
     { name: t('nav.contact'), href: "/contact" },
@@ -57,21 +65,21 @@ export default function Navbar() {
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="bg-[#800020] text-white py-2.5 hidden md:block"
+        className="bg-[#800020] dark:bg-[#2A2A2A] text-white py-2.5 hidden md:block"
       >
         <div className="container mx-auto px-8">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center gap-8">
               <a
                 href={`tel:${siteInfo.phone}`}
-                className="flex items-center gap-2 hover:text-[#D3D3D3] transition"
+                className="flex items-center gap-2 hover:text-[#D3D3D3] dark:hover:text-white/80 transition"
               >
                 <Phone size={14} />
                 <span>{siteInfo.phone}</span>
               </a>
               <a
                 href={`mailto:${siteInfo.email}`}
-                className="flex items-center gap-2 hover:text-[#D3D3D3] transition"
+                className="flex items-center gap-2 hover:text-[#D3D3D3] dark:hover:text-white/80 transition"
               >
                 <Mail size={14} />
                 <span>{siteInfo.email}</span>
@@ -101,20 +109,30 @@ export default function Navbar() {
                 whileHover={{ scale: 1.02 }}
                 className="flex items-center"
               >
-                <Image
-              src={"/images/logo/logo-inses.png"}
-              alt={`Logo INSES`}
-              className="object-cover opacity-90"
-              width="100"
-              height="50"
-            />
-               
+                {mounted && (
+                  <Image
+                    src={theme === "dark" ? "/images/logo/logo-inses-white.png" : "/images/logo/logo-inses.png"}
+                    alt={`Logo INSES`}
+                    className="object-cover opacity-90"
+                    width="100"
+                    height="50"
+                  />
+                )}
+                {!mounted && (
+                  <Image
+                    src="/images/logo/logo-inses.png"
+                    alt={`Logo INSES`}
+                    className="object-cover opacity-90"
+                    width="100"
+                    height="50"
+                  />
+                )}
               </motion.div>
               <div className="hidden lg:flex flex-col">
-                <span className="text-xs text-[#4A4A4A] font-semibold uppercase tracking-wide">
+                <span className="text-xs text-[#4A4A4A] dark:text-white font-semibold uppercase tracking-wide">
                   Institut Supérieur
                 </span>
-                <span className="text-xs text-[#4A4A4A] font-semibold uppercase tracking-wide">
+                <span className="text-xs text-[#4A4A4A] dark:text-white font-semibold uppercase tracking-wide">
                   de l&apos;Espoir
                 </span>
               </div>
@@ -156,7 +174,7 @@ export default function Navbar() {
                 aria-label={t('nav.search')}
                 title={t('nav.searchShortcut')}
               >
-                <Search size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#B22234]" />
+                <Search size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#B22234] dark:group-hover:text-[#B22234]" />
               </motion.button>
 
               {/* Language Switcher */}
@@ -181,9 +199,13 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 hover:bg-[#D3D3D3]/20 transition-colors"
+              className="md:hidden p-2 hover:bg-[#D3D3D3]/20 dark:hover:bg-[#4A4A4A]/40 transition-colors"
             >
-              {isOpen ? <X size={28} color="#4A4A4A" /> : <Menu size={28} color="#4A4A4A" />}
+              {isOpen ? (
+                <X size={28} className="text-[#4A4A4A] dark:text-white" />
+              ) : (
+                <Menu size={28} className="text-[#4A4A4A] dark:text-white" />
+              )}
             </button>
           </div>
         </div>
@@ -214,7 +236,7 @@ export default function Navbar() {
                   </div>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="p-2 hover:bg-[#D3D3D3]/30 dark:hover:bg-[#4A4A4A]/30 transition-colors"
+                    className="p-2 hover:bg-[#D3D3D3]/30 dark:hover:bg-[#4A4A4A]/30 transition-colors rounded"
                   >
                     <X size={24} className="text-[#4A4A4A] dark:text-white" />
                   </button>
@@ -281,7 +303,7 @@ export default function Navbar() {
                         setIsOpen(false);
                         setIsSearchOpen(true);
                       }}
-                      className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#B22234]/10 dark:hover:bg-[#B22234]/20 flex items-center justify-center transition-colors"
+                      className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#B22234]/10 dark:hover:bg-[#B22234]/20 flex items-center justify-center transition-colors rounded"
                       aria-label={t('nav.search')}
                     >
                       <Search size={18} className="text-[#4A4A4A] dark:text-white" />

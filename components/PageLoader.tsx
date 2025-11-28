@@ -5,11 +5,18 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useI18n } from "./providers/I18nProvider";
+import { useTheme } from "next-themes";
 
 export default function PageLoader() {
   const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const { t } = useI18n();
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     // Reset loading state on route change
@@ -44,7 +51,7 @@ export default function PageLoader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-white"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-[#1A1A1A]"
         >
           <div className="relative">
             {/* Animated circles background */}
@@ -58,7 +65,7 @@ export default function PageLoader() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute inset-0 -m-20 rounded-full bg-[#B22234]/10"
+              className="absolute inset-0 -m-20 rounded-full bg-[#B22234]/10 dark:bg-[#B22234]/20"
             />
             <motion.div
               animate={{
@@ -71,7 +78,7 @@ export default function PageLoader() {
                 ease: "easeInOut",
                 delay: 0.2,
               }}
-              className="absolute inset-0 -m-32 rounded-full bg-[#B22234]/10"
+              className="absolute inset-0 -m-32 rounded-full bg-[#B22234]/10 dark:bg-[#B22234]/20"
             />
 
             {/* Logo container */}
@@ -93,14 +100,26 @@ export default function PageLoader() {
                 }}
                 className="mb-8"
               >
-                <Image
-                  src="/images/logo/logo-inses.png"
-                  alt="INSES Logo"
-                  width={200}
-                  height={100}
-                  priority
-                  className="object-contain"
-                />
+                {mounted && (
+                  <Image
+                    src={theme === "dark" ? "/images/logo/logo-inses-white.png" : "/images/logo/logo-inses.png"}
+                    alt="INSES Logo"
+                    width={200}
+                    height={100}
+                    priority
+                    className="object-contain"
+                  />
+                )}
+                {!mounted && (
+                  <Image
+                    src="/images/logo/logo-inses.png"
+                    alt="INSES Logo"
+                    width={200}
+                    height={100}
+                    priority
+                    className="object-contain"
+                  />
+                )}
               </motion.div>
 
               {/* Loading text */}
@@ -110,16 +129,16 @@ export default function PageLoader() {
                 transition={{ delay: 0.3 }}
                 className="text-center"
               >
-                <p className="text-[#4A4A4A] font-semibold text-lg mb-2">
+                <p className="text-[#4A4A4A] dark:text-white font-semibold text-lg mb-2">
                   {t('common.loading')}
                 </p>
-                <p className="text-[#4A4A4A]/60 text-sm">
+                <p className="text-[#4A4A4A]/60 dark:text-white/60 text-sm">
                   {t('common.instituteName')}
                 </p>
               </motion.div>
 
               {/* Animated loading bar */}
-              <div className="mt-8 w-64 h-1 bg-[#D3D3D3] rounded-full overflow-hidden">
+              <div className="mt-8 w-64 h-1 bg-[#D3D3D3] dark:bg-[#4A4A4A] rounded-full overflow-hidden">
                 <motion.div
                   animate={{
                     x: ["-100%", "100%"],
@@ -141,7 +160,7 @@ export default function PageLoader() {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="mt-6 w-12 h-12 border-4 border-[#D3D3D3] border-t-[#B22234] rounded-full"
+                className="mt-6 w-12 h-12 border-4 border-[#D3D3D3] dark:border-[#4A4A4A] border-t-[#B22234] rounded-full"
               />
             </motion.div>
           </div>
