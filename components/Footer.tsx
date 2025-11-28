@@ -12,12 +12,14 @@ import {
   Linkedin,
   ArrowRight,
 } from "lucide-react";
-import { siteInfo, formations } from "@/data/site-data";
+import { siteInfo } from "@/data/site-data";
 import { useI18n } from "./providers/I18nProvider";
+import { useFormations } from "@/hooks/useFormations";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const { t } = useI18n();
+  const formations = useFormations();
 
   const navigation = [
     { name: t('nav.home'), href: "/" },
@@ -43,8 +45,7 @@ export default function Footer() {
               INSES
             </div>
             <p className="text-white/80 mb-8 leading-relaxed text-[15px]">
-              {siteInfo.fullName} - Former les professionnels de santé de demain
-              avec excellence et innovation.
+              {siteInfo.fullName} - {t('about.heroSubtitle')}
             </p>
             <div className="flex gap-4">
               {siteInfo.socialMedia.facebook && (

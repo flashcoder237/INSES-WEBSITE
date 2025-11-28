@@ -14,8 +14,10 @@ import {
   Building2,
 } from "lucide-react";
 import { aboutInfo, stats } from "@/data/site-data";
+import { useI18n } from "@/components/providers/I18nProvider";
 
 export default function AboutPage() {
+  const { t } = useI18n();
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section - Stanford Style */}
@@ -34,17 +36,16 @@ export default function AboutPage() {
               className="inline-block mb-6"
             >
               <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
-                Qui sommes-nous ?
+                {t('about.heroTag')}
               </div>
             </motion.div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              À Propos de l&apos;<span className="text-white">INSES</span>
+              {t('about.heroTitle')}
             </h1>
 
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-              Former les professionnels de santé de demain avec excellence et
-              innovation
+              {t('about.heroSubtitle')}
             </p>
           </motion.div>
         </div>
@@ -64,10 +65,10 @@ export default function AboutPage() {
                 <Target className="text-white" size={28} />
               </div>
               <h2 className="text-3xl font-bold text-[#4A4A4A] mb-6">
-                Notre Mission
+                {t('about.missionTitle')}
               </h2>
               <p className="text-[#4A4A4A]/70 text-lg leading-relaxed">
-                {aboutInfo.mission}
+                {t('about.missionText')}
               </p>
             </motion.div>
 
@@ -81,10 +82,10 @@ export default function AboutPage() {
                 <Lightbulb className="text-white" size={28} />
               </div>
               <h2 className="text-3xl font-bold text-[#4A4A4A] mb-6">
-                Notre Vision
+                {t('about.visionTitle')}
               </h2>
               <p className="text-[#4A4A4A]/70 text-lg leading-relaxed">
-                {aboutInfo.vision}
+                {t('about.visionText')}
               </p>
             </motion.div>
           </div>
@@ -121,7 +122,7 @@ export default function AboutPage() {
             className="mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
-              Nos Valeurs
+              {t('about.valuesTitle')}
             </h2>
             <div className="w-20 h-1 bg-[#B22234]" />
           </motion.div>
@@ -165,12 +166,11 @@ export default function AboutPage() {
             className="mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
-              Notre Approche Pédagogique
+              {t('home.pedagogyTitle')}
             </h2>
             <div className="w-20 h-1 bg-[#B22234] mb-6" />
             <p className="text-lg text-[#4A4A4A]/70 max-w-3xl">
-              Une formation complète alliant théorie, pratique et stages en milieu
-              hospitalier
+              {t('about.whoWeAreText')}
             </p>
           </motion.div>
 
@@ -184,10 +184,10 @@ export default function AboutPage() {
               <div className="flex items-start gap-6 border-l-2 border-[#B22234] pl-6">
                 <div>
                   <h3 className="text-2xl font-bold text-[#4A4A4A] mb-3">
-                    Formation Théorique
+                    {t('home.theoreticalTitle')}
                   </h3>
                   <p className="text-[#4A4A4A]/70 leading-relaxed">
-                    {aboutInfo.pedagogy.theoretical}
+                    {t('home.theoreticalText')}
                   </p>
                 </div>
               </div>
@@ -195,10 +195,10 @@ export default function AboutPage() {
               <div className="flex items-start gap-6 border-l-2 border-[#800020] pl-6">
                 <div>
                   <h3 className="text-2xl font-bold text-[#4A4A4A] mb-3">
-                    Formation Pratique
+                    {t('home.practicalTitle')}
                   </h3>
                   <p className="text-[#4A4A4A]/70 leading-relaxed">
-                    {aboutInfo.pedagogy.practical}
+                    {t('home.practicalText')}
                   </p>
                 </div>
               </div>
@@ -206,10 +206,10 @@ export default function AboutPage() {
               <div className="flex items-start gap-6 border-l-2 border-[#CD5C5C] pl-6">
                 <div>
                   <h3 className="text-2xl font-bold text-[#4A4A4A] mb-3">
-                    Évaluation Continue
+                    {t('home.evaluationTitle')}
                   </h3>
                   <p className="text-[#4A4A4A]/70 leading-relaxed">
-                    {aboutInfo.pedagogy.evaluation}
+                    {t('home.evaluationText')}
                   </p>
                 </div>
               </div>
@@ -247,12 +247,11 @@ export default function AboutPage() {
             className="mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Nos Partenaires
+              {t('about.partnersTitle')}
             </h2>
             <div className="w-20 h-1 bg-[#B22234] mb-6" />
             <p className="text-xl text-white/80 max-w-3xl">
-              Des collaborations stratégiques pour garantir une formation pratique
-              de qualité
+              {t('about.partnersSubtitle')}
             </p>
           </motion.div>
 
@@ -268,7 +267,7 @@ export default function AboutPage() {
               >
                 <Building2 size={32} className="text-[#B22234] mb-4" />
                 <h3 className="text-2xl font-bold mb-2">{partner}</h3>
-                <p className="text-white/70">Partenaire de stage et de formation pratique</p>
+                <p className="text-white/70">{t('about.partnerText')}</p>
               </motion.div>
             ))}
           </div>
@@ -285,7 +284,7 @@ export default function AboutPage() {
             className="mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
-              INSES en Chiffres
+              {t('about.statsTitle')}
             </h2>
             <div className="w-20 h-1 bg-[#B22234]" />
           </motion.div>
@@ -320,11 +319,10 @@ export default function AboutPage() {
             className="max-w-4xl mx-auto text-white"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Rejoignez l&apos;INSES
+              {t('about.ctaTitle')}
             </h2>
             <p className="text-xl mb-12 text-white/90">
-              Faites le premier pas vers une carrière réussie dans le secteur de la
-              santé
+              {t('about.ctaSubtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <motion.a
@@ -333,7 +331,7 @@ export default function AboutPage() {
                 whileTap={{ scale: 0.98 }}
                 className="bg-white text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
               >
-                Découvrir nos formations
+                {t('home.viewAllFormations')}
               </motion.a>
               <motion.a
                 href="/inscription"
@@ -341,7 +339,7 @@ export default function AboutPage() {
                 whileTap={{ scale: 0.98 }}
                 className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#B22234] transition-colors"
               >
-                S&apos;inscrire maintenant
+                {t('common.registerNow')}
               </motion.a>
             </div>
           </motion.div>

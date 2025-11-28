@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { GraduationCap, Clock, ArrowRight, BookOpen } from "lucide-react";
 import { Formation } from "@/data/site-data";
+import { useI18n } from "./providers/I18nProvider";
 
 // Mapping des slugs de formations vers leurs images
 const formationImages: Record<string, string> = {
@@ -22,6 +23,7 @@ interface FormationCardProps {
 }
 
 export default function FormationCard({ formation, index = 0 }: FormationCardProps) {
+  const { t } = useI18n();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -64,12 +66,12 @@ export default function FormationCard({ formation, index = 0 }: FormationCardPro
             {/* Meta info */}
             <div className="flex items-center justify-between text-sm text-[#4A4A4A]/60 mb-6 pb-6 border-b border-[#D3D3D3]">
               <span className="font-medium">{formation.level}</span>
-              <span>{formation.career.length} débouchés</span>
+              <span>{formation.career.length} {t('common.careers')}</span>
             </div>
 
             {/* CTA */}
             <div className="flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
-              Découvrir
+              {t('common.learnMore')}
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
             </div>
           </div>
@@ -81,6 +83,7 @@ export default function FormationCard({ formation, index = 0 }: FormationCardPro
 
 // Alternative card style with horizontal layout for featured formations
 export function FormationCardHorizontal({ formation, index = 0 }: FormationCardProps) {
+  const { t } = useI18n();
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -142,10 +145,10 @@ export function FormationCardHorizontal({ formation, index = 0 }: FormationCardP
 
             <div className="flex items-center justify-between pt-6 border-t border-[#D3D3D3]">
               <span className="text-sm font-medium text-[#4A4A4A]/70">
-                {formation.career.length} opportunités de carrière
+                {formation.career.length} {t('common.careers')}
               </span>
               <div className="flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
-                En savoir plus
+                {t('common.learnMore')}
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
               </div>
             </div>

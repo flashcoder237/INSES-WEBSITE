@@ -49,6 +49,7 @@
     "viewAll": "View all",
     "close": "Close",
     "loading": "Loading...",
+    "instituteName": "Higher Institute of Hope",
     "error": "Error",
     "success": "Success",
     "duration": "Duration",
@@ -60,14 +61,15 @@
     "backTo": "Back to"
   },
   "home": {
+    "heroBadge": "Excellence in Professional Training",
     "heroTitle": "Training Tomorrow's Healthcare Professionals",
     "heroSubtitle": "Academic excellence and practical training for a successful career in healthcare",
     "explorePrograms": "Explore our programs",
     "stats": {
-      "students": "Students",
-      "programs": "Programs",
-      "years": "Years of Excellence",
-      "graduates": "Graduates"
+      "experience": "Years of experience",
+      "studentsFormed": "Students trained",
+      "programs": "Available programs",
+      "successRate": "Success rate"
     },
     "programsTitle": "Study Programs",
     "healthCare": {
@@ -79,20 +81,43 @@
       "description": "Medical Representative, Medical Secretary, Pharmacy Sales"
     },
     "laboratory": {
-      "title": "Laboratory",
-      "description": "Laboratory Assistant Chemist"
+      "title": "Laboratory & Sciences",
+      "description": "Laboratory Assistant Chemist, Medical Secretary"
     },
+    "aboutBadge": "Our Excellence",
     "aboutTitle": "Why Choose INSES?",
     "aboutDescription": "The Institut Supérieur de l'Espoir is a recognized professional training institution specializing in health professions. We offer quality training combining theory and practice.",
-    "ourMission": "Our Mission",
-    "ourMissionText": "Training competent and committed healthcare professionals",
-    "ourVision": "Our Vision",
-    "ourVisionText": "To be the leading health training institution in Cameroon",
+    "excellence": {
+      "title": "Excellence",
+      "description": "We strive for excellence in all our training programs"
+    },
+    "practice": {
+      "title": "Practice",
+      "description": "Training grounded in professional reality with internships in hospital settings"
+    },
+    "innovation": {
+      "title": "Innovation",
+      "description": "Modern teaching methods adapted to current challenges"
+    },
+    "support": {
+      "title": "Support",
+      "description": "Personalized support for each student throughout their journey"
+    },
+    "pedagogyBadge": "Our Method",
+    "pedagogyTitle": "A Comprehensive Teaching Approach",
+    "theoreticalTitle": "Theoretical Training",
+    "theoreticalText": "Theoretical courses delivered by experienced healthcare professionals",
+    "practicalTitle": "Practical Training",
+    "practicalText": "Mandatory practical internships in partner healthcare facilities, including the CEMECES Medical-Surgical Clinic and other hospital structures in the Littoral region",
+    "evaluationTitle": "Continuous Assessment",
+    "evaluationText": "Training organized in modules with multiple continuous assessments to ensure skill acquisition",
     "ourPartners": "Our Partners",
+    "formationsBadge": "Our Programs",
     "ourFormationsTitle": "Our Programs",
-    "ourFormationsSubtitle": "Programs",
-    "ctaTitle": "Ready to start your training?",
-    "ctaSubtitle": "Enroll today and launch your career in healthcare"
+    "formationsDescription": "Choose from our 6 professional programs in the healthcare sector and build your future",
+    "viewAllFormations": "View all programs",
+    "ctaTitle": "Ready to start your journey?",
+    "ctaSubtitle": "Join INSES and build your future in healthcare"
   },
   "about": {
     "heroTag": "About Us",

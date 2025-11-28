@@ -13,7 +13,8 @@ import {
   BookOpen,
   Target,
 } from "lucide-react";
-import { formations } from "@/data/site-data";
+import { useFormation, useFormations } from "@/hooks/useFormations";
+import { useI18n } from "@/components/providers/I18nProvider";
 
 export default function FormationDetailPage({
   params,
@@ -21,20 +22,22 @@ export default function FormationDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
-  const formation = formations.find((f) => f.slug === slug);
+  const { t } = useI18n();
+  const formation = useFormation(slug);
+  const formations = useFormations();
 
   if (!formation) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-[#4A4A4A] mb-4">
-            Formation non trouvée
+            {t('formationDetail.notFound')}
           </h1>
           <Link
             href="/formations"
             className="text-[#B22234] hover:text-[#800020] font-semibold"
           >
-            Retour aux formations
+            {t('formationDetail.backToFormations')}
           </Link>
         </div>
       </div>
@@ -57,7 +60,7 @@ export default function FormationDetailPage({
               className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors text-sm uppercase tracking-wide"
             >
               <ArrowRight size={18} className="rotate-180" />
-              Retour aux formations
+              {t('formationDetail.backToFormations')}
             </Link>
 
             <motion.div
@@ -67,7 +70,7 @@ export default function FormationDetailPage({
               className="inline-block mb-6"
             >
               <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
-                Formation Professionnelle
+                {t('formationDetail.tag')}
               </div>
             </motion.div>
 
@@ -82,15 +85,15 @@ export default function FormationDetailPage({
             <div className="flex flex-wrap gap-6 text-white text-[15px]">
               <div className="flex items-center gap-2">
                 <Clock size={18} />
-                <span>Durée: {formation.duration}</span>
+                <span>{t('common.duration')}: {formation.duration}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Award size={18} />
-                <span>Niveau: {formation.level}</span>
+                <span>{t('common.level')}: {formation.level}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Briefcase size={18} />
-                <span>{formation.career.length} débouchés</span>
+                <span>{formation.career.length} {t('common.careers')}</span>
               </div>
             </div>
           </motion.div>
@@ -108,7 +111,7 @@ export default function FormationDetailPage({
               className="mb-20"
             >
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
-                Présentation de la formation
+                {t('formationDetail.presentationTitle')}
               </h2>
               <div className="w-20 h-1 bg-[#B22234] mb-8" />
               <p className="text-lg text-[#4A4A4A]/70 leading-relaxed">
@@ -153,11 +156,11 @@ export default function FormationDetailPage({
                 <Target className="text-white" size={28} />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-4 text-center">
-                Compétences acquises
+                {t('formationDetail.skillsTitle')}
               </h2>
               <div className="w-20 h-1 bg-[#B22234] mx-auto mb-6" />
               <p className="text-lg text-[#4A4A4A]/70 text-center">
-                Ce que vous saurez faire à la fin de cette formation
+                {t('formationDetail.skillsSubtitle')}
               </p>
             </motion.div>
 
@@ -194,11 +197,11 @@ export default function FormationDetailPage({
                 <Briefcase className="text-white" size={28} />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-4 text-center">
-                Débouchés professionnels
+                {t('formationDetail.careersTitle')}
               </h2>
               <div className="w-20 h-1 bg-[#B22234] mx-auto mb-6" />
               <p className="text-lg text-[#4A4A4A]/70 text-center">
-                Les opportunités de carrière qui s&apos;offrent à vous
+                {t('formationDetail.careersSubtitle')}
               </p>
             </motion.div>
 
@@ -238,7 +241,7 @@ export default function FormationDetailPage({
               className="mb-20"
             >
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6 text-center">
-                Informations pratiques
+                {t('formationDetail.practicalInfoTitle')}
               </h2>
               <div className="w-20 h-1 bg-[#B22234] mx-auto" />
             </motion.div>
@@ -251,7 +254,7 @@ export default function FormationDetailPage({
                 className="bg-white p-10 border-t-4 border-[#B22234] text-center"
               >
                 <Clock size={32} className="text-[#B22234] mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">Durée</h3>
+                <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">{t('common.duration')}</h3>
                 <p className="text-[#4A4A4A]/70">{formation.duration}</p>
               </motion.div>
 
@@ -263,7 +266,7 @@ export default function FormationDetailPage({
                 className="bg-white p-10 border-t-4 border-[#800020] text-center"
               >
                 <Award size={32} className="text-[#800020] mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">Niveau requis</h3>
+                <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">{t('formationDetail.requiredLevel')}</h3>
                 <p className="text-[#4A4A4A]/70">{formation.level}</p>
               </motion.div>
 
@@ -275,8 +278,8 @@ export default function FormationDetailPage({
                 className="bg-white p-10 border-t-4 border-[#CD5C5C] text-center"
               >
                 <BookOpen size={32} className="text-[#CD5C5C] mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">Formation</h3>
-                <p className="text-[#4A4A4A]/70">Théorie + Pratique + Stages</p>
+                <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">{t('formationDetail.training')}</h3>
+                <p className="text-[#4A4A4A]/70">{t('formationDetail.theoryPracticeInternship')}</p>
               </motion.div>
             </div>
           </div>
@@ -293,11 +296,10 @@ export default function FormationDetailPage({
             className="max-w-4xl mx-auto text-center"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Intéressé par cette formation ?
+              {t('formationDetail.interestedTitle')}
             </h2>
             <p className="text-xl text-white/90 mb-12">
-              Inscrivez-vous dès maintenant ou contactez-nous pour plus
-              d&apos;informations
+              {t('formationDetail.interestedSubtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
@@ -306,7 +308,7 @@ export default function FormationDetailPage({
                 whileTap={{ scale: 0.98 }}
                 className="bg-white text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
               >
-                S&apos;inscrire maintenant
+                {t('common.registerNow')}
               </motion.a>
               <motion.a
                 href="/contact"
@@ -314,7 +316,7 @@ export default function FormationDetailPage({
                 whileTap={{ scale: 0.98 }}
                 className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#B22234] transition-colors"
               >
-                Nous contacter
+                {t('common.contactUs')}
               </motion.a>
             </div>
           </motion.div>
@@ -331,7 +333,7 @@ export default function FormationDetailPage({
             className="mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6 text-center">
-              Découvrez nos autres formations
+              {t('formationDetail.otherFormationsTitle')}
             </h2>
             <div className="w-20 h-1 bg-[#B22234] mx-auto" />
           </motion.div>

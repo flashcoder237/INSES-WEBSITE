@@ -17,8 +17,10 @@ import {
 } from "lucide-react";
 import { formations, stats, aboutInfo } from "@/data/site-data";
 import FormationCard from "@/components/FormationCard";
+import { useI18n } from "@/components/providers/I18nProvider";
 
 export default function Home() {
+  const { t } = useI18n();
   return (
     <div className="overflow-x-hidden bg-white">
       {/* Hero Section - Stanford Style: Clean & Minimalist */}
@@ -53,25 +55,18 @@ export default function Home() {
                 className="inline-block mb-8"
               >
                 <div className="bg-[#B22234] text-white px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
-                  Excellence en Formation Professionnelle
+                  {t('home.heroBadge')}
                 </div>
               </motion.div>
 
               {/* Main Title */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#4A4A4A] mb-8 leading-tight">
-                Institut Supérieur de{" "}
-                <span className="text-[#B22234]">l&apos;Espoir</span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#4A4A4A] dark:text-white mb-8 leading-tight">
+                {t('home.heroTitle')}
               </h1>
 
               {/* Subtitle */}
-              <p className="text-2xl md:text-3xl text-[#4A4A4A] mb-6 leading-relaxed font-light max-w-3xl">
-                Formez-vous aux métiers de la santé avec excellence
-              </p>
-
-              {/* Description */}
-              <p className="text-lg md:text-xl text-[#4A4A4A]/70 mb-12 max-w-2xl leading-relaxed">
-                L&apos;INSES offre des formations professionnelles de qualité dans le
-                secteur de la santé à Douala, Cameroun.
+              <p className="text-2xl md:text-3xl text-[#4A4A4A] dark:text-white mb-6 leading-relaxed font-light max-w-3xl">
+                {t('home.heroSubtitle')}
               </p>
 
               {/* CTA Buttons */}
@@ -81,16 +76,16 @@ export default function Home() {
                     href="/formations"
                     className="bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors inline-flex items-center gap-2 group"
                   >
-                    Découvrir nos formations
+                    {t('home.explorePrograms')}
                     <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                   </Link>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Link
                     href="/inscription"
-                    className="border-2 border-[#4A4A4A] text-[#4A4A4A] px-8 py-4 font-semibold text-base hover:bg-[#4A4A4A] hover:text-white transition-colors inline-block"
+                    className="border-2 border-[#4A4A4A] dark:border-white text-[#4A4A4A] dark:text-white px-8 py-4 font-semibold text-base hover:bg-[#4A4A4A] dark:hover:bg-white hover:text-white dark:hover:text-[#4A4A4A] transition-colors inline-block"
                   >
-                    S&apos;inscrire maintenant
+                    {t('common.registerNow')}
                   </Link>
                 </motion.div>
               </div>
@@ -134,7 +129,7 @@ export default function Home() {
             className="mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
-              Programmes d'études
+              {t('home.programsTitle')}
             </h2>
             <div className="w-20 h-1 bg-[#B22234]" />
           </motion.div>
@@ -152,16 +147,16 @@ export default function Home() {
                 <Heart className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4">
-                Soins et Santé
+                {t('home.healthCare.title')}
               </h3>
               <p className="text-[#4A4A4A]/70 mb-6 leading-relaxed">
-                Massothérapie, Diététique et Nutrition
+                {t('home.healthCare.description')}
               </p>
               <Link
                 href="/formations#sante"
                 className="inline-flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide"
               >
-                En savoir plus
+                {t('common.learnMore')}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -179,16 +174,16 @@ export default function Home() {
                 <BookOpen className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4">
-                Médical et Pharmaceutique
+                {t('home.medical.title')}
               </h3>
               <p className="text-[#4A4A4A]/70 mb-6 leading-relaxed">
-                Délégué Médical, Vendeur en Pharmacie
+                {t('home.medical.description')}
               </p>
               <Link
                 href="/formations#medical"
                 className="inline-flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide"
               >
-                En savoir plus
+                {t('common.learnMore')}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -206,16 +201,16 @@ export default function Home() {
                 <Award className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4">
-                Sciences et Technologies
+                {t('home.laboratory.title')}
               </h3>
               <p className="text-[#4A4A4A]/70 mb-6 leading-relaxed">
-                Aide Chimiste Biologiste, Secrétariat Médical
+                {t('home.laboratory.description')}
               </p>
               <Link
                 href="/formations#sciences"
                 className="inline-flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide"
               >
-                En savoir plus
+                {t('common.learnMore')}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -233,10 +228,10 @@ export default function Home() {
             className="mb-20"
           >
             <div className="inline-block px-4 py-1.5 bg-[#B22234] text-white text-sm font-semibold uppercase tracking-wider mb-6">
-              Notre Excellence
+              {t('home.aboutBadge')}
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
-              Pourquoi choisir l&apos;INSES ?
+              {t('home.aboutTitle')}
             </h2>
             <div className="w-20 h-1 bg-[#B22234]" />
           </motion.div>
@@ -286,20 +281,20 @@ export default function Home() {
               <div className="grid md:grid-cols-2 gap-16 items-start">
                 <div className="space-y-8">
                   <div className="inline-block px-4 py-1.5 bg-[#B22234] text-white text-sm font-semibold uppercase tracking-wider">
-                    Notre Méthode
+                    {t('home.pedagogyBadge')}
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold text-[#4A4A4A]">
-                    Une Approche Pédagogique Complète
+                    {t('home.pedagogyTitle')}
                   </h3>
 
                   <div className="space-y-6">
                     <div className="flex items-start gap-4 border-l-2 border-[#B22234] pl-6">
                       <div>
                         <h4 className="font-bold text-[#4A4A4A] mb-2 text-lg">
-                          Formation Théorique
+                          {t('home.theoreticalTitle')}
                         </h4>
                         <p className="text-[#4A4A4A]/70 leading-relaxed text-[15px]">
-                          {aboutInfo.pedagogy.theoretical}
+                          {t('home.theoreticalText')}
                         </p>
                       </div>
                     </div>
@@ -307,10 +302,10 @@ export default function Home() {
                     <div className="flex items-start gap-4 border-l-2 border-[#800020] pl-6">
                       <div>
                         <h4 className="font-bold text-[#4A4A4A] mb-2 text-lg">
-                          Formation Pratique
+                          {t('home.practicalTitle')}
                         </h4>
                         <p className="text-[#4A4A4A]/70 leading-relaxed text-[15px]">
-                          {aboutInfo.pedagogy.practical}
+                          {t('home.practicalText')}
                         </p>
                       </div>
                     </div>
@@ -318,10 +313,10 @@ export default function Home() {
                     <div className="flex items-start gap-4 border-l-2 border-[#CD5C5C] pl-6">
                       <div>
                         <h4 className="font-bold text-[#4A4A4A] mb-2 text-lg">
-                          Évaluation Continue
+                          {t('home.evaluationTitle')}
                         </h4>
                         <p className="text-[#4A4A4A]/70 leading-relaxed text-[15px]">
-                          {aboutInfo.pedagogy.evaluation}
+                          {t('home.evaluationText')}
                         </p>
                       </div>
                     </div>
@@ -330,7 +325,7 @@ export default function Home() {
 
                 <div className="bg-[#4A4A4A] p-10 text-white">
                   <Users size={40} className="mb-6" />
-                  <h4 className="text-2xl font-bold mb-8">Nos Partenaires</h4>
+                  <h4 className="text-2xl font-bold mb-8">{t('home.ourPartners')}</h4>
                   <ul className="space-y-3">
                     {aboutInfo.partners.map((partner, index) => (
                       <li key={index} className="flex items-start gap-3 text-[15px]">
@@ -356,15 +351,14 @@ export default function Home() {
             className="mb-20"
           >
             <div className="inline-block px-4 py-1.5 bg-[#B22234] text-white text-sm font-semibold uppercase tracking-wider mb-6">
-              Nos Programmes
+              {t('home.formationsBadge')}
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
-              Nos Formations
+              {t('home.ourFormationsTitle')}
             </h2>
             <div className="w-20 h-1 bg-[#B22234] mb-6" />
             <p className="text-lg text-[#4A4A4A]/70 max-w-3xl leading-relaxed">
-              Choisissez parmi nos 6 filières professionnelles dans le secteur de
-              la santé et construisez votre avenir
+              {t('home.formationsDescription')}
             </p>
           </motion.div>
 
@@ -388,7 +382,7 @@ export default function Home() {
               href="/formations"
               className="inline-flex items-center gap-2 bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors group"
             >
-              Voir toutes les formations
+              {t('home.viewAllFormations')}
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
             </Link>
           </motion.div>
@@ -405,11 +399,10 @@ export default function Home() {
             className="max-w-4xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-              Prêt à commencer votre parcours ?
+              {t('home.ctaTitle')}
             </h2>
             <p className="text-xl text-white/90 mb-12 leading-relaxed">
-              Rejoignez l&apos;INSES et construisez votre avenir dans le secteur de
-              la santé
+              {t('home.ctaSubtitle')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 items-start">
@@ -419,7 +412,7 @@ export default function Home() {
                 whileTap={{ scale: 0.98 }}
                 className="bg-white text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
               >
-                Inscrivez-vous maintenant
+                {t('common.registerNow')}
               </motion.a>
               <motion.a
                 href="/contact"
@@ -427,7 +420,7 @@ export default function Home() {
                 whileTap={{ scale: 0.98 }}
                 className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#B22234] transition-colors"
               >
-                Contactez-nous
+                {t('common.contactUs')}
               </motion.a>
             </div>
           </motion.div>

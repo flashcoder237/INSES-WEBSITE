@@ -14,8 +14,10 @@ import {
   Map,
 } from "lucide-react";
 import { siteInfo } from "@/data/site-data";
+import { useI18n } from "@/components/providers/I18nProvider";
 
 export default function ContactPage() {
+  const { t } = useI18n();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -88,16 +90,16 @@ export default function ContactPage() {
               className="inline-block mb-6"
             >
               <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
-                Contactez-nous
+                {t('contact.heroTag')}
               </div>
             </motion.div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Prenez <span className="text-white">Contact</span>
+              {t('contact.heroTitle')}
             </h1>
 
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-              Nous sommes là pour répondre à toutes vos questions
+              {t('contact.heroSubtitle')}
             </p>
           </motion.div>
         </div>
@@ -116,14 +118,14 @@ export default function ContactPage() {
                 className="bg-[#4A4A4A] p-10 text-white"
               >
                 <h2 className="text-2xl font-bold mb-8">
-                  Informations de Contact
+                  {t('contact.contactInfoTitle')}
                 </h2>
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <MapPin className="flex-shrink-0 mt-1 text-[#B22234]" size={20} />
                     <div>
-                      <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">Adresse</h3>
+                      <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">{t('contact.address')}</h3>
                       <p className="text-white/80 text-[15px]">{siteInfo.location}</p>
                     </div>
                   </div>
@@ -131,7 +133,7 @@ export default function ContactPage() {
                   <div className="flex items-start gap-4">
                     <Phone className="flex-shrink-0 mt-1 text-[#B22234]" size={20} />
                     <div>
-                      <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">Téléphone</h3>
+                      <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">{t('contact.phone')}</h3>
                       <a
                         href={`tel:${siteInfo.phone}`}
                         className="text-white/80 hover:text-white transition-colors block text-[15px]"
@@ -151,7 +153,7 @@ export default function ContactPage() {
                         href={`tel:${siteInfo.fixedLine}`}
                         className="text-white/80 hover:text-white transition-colors block mt-2 text-sm"
                       >
-                        Fixe: {siteInfo.fixedLine}
+                        {t('contact.fixedLine')}: {siteInfo.fixedLine}
                       </a>
                     </div>
                   </div>
@@ -159,7 +161,7 @@ export default function ContactPage() {
                   <div className="flex items-start gap-4">
                     <Mail className="flex-shrink-0 mt-1 text-[#B22234]" size={20} />
                     <div>
-                      <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">Email</h3>
+                      <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">{t('contact.email')}</h3>
                       <a
                         href={`mailto:${siteInfo.email}`}
                         className="text-white/80 hover:text-white transition-colors text-[15px]"
@@ -172,14 +174,14 @@ export default function ContactPage() {
                   <div className="flex items-start gap-4">
                     <Clock className="flex-shrink-0 mt-1 text-[#B22234]" size={20} />
                     <div>
-                      <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">Horaires d&apos;ouverture</h3>
+                      <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">{t('contact.schedule')}</h3>
                       <p className="text-white/80 text-sm">
-                        Lundi - Vendredi: 8h00 - 17h00
+                        {t('contact.mondayFriday')}
                       </p>
                       <p className="text-white/80 text-sm">
-                        Samedi: 8h00 - 13h00
+                        {t('contact.saturday')}
                       </p>
-                      <p className="text-white/80 text-sm">Dimanche: Fermé</p>
+                      <p className="text-white/80 text-sm">{t('contact.sunday')}</p>
                     </div>
                   </div>
                 </div>
@@ -193,7 +195,7 @@ export default function ContactPage() {
                     whileTap={{ scale: 0.98 }}
                     className="bg-green-600 text-white px-6 py-3 font-semibold text-center block hover:bg-green-700 transition-colors"
                   >
-                    Contactez-nous sur WhatsApp
+                    {t('footer.whatsappContact')}
                   </motion.a>
                 </div>
               </motion.div>
@@ -211,10 +213,10 @@ export default function ContactPage() {
                   <CheckCircle className="text-green-500 flex-shrink-0" size={28} />
                   <div>
                     <h3 className="text-xl font-bold text-green-900 mb-1">
-                      Message envoyé !
+                      {t('contact.messageSent')}
                     </h3>
                     <p className="text-green-700 text-[15px]">
-                      Nous avons bien reçu votre message et vous répondrons dans les plus brefs délais.
+                      {t('contact.messageSuccess')}
                     </p>
                   </div>
                 </motion.div>
@@ -229,7 +231,7 @@ export default function ContactPage() {
                 <div className="flex items-center gap-3 mb-8">
                   <MessageSquare className="text-[#B22234]" size={28} />
                   <h2 className="text-2xl font-bold text-[#4A4A4A]">
-                    Envoyez-nous un message
+                    {t('contact.sendMessageTitle')}
                   </h2>
                 </div>
 
@@ -239,7 +241,7 @@ export default function ContactPage() {
                       htmlFor="name"
                       className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                     >
-                      Nom complet *
+                      {t('contact.fullName')} *
                     </label>
                     <input
                       type="text"
@@ -249,7 +251,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
-                      placeholder="Votre nom complet"
+                      placeholder={t('contact.fullName')}
                     />
                   </div>
 
@@ -259,7 +261,7 @@ export default function ContactPage() {
                         htmlFor="email"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Email *
+                        {t('contact.emailLabel')} *
                       </label>
                       <input
                         type="email"
@@ -278,7 +280,7 @@ export default function ContactPage() {
                         htmlFor="phone"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Téléphone
+                        {t('contact.phoneLabel')}
                       </label>
                       <input
                         type="tel"
@@ -297,7 +299,7 @@ export default function ContactPage() {
                       htmlFor="subject"
                       className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                     >
-                      Sujet *
+                      {t('contact.subject')} *
                     </label>
                     <select
                       id="subject"
@@ -307,11 +309,11 @@ export default function ContactPage() {
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
                     >
-                      <option value="">Sélectionnez un sujet</option>
-                      <option value="inscription">Demande d&apos;inscription</option>
-                      <option value="information">Demande d&apos;information</option>
-                      <option value="rendez-vous">Prise de rendez-vous</option>
-                      <option value="autre">Autre</option>
+                      <option value="">{t('contact.selectSubject')}</option>
+                      <option value="inscription">{t('contact.registrationRequest')}</option>
+                      <option value="information">{t('contact.informationRequest')}</option>
+                      <option value="rendez-vous">{t('contact.appointment')}</option>
+                      <option value="autre">{t('contact.other')}</option>
                     </select>
                   </div>
 
@@ -320,7 +322,7 @@ export default function ContactPage() {
                       htmlFor="message"
                       className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                     >
-                      Message *
+                      {t('contact.message')} *
                     </label>
                     <textarea
                       id="message"
@@ -330,7 +332,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       rows={6}
                       className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all resize-none"
-                      placeholder="Écrivez votre message ici..."
+                      placeholder={t('contact.writeMessage')}
                     />
                   </div>
 
@@ -342,11 +344,11 @@ export default function ContactPage() {
                     className="w-full bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
-                      "Envoi en cours..."
+                      t('contact.sending')
                     ) : (
                       <>
                         <Send size={18} />
-                        Envoyer le message
+                        {t('contact.sendButton')}
                       </>
                     )}
                   </motion.button>
@@ -369,12 +371,12 @@ export default function ContactPage() {
             <div className="flex items-center gap-3 mb-4">
               <Map className="text-[#B22234]" size={28} />
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A]">
-                Notre Localisation
+                {t('contact.locationTitle')}
               </h2>
             </div>
             <div className="w-20 h-1 bg-[#B22234] mb-4" />
             <p className="text-lg text-[#4A4A4A]/70">
-              Visitez-nous à Douala-Bonabéri
+              {t('contact.visitUs')}
             </p>
           </motion.div>
 
@@ -403,7 +405,7 @@ export default function ContactPage() {
             className="mt-8 text-center"
           >
             <p className="text-[#4A4A4A]/70 mb-4">
-              Comment se rendre à l&apos;INSES ?
+              {t('contact.howToReach')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
@@ -413,7 +415,7 @@ export default function ContactPage() {
                 className="inline-flex items-center gap-2 text-[#B22234] hover:text-[#800020] font-semibold text-sm uppercase tracking-wide"
               >
                 <MapPin size={18} />
-                Ouvrir dans Google Maps
+                {t('contact.openInMaps')}
               </a>
               <span className="text-[#4A4A4A]/40 text-sm">
                 GPS: 4.0949692, 9.6646493

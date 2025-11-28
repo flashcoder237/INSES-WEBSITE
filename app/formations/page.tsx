@@ -11,15 +11,18 @@ import {
   ArrowRight,
   Filter,
 } from "lucide-react";
-import { formations } from "@/data/site-data";
 import { useState } from "react";
+import { useI18n } from "@/components/providers/I18nProvider";
+import { useFormations } from "@/hooks/useFormations";
 
 export default function FormationsPage() {
+  const { t } = useI18n();
+  const formations = useFormations();
   const [filter, setFilter] = useState("all");
 
   const filteredFormations = formations.filter((formation) => {
     if (filter === "all") return true;
-    if (filter === "2ans") return formation.duration === "2 ans";
+    if (filter === "2ans") return formation.duration.includes("2");
     return true;
   });
 
@@ -53,16 +56,16 @@ export default function FormationsPage() {
               className="inline-block mb-6"
             >
               <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
-                Choisissez votre formation
+                {t('formations.heroTag')}
               </div>
             </motion.div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Nos <span className="text-white">Formations</span>
+              {t('formations.heroTitle')}
             </h1>
 
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-              6 filières professionnelles dans le secteur de la santé
+              {t('formations.heroSubtitle')}
             </p>
           </motion.div>
         </div>
@@ -79,7 +82,7 @@ export default function FormationsPage() {
           >
             <div className="flex items-center gap-2 text-[#4A4A4A]">
               <Filter size={18} />
-              <span className="font-medium text-sm uppercase tracking-wide">Filtrer par:</span>
+              <span className="font-medium text-sm uppercase tracking-wide">{t('formations.filterAll')}:</span>
             </div>
             <button
               onClick={() => setFilter("all")}
@@ -89,7 +92,7 @@ export default function FormationsPage() {
                   : "bg-white border border-[#D3D3D3] text-[#4A4A4A] hover:bg-[#F5F5F5]"
               }`}
             >
-              Toutes les formations
+              {t('formations.filterAll')}
             </button>
             <button
               onClick={() => setFilter("2ans")}
@@ -134,21 +137,21 @@ export default function FormationsPage() {
                     <div className="space-y-2 mb-8">
                       <div className="flex items-center gap-2 text-sm text-[#4A4A4A]/70">
                         <Clock size={14} />
-                        <span>Durée: {formation.duration}</span>
+                        <span>{t('common.duration')}: {formation.duration}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-[#4A4A4A]/70">
                         <Award size={14} />
-                        <span>Niveau: {formation.level}</span>
+                        <span>{t('common.level')}: {formation.level}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-[#4A4A4A]/70">
                         <BookOpen size={14} />
-                        <span>{formation.career.length} débouchés</span>
+                        <span>{formation.career.length} {t('common.careers')}</span>
                       </div>
                     </div>
 
                     {/* CTA */}
                     <div className="flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
-                      En savoir plus
+                      {t('common.learnMore')}
                       <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
                     </div>
                   </div>
@@ -169,7 +172,7 @@ export default function FormationsPage() {
             className="mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
-              Pourquoi choisir nos formations ?
+              {t('home.aboutTitle')}
             </h2>
             <div className="w-20 h-1 bg-[#B22234]" />
           </motion.div>
@@ -185,11 +188,10 @@ export default function FormationsPage() {
                 <BookOpen className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4 text-center">
-                Formation Complète
+                {t('home.pedagogyTitle')}
               </h3>
               <p className="text-[#4A4A4A]/70 text-center text-[15px]">
-                Théorie et pratique combinées avec des stages en milieu
-                hospitalier
+                {t('formationDetail.theoryPracticeInternship')}
               </p>
             </motion.div>
 
@@ -204,11 +206,10 @@ export default function FormationsPage() {
                 <Award className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4 text-center">
-                Diplôme Reconnu
+                {t('home.excellence.title')}
               </h3>
               <p className="text-[#4A4A4A]/70 text-center text-[15px]">
-                Diplômes professionnels reconnus et recherchés sur le marché du
-                travail
+                {t('home.excellence.description')}
               </p>
             </motion.div>
 
@@ -223,10 +224,10 @@ export default function FormationsPage() {
                 <GraduationCap className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4 text-center">
-                Accompagnement
+                {t('home.support.title')}
               </h3>
               <p className="text-[#4A4A4A]/70 text-center text-[15px]">
-                Suivi personnalisé tout au long de votre parcours de formation
+                {t('home.support.description')}
               </p>
             </motion.div>
           </div>
@@ -243,11 +244,10 @@ export default function FormationsPage() {
             className="max-w-4xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Prêt à commencer ?
+              {t('formations.ctaTitle')}
             </h2>
             <p className="text-xl text-white/90 mb-12">
-              Inscrivez-vous dès maintenant et démarrez votre carrière dans la
-              santé
+              {t('formations.ctaSubtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <motion.a
@@ -256,7 +256,7 @@ export default function FormationsPage() {
                 whileTap={{ scale: 0.98 }}
                 className="bg-white text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
               >
-                S&apos;inscrire maintenant
+                {t('common.registerNow')}
               </motion.a>
               <motion.a
                 href="/contact"
@@ -264,7 +264,7 @@ export default function FormationsPage() {
                 whileTap={{ scale: 0.98 }}
                 className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#B22234] transition-colors"
               >
-                Nous contacter
+                {t('common.contactUs')}
               </motion.a>
             </div>
           </motion.div>

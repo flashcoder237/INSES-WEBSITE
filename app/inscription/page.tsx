@@ -14,9 +14,12 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
-import { formations } from "@/data/site-data";
+import { useI18n } from "@/components/providers/I18nProvider";
+import { useFormations } from "@/hooks/useFormations";
 
 export default function InscriptionPage() {
+  const { t } = useI18n();
+  const formations = useFormations();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -100,16 +103,16 @@ export default function InscriptionPage() {
               className="inline-block mb-6"
             >
               <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
-                Rejoignez-nous
+                {t('inscription.heroTag')}
               </div>
             </motion.div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              Formulaire <span className="text-white">d&apos;Inscription</span>
+              {t('inscription.heroTitle')}
             </h1>
 
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-              Remplissez le formulaire pour commencer votre parcours à l&apos;INSES
+              {t('inscription.heroSubtitle')}
             </p>
           </motion.div>
         </div>
@@ -129,11 +132,10 @@ export default function InscriptionPage() {
                 <CheckCircle className="text-green-500 flex-shrink-0" size={28} />
                 <div>
                   <h3 className="text-xl font-bold text-green-900 mb-1">
-                    Inscription envoyée !
+                    {t('inscription.registrationSent')}
                   </h3>
                   <p className="text-green-700 text-[15px]">
-                    Merci pour votre demande d&apos;inscription. Nous vous
-                    contacterons sous peu.
+                    {t('inscription.registrationSuccess')}
                   </p>
                 </div>
               </motion.div>
@@ -149,7 +151,7 @@ export default function InscriptionPage() {
                 <div>
                   <h2 className="text-2xl font-bold text-[#4A4A4A] mb-8 flex items-center gap-3">
                     <User className="text-[#B22234]" size={28} />
-                    Informations Personnelles
+                    {t('inscription.personalInfoTitle')}
                   </h2>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -158,7 +160,7 @@ export default function InscriptionPage() {
                         htmlFor="firstName"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Prénom *
+                        {t('inscription.firstName')} *
                       </label>
                       <input
                         type="text"
@@ -177,7 +179,7 @@ export default function InscriptionPage() {
                         htmlFor="lastName"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Nom *
+                        {t('inscription.lastName')} *
                       </label>
                       <input
                         type="text"
@@ -196,7 +198,7 @@ export default function InscriptionPage() {
                         htmlFor="email"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Email *
+                        {t('inscription.email')} *
                       </label>
                       <div className="relative">
                         <Mail
@@ -221,7 +223,7 @@ export default function InscriptionPage() {
                         htmlFor="phone"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Téléphone *
+                        {t('inscription.phone')} *
                       </label>
                       <div className="relative">
                         <Phone
@@ -246,7 +248,7 @@ export default function InscriptionPage() {
                         htmlFor="dateOfBirth"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Date de naissance *
+                        {t('inscription.dateOfBirth')} *
                       </label>
                       <div className="relative">
                         <Calendar
@@ -270,7 +272,7 @@ export default function InscriptionPage() {
                         htmlFor="city"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Ville *
+                        {t('inscription.city')} *
                       </label>
                       <div className="relative">
                         <MapPin
@@ -285,7 +287,7 @@ export default function InscriptionPage() {
                           value={formData.city}
                           onChange={handleChange}
                           className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
-                          placeholder="Douala, Yaoundé..."
+                          placeholder={t('inscription.cityPlaceholder')}
                         />
                       </div>
                     </div>
@@ -296,7 +298,7 @@ export default function InscriptionPage() {
                       htmlFor="address"
                       className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                     >
-                      Adresse complète *
+                      {t('inscription.fullAddress')} *
                     </label>
                     <input
                       type="text"
@@ -306,7 +308,7 @@ export default function InscriptionPage() {
                       value={formData.address}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
-                      placeholder="Quartier, rue, numéro..."
+                      placeholder={t('inscription.addressPlaceholder')}
                     />
                   </div>
                 </div>
@@ -315,7 +317,7 @@ export default function InscriptionPage() {
                 <div className="pt-6 border-t border-[#D3D3D3]">
                   <h2 className="text-2xl font-bold text-[#4A4A4A] mb-8 flex items-center gap-3">
                     <GraduationCap className="text-[#B22234]" size={28} />
-                    Formation Souhaitée
+                    {t('inscription.desiredFormationTitle')}
                   </h2>
 
                   <div className="grid md:grid-cols-2 gap-6">
@@ -324,7 +326,7 @@ export default function InscriptionPage() {
                         htmlFor="formation"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Choisissez votre formation *
+                        {t('inscription.chooseFormation')} *
                       </label>
                       <select
                         id="formation"
@@ -334,7 +336,7 @@ export default function InscriptionPage() {
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
                       >
-                        <option value="">Sélectionnez une formation</option>
+                        <option value="">{t('inscription.selectFormation')}</option>
                         {formations.map((formation) => (
                           <option key={formation.id} value={formation.slug}>
                             {formation.title}
@@ -348,7 +350,7 @@ export default function InscriptionPage() {
                         htmlFor="level"
                         className="block text-sm font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide"
                       >
-                        Niveau d&apos;études actuel *
+                        {t('inscription.currentLevel')} *
                       </label>
                       <select
                         id="level"
@@ -358,12 +360,12 @@ export default function InscriptionPage() {
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
                       >
-                        <option value="">Sélectionnez votre niveau</option>
-                        <option value="bepc">BEPC</option>
-                        <option value="probatoire">Probatoire</option>
-                        <option value="bac">Baccalauréat</option>
-                        <option value="licence">Licence</option>
-                        <option value="autre">Autre</option>
+                        <option value="">{t('inscription.selectLevel')}</option>
+                        <option value="bepc">{t('inscription.bepc')}</option>
+                        <option value="probatoire">{t('inscription.probatoire')}</option>
+                        <option value="bac">{t('inscription.bac')}</option>
+                        <option value="licence">{t('inscription.licence')}</option>
+                        <option value="autre">{t('inscription.other')}</option>
                       </select>
                     </div>
                   </div>
@@ -373,7 +375,7 @@ export default function InscriptionPage() {
                 <div className="pt-6 border-t border-[#D3D3D3]">
                   <h2 className="text-2xl font-bold text-[#4A4A4A] mb-8 flex items-center gap-3">
                     <FileText className="text-[#B22234]" size={28} />
-                    Message (Optionnel)
+                    {t('inscription.messageTitle')}
                   </h2>
 
                   <textarea
@@ -383,7 +385,7 @@ export default function InscriptionPage() {
                     onChange={handleChange}
                     rows={5}
                     className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all resize-none"
-                    placeholder="Avez-vous des questions ou des informations supplémentaires à nous communiquer ?"
+                    placeholder={t('inscription.messagePlaceholder')}
                   />
                 </div>
 
@@ -392,17 +394,16 @@ export default function InscriptionPage() {
                   <AlertCircle className="text-[#B22234] flex-shrink-0 mt-1" size={20} />
                   <div className="text-sm text-[#4A4A4A]/80">
                     <p className="font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide text-xs">
-                      Documents à prévoir :
+                      {t('inscription.documentsTitle')}
                     </p>
                     <ul className="space-y-1">
-                      <li>• Copie de l&apos;acte de naissance</li>
-                      <li>• Copie du dernier diplôme obtenu</li>
-                      <li>• 4 photos d&apos;identité récentes</li>
-                      <li>• Copie de la carte nationale d&apos;identité</li>
+                      <li>• {t('inscription.birthCertificate')}</li>
+                      <li>• {t('inscription.diploma')}</li>
+                      <li>• {t('inscription.photos')}</li>
+                      <li>• {t('inscription.idCard')}</li>
                     </ul>
                     <p className="mt-3 text-xs">
-                      Ces documents seront demandés lors de la finalisation de
-                      votre inscription.
+                      {t('inscription.documentsNote')}
                     </p>
                   </div>
                 </div>
@@ -416,7 +417,7 @@ export default function InscriptionPage() {
                     whileTap={{ scale: 0.98 }}
                     className="bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? "Envoi en cours..." : "Envoyer ma demande"}
+                    {isSubmitting ? t('inscription.submitting') : t('inscription.submitButton')}
                   </motion.button>
 
                   <motion.a
@@ -425,7 +426,7 @@ export default function InscriptionPage() {
                     whileTap={{ scale: 0.98 }}
                     className="border-2 border-[#4A4A4A] text-[#4A4A4A] px-8 py-4 font-semibold text-base hover:bg-[#4A4A4A] hover:text-white transition-colors text-center"
                   >
-                    Besoin d&apos;aide ?
+                    {t('inscription.needHelp')}
                   </motion.a>
                 </div>
               </form>
