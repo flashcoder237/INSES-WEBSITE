@@ -20,10 +20,13 @@ const formationImages: Record<string, string> = {
 interface FormationCardProps {
   formation: Formation;
   index?: number;
+  centerSlug?: string;
 }
 
-export default function FormationCard({ formation, index = 0 }: FormationCardProps) {
+export default function FormationCard({ formation, index = 0, centerSlug }: FormationCardProps) {
   const { t } = useI18n();
+  const formationUrl = centerSlug ? `/${centerSlug}/formations/${formation.slug}` : `/formations/${formation.slug}`;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -33,7 +36,7 @@ export default function FormationCard({ formation, index = 0 }: FormationCardPro
       whileHover={{ y: -4 }}
       className="group h-full"
     >
-      <Link href={`/formations/${formation.slug}`}>
+      <Link href={formationUrl}>
         <div className="relative h-full bg-white dark:bg-[#2A2A2A] overflow-hidden hover:shadow-md transition-all border-t-4 border-[#B22234]">
           {/* Image with overlay */}
           <div className="relative h-64 overflow-hidden bg-[#F5F5F5] dark:bg-[#1A1A1A]">
@@ -82,8 +85,10 @@ export default function FormationCard({ formation, index = 0 }: FormationCardPro
 }
 
 // Alternative card style with horizontal layout for featured formations
-export function FormationCardHorizontal({ formation, index = 0 }: FormationCardProps) {
+export function FormationCardHorizontal({ formation, index = 0, centerSlug }: FormationCardProps) {
   const { t } = useI18n();
+  const formationUrl = centerSlug ? `/${centerSlug}/formations/${formation.slug}` : `/formations/${formation.slug}`;
+
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -92,7 +97,7 @@ export function FormationCardHorizontal({ formation, index = 0 }: FormationCardP
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <Link href={`/formations/${formation.slug}`}>
+      <Link href={formationUrl}>
         <div className="relative bg-white dark:bg-[#2A2A2A] overflow-hidden hover:shadow-md transition-all flex flex-col md:flex-row h-full border-l-4 border-[#B22234]">
           {/* Image section */}
           <div className="relative w-full md:w-2/5 h-72 md:h-auto overflow-hidden bg-[#F5F5F5] dark:bg-[#1A1A1A]">
