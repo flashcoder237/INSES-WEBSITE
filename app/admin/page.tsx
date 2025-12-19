@@ -17,63 +17,63 @@ const adminSections = [
     description: 'Gérer les formations, compétences et débouchés',
     icon: BookOpen,
     href: '/admin/formations',
-    color: 'bg-blue-500',
+    color: 'bg-[#B22234]',
   },
   {
     title: 'Actualités',
     description: 'Gérer les actualités et événements',
     icon: Newspaper,
     href: '/admin/news',
-    color: 'bg-purple-500',
+    color: 'bg-[#800020]',
   },
   {
     title: 'À propos',
     description: 'Gérer mission, vision, valeurs et pédagogie',
     icon: Info,
     href: '/admin/about',
-    color: 'bg-green-500',
+    color: 'bg-[#4A4A4A]',
   },
   {
     title: 'Informations du site',
     description: 'Gérer coordonnées, réseaux sociaux',
     icon: Settings,
     href: '/admin/site-info',
-    color: 'bg-orange-500',
+    color: 'bg-[#CD5C5C]',
   },
   {
     title: 'Statistiques',
     description: 'Gérer les chiffres clés affichés',
     icon: BarChart3,
     href: '/admin/stats',
-    color: 'bg-pink-500',
+    color: 'bg-[#B22234]',
   },
   {
     title: 'Partenaires',
     description: 'Gérer les partenaires institutionnels',
     icon: Users,
     href: '/admin/partners',
-    color: 'bg-indigo-500',
+    color: 'bg-[#800020]',
   },
   {
     title: 'Messages de contact',
     description: 'Consulter les messages reçus',
     icon: MessageSquare,
     href: '/admin/contacts',
-    color: 'bg-teal-500',
+    color: 'bg-[#4A4A4A]',
   },
   {
     title: 'Demandes d\'inscription',
     description: 'Gérer les demandes d\'inscription',
     icon: UserPlus,
     href: '/admin/inscriptions',
-    color: 'bg-yellow-500',
+    color: 'bg-[#CD5C5C]',
   },
   {
     title: 'Galerie',
     description: 'Gérer les images de la galerie',
     icon: Images,
     href: '/admin/gallery',
-    color: 'bg-red-500',
+    color: 'bg-[#B22234]',
   },
 ]
 
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
             <Link
               key={section.href}
               href={section.href}
-              className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+              className="group relative bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-300 overflow-hidden"
             >
               {/* Gradient background on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-50 dark:to-gray-700/50 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -120,7 +120,7 @@ export default function AdminDashboard() {
                 </p>
 
                 {/* Arrow indicator */}
-                <div className="mt-4 flex items-center text-sm font-medium text-blue-600 dark:text-blue-400">
+                <div className="mt-4 flex items-center text-sm font-medium text-[#B22234] dark:text-[#CD5C5C]">
                   Gérer
                   <svg
                     className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"
@@ -143,40 +143,40 @@ export default function AdminDashboard() {
       </div>
 
       {/* Quick stats */}
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 p-6">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
           Accès rapide
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-            <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+          <div className="bg-[#B22234]/10 dark:bg-[#B22234]/20 rounded-lg p-4">
+            <p className="text-sm text-[#B22234] dark:text-[#CD5C5C] font-medium">
               Total formations
             </p>
-            <p className="text-2xl font-bold text-blue-900 dark:text-blue-100 mt-1">
+            <p className="text-2xl font-bold text-[#800020] dark:text-[#CD5C5C] mt-1">
               6
             </p>
           </div>
-          <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4">
-            <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">
+          <div className="bg-[#800020]/10 dark:bg-[#800020]/20 rounded-lg p-4">
+            <p className="text-sm text-[#800020] dark:text-[#CD5C5C] font-medium">
               Actualités publiées
             </p>
-            <p className="text-2xl font-bold text-purple-900 dark:text-purple-100 mt-1">
+            <p className="text-2xl font-bold text-[#800020] dark:text-[#CD5C5C] mt-1">
               6
             </p>
           </div>
-          <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
-            <p className="text-sm text-green-600 dark:text-green-400 font-medium">
+          <div className="bg-[#4A4A4A]/10 dark:bg-[#4A4A4A]/20 rounded-lg p-4">
+            <p className="text-sm text-[#4A4A4A] dark:text-gray-400 font-medium">
               Messages reçus
             </p>
-            <p className="text-2xl font-bold text-green-900 dark:text-green-100 mt-1">
+            <p className="text-2xl font-bold text-[#4A4A4A] dark:text-gray-300 mt-1">
               -
             </p>
           </div>
-          <div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4">
-            <p className="text-sm text-orange-600 dark:text-orange-400 font-medium">
+          <div className="bg-[#CD5C5C]/10 dark:bg-[#CD5C5C]/20 rounded-lg p-4">
+            <p className="text-sm text-[#CD5C5C] dark:text-[#CD5C5C] font-medium">
               Inscriptions
             </p>
-            <p className="text-2xl font-bold text-orange-900 dark:text-orange-100 mt-1">
+            <p className="text-2xl font-bold text-[#CD5C5C] dark:text-[#CD5C5C] mt-1">
               -
             </p>
           </div>

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import PageLoader from "@/components/PageLoader";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { I18nProvider } from "@/components/providers/I18nProvider";
+import ConditionalLayout from "@/components/ConditionalLayout";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,9 +38,7 @@ export default function RootLayout({
         <ThemeProvider>
           <I18nProvider>
             <PageLoader />
-            <Navbar />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
+            <ConditionalLayout>{children}</ConditionalLayout>
           </I18nProvider>
         </ThemeProvider>
       </body>

@@ -55,7 +55,7 @@ export const formationsDataFr: Omit<Formation, "id" | "slug" | "icon">[] = [
       "Maîtrise des techniques de massage",
       "Connaissance de l'anatomie humaine",
       "Relation d'aide et écoute",
-      "Gestion d'un cabinet privé"
+      "Adaptation aux besoins spécifiques"
     ]
   },
   {
@@ -74,7 +74,8 @@ export const formationsDataFr: Omit<Formation, "id" | "slug" | "icon">[] = [
       "Techniques d'analyses biologiques",
       "Utilisation d'équipements de laboratoire",
       "Respect des protocoles de sécurité",
-      "Rigueur et précision scientifique"
+      "Rigueur et précision scientifique",
+      "Travaux de synthèse et reporting"
     ]
   },
   {
@@ -172,7 +173,7 @@ export const formationsDataEn: Omit<Formation, "id" | "slug" | "icon">[] = [
       "Mastery of massage techniques",
       "Knowledge of human anatomy",
       "Helping relationship and listening",
-      "Private practice management"
+      "Adaptation to specific needs"
     ]
   },
   {
@@ -191,7 +192,8 @@ export const formationsDataEn: Omit<Formation, "id" | "slug" | "icon">[] = [
       "Biological analysis techniques",
       "Use of laboratory equipment",
       "Compliance with safety protocols",
-      "Scientific rigor and precision"
+      "Scientific rigor and precision",
+      "Synthesis work and reporting"
     ]
   },
   {

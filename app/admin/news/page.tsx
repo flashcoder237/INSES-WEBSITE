@@ -5,37 +5,36 @@ import { createClient } from '@/lib/supabase/client'
 import { Plus, Edit, Trash2, Loader2, Eye, EyeOff } from 'lucide-react'
 import Link from 'next/link'
 
-interface Formation {
+interface News {
   id: string
   slug: string
+  category: string
   title_fr: string
   title_en: string
-  short_description_fr: string
-  duration: string
-  level: string
-  is_active: boolean
-  display_order: number
+  excerpt_fr: string
+  published_date: string
+  is_published: boolean
 }
 
-export default function FormationsAdminPage() {
-  const [formations, setFormations] = useState<Formation[]>([])
+export default function NewsAdminPage() {
+  const [news, setNews] = useState<News[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    loadFormations()
+    loadNews()
   }, [])
 
-  const loadFormations = async () => {
+  const loadNews = async () => {
     try {
       const supabase = createClient()
       const { data, error } = await supabase
-        .from('formations')
+        .from('news')
         .select('*')
-        .order('display_order', { ascending: true })
+        .order('published_date', { ascending: false })
 
       if (error) throw error
-      setFormations(data || [])
+      setNews(data || [])
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -43,36 +42,53 @@ export default function FormationsAdminPage() {
     }
   }
 
-  const toggleActive = async (id: string, currentStatus: boolean) => {
+  const togglePublished = async (id: string, currentStatus: boolean) => {
     try {
       const supabase = createClient()
       const { error } = await supabase
-        .from('formations')
-        .update({ is_active: !currentStatus })
+        .from('news')
+        .update({ is_published: !currentStatus })
         .eq('id', id)
 
       if (error) throw error
-      await loadFormations()
+      await loadNews()
     } catch (err: any) {
       alert('Erreur: ' + err.message)
     }
   }
 
-  const deleteFormation = async (id: string, title: string) => {
+  const deleteNews = async (id: string, title: string) => {
     if (!confirm(`Êtes-vous sûr de vouloir supprimer "${title}" ?`)) return
 
     try {
       const supabase = createClient()
-      const { error } = await supabase
-        .from('formations')
-        .delete()
-        .eq('id', id)
+      const { error } = await supabase.from('news').delete().eq('id', id)
 
       if (error) throw error
-      await loadFormations()
+      await loadNews()
     } catch (err: any) {
       alert('Erreur: ' + err.message)
     }
+  }
+
+  const getCategoryLabel = (category: string) => {
+    const labels: Record<string, string> = {
+      event: 'Événement',
+      announcement: 'Annonce',
+      success: 'Succès',
+    }
+    return labels[category] || category
+  }
+
+  const getCategoryColor = (category: string) => {
+    const colors: Record<string, string> = {
+      event: 'bg-[#B22234]/10 text-[#B22234] dark:bg-[#B22234]/20 dark:text-[#CD5C5C]',
+      announcement:
+        'bg-[#800020]/10 text-[#800020] dark:bg-[#800020]/20 dark:text-[#CD5C5C]',
+      success:
+        'bg-[#4A4A4A]/10 text-[#4A4A4A] dark:bg-[#4A4A4A]/20 dark:text-gray-300',
+    }
+    return colors[category] || 'bg-gray-100 text-gray-800'
   }
 
   if (loading) {
@@ -97,35 +113,35 @@ export default function FormationsAdminPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Formations
+            Actualités
           </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Gérez les formations offertes par l'institut
+            Gérez les actualités et événements
           </p>
         </div>
         <Link
-          href="/admin/formations/new"
+          href="/admin/news/new"
           className="flex items-center px-4 py-2 bg-[#B22234] text-white rounded-lg hover:bg-[#800020] transition-colors"
         >
           <Plus className="h-5 w-5 mr-2" />
-          Nouvelle formation
+          Nouvelle actualité
         </Link>
       </div>
 
-      {/* Liste des formations */}
+      {/* Liste des actualités */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-gray-50 dark:bg-gray-900">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  Formation
+                  Actualité
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  Durée
+                  Catégorie
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                  Niveau
+                  Date
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   Statut
@@ -136,42 +152,53 @@ export default function FormationsAdminPage() {
               </tr>
             </thead>
             <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-              {formations.map((formation) => (
-                <tr key={formation.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+              {news.map((item) => (
+                <tr
+                  key={item.id}
+                  className="hover:bg-gray-50 dark:hover:bg-gray-700/50"
+                >
                   <td className="px-6 py-4">
                     <div className="flex flex-col">
                       <div className="text-sm font-medium text-gray-900 dark:text-white">
-                        {formation.title_fr}
+                        {item.title_fr}
                       </div>
                       <div className="text-sm text-gray-500 dark:text-gray-400 line-clamp-1">
-                        {formation.short_description_fr}
+                        {item.excerpt_fr}
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
-                    {formation.duration}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(
+                        item.category
+                      )}`}
+                    >
+                      {getCategoryLabel(item.category)}
+                    </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
-                    {formation.level}
+                    {new Date(item.published_date).toLocaleDateString('fr-FR')}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button
-                      onClick={() => toggleActive(formation.id, formation.is_active)}
+                      onClick={() =>
+                        togglePublished(item.id, item.is_published)
+                      }
                       className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        formation.is_active
+                        item.is_published
                           ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
                           : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400'
                       }`}
                     >
-                      {formation.is_active ? (
+                      {item.is_published ? (
                         <>
                           <Eye className="h-3 w-3 mr-1" />
-                          Active
+                          Publié
                         </>
                       ) : (
                         <>
                           <EyeOff className="h-3 w-3 mr-1" />
-                          Inactive
+                          Brouillon
                         </>
                       )}
                     </button>
@@ -179,13 +206,13 @@ export default function FormationsAdminPage() {
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex justify-end space-x-2">
                       <Link
-                        href={`/admin/formations/${formation.id}`}
+                        href={`/admin/news/${item.id}`}
                         className="text-[#B22234] hover:text-[#800020] dark:text-[#CD5C5C] dark:hover:text-[#B22234]"
                       >
                         <Edit className="h-5 w-5" />
                       </Link>
                       <button
-                        onClick={() => deleteFormation(formation.id, formation.title_fr)}
+                        onClick={() => deleteNews(item.id, item.title_fr)}
                         className="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
                       >
                         <Trash2 className="h-5 w-5" />
@@ -198,10 +225,10 @@ export default function FormationsAdminPage() {
           </table>
         </div>
 
-        {formations.length === 0 && (
+        {news.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-500 dark:text-gray-400">
-              Aucune formation trouvée
+              Aucune actualité trouvée
             </p>
           </div>
         )}

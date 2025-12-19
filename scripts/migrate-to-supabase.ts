@@ -65,8 +65,8 @@ async function migrateFormations() {
   await supabase.from('formations').delete().neq('id', '00000000-0000-0000-0000-000000000000')
 
   const formationsWithTranslations = formationsData.map((formation, index) => {
-    const frData = formationsDataFr.find(f => f.id === formation.id)!
-    const enData = formationsDataEn.find(f => f.id === formation.id)!
+    const frData = formationsDataFr[index]
+    const enData = formationsDataEn[index]
 
     return {
       slug: formation.slug,
@@ -97,10 +97,11 @@ async function migrateFormations() {
   console.log(`✅ ${insertedFormations.length} formations migrées`)
 
   // Migrer les compétences et carrières
-  for (const formation of formationsData) {
+  for (let i = 0; i < formationsData.length; i++) {
+    const formation = formationsData[i]
     const dbFormation = insertedFormations.find(f => f.slug === formation.slug)!
-    const frData = formationsDataFr.find(f => f.id === formation.id)!
-    const enData = formationsDataEn.find(f => f.id === formation.id)!
+    const frData = formationsDataFr[i]
+    const enData = formationsDataEn[i]
 
     // Compétences
     const skills = formation.skills.map((_, index) => ({
@@ -238,9 +239,9 @@ async function migrateNews() {
   // Supprimer les news existantes
   await supabase.from('news').delete().neq('id', '00000000-0000-0000-0000-000000000000')
 
-  const newsData = newsBase.map(newsItem => {
-    const frData = newsTranslationsFr.find(n => n.id === newsItem.id)!
-    const enData = newsTranslationsEn.find(n => n.id === newsItem.id)!
+  const newsData = newsBase.map((newsItem, index) => {
+    const frData = newsTranslationsFr[index]
+    const enData = newsTranslationsEn[index]
 
     return {
       slug: newsItem.slug,

@@ -11,6 +11,7 @@ import {
   Menu,
   X,
   ChevronDown,
+  ChevronRight,
 } from 'lucide-react'
 
 interface AdminNavProps {
@@ -32,9 +33,30 @@ export default function AdminNav({ user }: AdminNavProps) {
 
   const navigation = [
     { name: 'Tableau de bord', href: '/admin' },
-    { name: 'Formations', href: '/admin/formations' },
-    { name: 'Actualités', href: '/admin/news' },
-    { name: 'À propos', href: '/admin/about' },
+    {
+      name: 'Contenu',
+      items: [
+        { name: 'Formations', href: '/admin/formations' },
+        { name: 'Actualités', href: '/admin/news' },
+        { name: 'Galerie', href: '/admin/gallery' },
+      ],
+    },
+    {
+      name: 'Paramètres',
+      items: [
+        { name: 'À propos', href: '/admin/about' },
+        { name: 'Site', href: '/admin/site-info' },
+        { name: 'Statistiques', href: '/admin/stats' },
+        { name: 'Partenaires', href: '/admin/partners' },
+      ],
+    },
+    {
+      name: 'Messages',
+      items: [
+        { name: 'Contacts', href: '/admin/contacts' },
+        { name: 'Inscriptions', href: '/admin/inscriptions' },
+      ],
+    },
   ]
 
   return (
@@ -46,7 +68,7 @@ export default function AdminNav({ user }: AdminNavProps) {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/admin" className="flex items-center space-x-2">
-                <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <div className="h-8 w-8 bg-[#B22234] rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">IN</span>
                 </div>
                 <span className="font-bold text-gray-900 dark:text-white hidden sm:block">
@@ -56,21 +78,58 @@ export default function AdminNav({ user }: AdminNavProps) {
             </div>
 
             {/* Navigation desktop */}
-            <div className="hidden md:ml-8 md:flex md:space-x-4">
+            <div className="hidden md:ml-8 md:flex md:items-center md:space-x-1">
               {navigation.map((item) => {
-                const isActive = pathname === item.href
+                if ('href' in item) {
+                  const isActive = pathname === item.href
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                        isActive
+                          ? 'bg-[#B22234]/10 dark:bg-[#B22234]/20 text-[#B22234] dark:text-[#CD5C5C]'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  )
+                }
+
+                // Dropdown menu
+                const hasActiveChild = item.items?.some(child => pathname?.startsWith(child.href))
                 return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                      isActive
-                        ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
+                  <div key={item.name} className="relative group">
+                    <button className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                      hasActiveChild
+                        ? 'bg-[#B22234]/10 dark:bg-[#B22234]/20 text-[#B22234] dark:text-[#CD5C5C]'
                         : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
+                    }`}>
+                      {item.name}
+                      <ChevronDown className="ml-1 h-4 w-4" />
+                    </button>
+                    <div className="absolute left-0 mt-1 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                      <div className="py-1">
+                        {item.items?.map((child) => {
+                          const isActive = pathname === child.href
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className={`block px-4 py-2 text-sm ${
+                                isActive
+                                  ? 'bg-[#B22234]/10 dark:bg-[#B22234]/20 text-[#B22234] dark:text-[#CD5C5C]'
+                                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                              }`}
+                            >
+                              {child.name}
+                            </Link>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </div>
                 )
               })}
             </div>
@@ -94,7 +153,7 @@ export default function AdminNav({ user }: AdminNavProps) {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className="flex items-center space-x-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
-                <div className="h-8 w-8 bg-blue-600 rounded-full flex items-center justify-center">
+                <div className="h-8 w-8 bg-[#B22234] rounded-full flex items-center justify-center">
                   <span className="text-white text-sm font-medium">
                     {user.email?.[0].toUpperCase()}
                   </span>
@@ -142,20 +201,50 @@ export default function AdminNav({ user }: AdminNavProps) {
         <div className="md:hidden border-t border-gray-200 dark:border-gray-700">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navigation.map((item) => {
-              const isActive = pathname === item.href
+              if ('href' in item) {
+                const isActive = pathname === item.href
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-3 py-2 rounded-md text-base font-medium ${
+                      isActive
+                        ? 'bg-[#B22234]/10 dark:bg-[#B22234]/20 text-[#B22234] dark:text-[#CD5C5C]'
+                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )
+              }
+
+              // Group with items
               return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium ${
-                    isActive
-                      ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name}>
+                  <div className="px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                    {item.name}
+                  </div>
+                  <div className="space-y-1">
+                    {item.items?.map((child) => {
+                      const isActive = pathname === child.href
+                      return (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`block pl-6 pr-3 py-2 rounded-md text-base font-medium ${
+                            isActive
+                              ? 'bg-[#B22234]/10 dark:bg-[#B22234]/20 text-[#B22234] dark:text-[#CD5C5C]'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                          }`}
+                        >
+                          {child.name}
+                        </Link>
+                      )
+                    })}
+                  </div>
+                </div>
               )
             })}
             <Link

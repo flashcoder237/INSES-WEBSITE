@@ -15,12 +15,30 @@ import {
   TrendingUp,
   Building2,
 } from "lucide-react";
-import { formations, stats, aboutInfo } from "@/data/site-data";
 import FormationCard from "@/components/FormationCard";
 import { useI18n } from "@/components/providers/I18nProvider";
+import { useFormations } from "@/hooks/useFormations";
+import { useStats } from "@/hooks/useStats";
+import { useAboutInfo } from "@/hooks/useAboutInfo";
 
 export default function Home() {
   const { t } = useI18n();
+  const formations = useFormations();
+  const stats = useStats();
+  const aboutInfo = useAboutInfo();
+
+  // Afficher un état de chargement si les données ne sont pas encore chargées
+  if (!aboutInfo) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-[#B22234] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-[#4A4A4A] text-lg">Chargement...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="overflow-x-hidden bg-white">
       {/* Hero Section - Stanford Style: Clean & Minimalist */}
