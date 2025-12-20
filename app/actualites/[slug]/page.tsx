@@ -9,6 +9,7 @@ import { useI18n } from "@/components/providers/I18nProvider";
 import { Calendar, Tag, ArrowLeft, Facebook, Twitter, Linkedin, Share2, Check } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import NewsCard from "@/components/NewsCard";
+import MetaHead from "@/components/MetaHead";
 
 const categoryColors = {
   event: "bg-orange-600",
@@ -133,6 +134,14 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#1A1A1A]">
+      <MetaHead
+        title={news.title}
+        description={news.excerpt}
+        image={news.image}
+        url={shareUrl || `https://inses.ca/actualites/${slug}`}
+        type="article"
+      />
+
       {/* Back Button */}
       <div className="bg-[#F5F5F5] dark:bg-[#2A2A2A] border-b border-[#D3D3D3] dark:border-[#4A4A4A]">
         <div className="container mx-auto px-8 py-4">

@@ -10,13 +10,11 @@ interface SiteInfo {
   phone: string;
   whatsapp: string;
   fixedLine: string;
+  socialFacebook: string;
+  socialInstagram: string;
+  socialLinkedin: string;
+  socialTwitter: string;
   otherPhones: string[];
-  socialMedia: {
-    facebook: string;
-    twitter: string;
-    instagram: string;
-    linkedin: string;
-  };
 }
 
 export function useSiteInfo(): SiteInfo | null {
@@ -38,21 +36,19 @@ export function useSiteInfo(): SiteInfo | null {
 
         if (data) {
           setSiteInfo({
-            name: data.name,
-            fullName: data.full_name,
-            description: data.description,
-            location: data.location,
-            email: data.email,
-            phone: data.phone,
-            whatsapp: data.whatsapp,
-            fixedLine: data.fixed_line,
+            name: data.name || '',
+            fullName: data.full_name || '',
+            description: data.description || '',
+            location: data.location || '',
+            email: data.email || '',
+            phone: data.phone || '',
+            whatsapp: data.whatsapp || '',
+            fixedLine: data.fixed_line || '',
+            socialFacebook: data.social_facebook || '',
+            socialInstagram: data.social_instagram || '',
+            socialLinkedin: data.social_linkedin || '',
+            socialTwitter: data.social_twitter || '',
             otherPhones: data.other_phones || [],
-            socialMedia: {
-              facebook: data.social_facebook || '',
-              twitter: data.social_twitter || '',
-              instagram: data.social_instagram || '',
-              linkedin: data.social_linkedin || '',
-            },
           });
         }
       } catch (error) {

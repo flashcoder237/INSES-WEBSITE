@@ -25,7 +25,7 @@ export default function PageLoader() {
     // Simulate minimum loading time for smooth transition (at least one full rotation)
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 4000); // 2 seconds to complete one full rotation
+    }, 0); // 2 seconds to complete one full rotation
 
     return () => clearTimeout(timer);
   }, [pathname]);

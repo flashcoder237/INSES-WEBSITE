@@ -5,6 +5,7 @@ import PageLoader from "@/components/PageLoader";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { I18nProvider } from "@/components/providers/I18nProvider";
 import ConditionalLayout from "@/components/ConditionalLayout";
+import OfflineDetector from "@/components/OfflineDetector";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -38,6 +39,7 @@ export default function RootLayout({
         <ThemeProvider>
           <I18nProvider>
             <PageLoader />
+            <OfflineDetector />
             <ConditionalLayout>{children}</ConditionalLayout>
           </I18nProvider>
         </ThemeProvider>

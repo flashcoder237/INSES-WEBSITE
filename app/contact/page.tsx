@@ -13,11 +13,12 @@ import {
   MessageSquare,
   Map,
 } from "lucide-react";
-import { siteInfo } from "@/data/site-data";
 import { useI18n } from "@/components/providers/I18nProvider";
+import { useSiteInfo } from "@/hooks/useSiteInfo";
 
 export default function ContactPage() {
   const { t } = useI18n();
+  const siteInfo = useSiteInfo();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,6 +60,18 @@ export default function ContactPage() {
       }, 3000);
     }, 2000);
   };
+
+  // Afficher un état de chargement si les données ne sont pas encore chargées
+  if (!siteInfo) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-[#B22234] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-[#4A4A4A] text-lg">Chargement...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="overflow-x-hidden">
