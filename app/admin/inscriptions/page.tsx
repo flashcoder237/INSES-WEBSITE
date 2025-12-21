@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
+import Link from 'next/link'
 import {
   Loader2,
   Mail,
@@ -15,6 +16,9 @@ import {
   XCircle,
   CheckSquare,
   Square,
+  Printer,
+  Filter,
+  Eye,
 } from 'lucide-react'
 
 interface Inscription {
@@ -37,15 +41,16 @@ export default function InscriptionsAdminPage() {
   const [selectedInscription, setSelectedInscription] =
     useState<Inscription | null>(null)
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [statusFilter, setStatusFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all')
 
   useEffect(() => {
     loadInscriptions()
-  }, [])
+  }, [statusFilter])
 
   const loadInscriptions = async () => {
     try {
       const supabase = createClient()
-      const { data, error } = await supabase
+      let query = supabase
         .from('inscriptions')
         .select(
           `
@@ -55,7 +60,13 @@ export default function InscriptionsAdminPage() {
           )
         `
         )
-        .order('created_at', { ascending: false })
+
+      // Appliquer le filtre de statut si nécessaire
+      if (statusFilter !== 'all') {
+        query = query.eq('status', statusFilter)
+      }
+
+      const { data, error } = await query.order('created_at', { ascending: false })
 
       if (error) throw error
 
@@ -186,6 +197,53 @@ export default function InscriptionsAdminPage() {
     }
   }
 
+  const bulkNotify = async () => {
+    if (selectedIds.size === 0) return
+    if (!confirm(`Êtes-vous sûr de vouloir notifier ${selectedIds.size} étudiant(s) par email ?`)) return
+
+    try {
+      // Récupérer les inscriptions sélectionnées
+      const selectedInscriptions = inscriptions.filter(i => selectedIds.has(i.id))
+
+      let successCount = 0
+      let errorCount = 0
+
+      // Envoyer un email pour chaque inscription
+      for (const inscription of selectedInscriptions) {
+        try {
+          const response = await fetch('/api/send-inscription-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: inscription.email,
+              firstName: inscription.first_name,
+              lastName: inscription.last_name,
+              status: inscription.status,
+            }),
+          })
+
+          if (response.ok) {
+            successCount++
+          } else {
+            errorCount++
+          }
+        } catch (err) {
+          errorCount++
+        }
+      }
+
+      if (errorCount === 0) {
+        alert(`${successCount} email(s) envoyé(s) avec succès`)
+      } else {
+        alert(`${successCount} email(s) envoyé(s), ${errorCount} erreur(s)`)
+      }
+
+      setSelectedIds(new Set())
+    } catch (err: any) {
+      alert('Erreur: ' + err.message)
+    }
+  }
+
   const getStatusColor = (status: string) => {
     const colors = {
       pending:
@@ -245,6 +303,64 @@ export default function InscriptionsAdminPage() {
         </p>
       </div>
 
+      {/* Filtres et actions */}
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 p-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div className="flex items-center gap-3">
+            <Filter className="h-5 w-5 text-gray-500" />
+            <div className="flex gap-2">
+              <button
+                onClick={() => setStatusFilter('all')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  statusFilter === 'all'
+                    ? 'bg-[#B22234] text-white'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                }`}
+              >
+                Toutes ({inscriptions.length})
+              </button>
+              <button
+                onClick={() => setStatusFilter('pending')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  statusFilter === 'pending'
+                    ? 'bg-yellow-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                }`}
+              >
+                En attente
+              </button>
+              <button
+                onClick={() => setStatusFilter('approved')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  statusFilter === 'approved'
+                    ? 'bg-green-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                }`}
+              >
+                Approuvées
+              </button>
+              <button
+                onClick={() => setStatusFilter('rejected')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  statusFilter === 'rejected'
+                    ? 'bg-red-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                }`}
+              >
+                Rejetées
+              </button>
+            </div>
+          </div>
+          <button
+            onClick={() => window.print()}
+            className="flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+          >
+            <Printer className="h-5 w-5 mr-2" />
+            Imprimer la liste
+          </button>
+        </div>
+      </div>
+
       {/* Barre d'actions groupées */}
       {selectedIds.size > 0 && (
         <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
@@ -266,6 +382,13 @@ export default function InscriptionsAdminPage() {
               >
                 <XCircle className="h-4 w-4 mr-1" />
                 Rejeter
+              </button>
+              <button
+                onClick={bulkNotify}
+                className="flex items-center px-3 py-1.5 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors"
+              >
+                <Mail className="h-4 w-4 mr-1" />
+                Notifier
               </button>
               <button
                 onClick={bulkDelete}
@@ -355,6 +478,13 @@ export default function InscriptionsAdminPage() {
                   })}
                 </p>
               </button>
+              <Link
+                href={`/admin/inscriptions/${inscription.id}`}
+                className="flex-shrink-0 mt-1 text-[#B22234] hover:text-[#800020] dark:text-[#CD5C5C] dark:hover:text-[#B22234]"
+                title="Voir les détails"
+              >
+                <Eye className="h-5 w-5" />
+              </Link>
             </div>
             ))}
           </div>

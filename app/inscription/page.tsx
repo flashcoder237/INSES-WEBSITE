@@ -407,12 +407,13 @@ export default function InscriptionPage() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
-    // Si l'utilisateur appuie sur Entrée et qu'on n'est pas à la dernière étape
-    if (e.key === 'Enter' && currentStep !== totalSteps) {
-      e.preventDefault();
-      // Passer à l'étape suivante au lieu de soumettre
-      if (currentStep < totalSteps) {
-        nextStep();
+    // Empêcher toute soumission par la touche Entrée
+    // Le formulaire ne doit se soumettre que par clic sur le bouton
+    if (e.key === 'Enter') {
+      const target = e.target as HTMLElement;
+      // Permettre Entrée seulement dans les textarea pour les sauts de ligne
+      if (target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
       }
     }
   };
