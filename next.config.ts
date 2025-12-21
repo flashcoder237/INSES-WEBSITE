@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: 'rpfwhgsltqpumqikkzxe.supabase.co',
         pathname: '/storage/v1/object/public/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.youtube.com',
+      
+      },
     ],
   },
 };

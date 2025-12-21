@@ -1,4 +1,8 @@
+'use client'
+
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { createClient } from '@/lib/supabase/client'
 import {
   BookOpen,
   Newspaper,
@@ -9,6 +13,7 @@ import {
   UserPlus,
   Images,
   BarChart3,
+  Loader2,
 } from 'lucide-react'
 
 const adminSections = [
@@ -78,6 +83,59 @@ const adminSections = [
 ]
 
 export default function AdminDashboard() {
+  const [stats, setStats] = useState({
+    formations: 0,
+    news: 0,
+    contacts: 0,
+    inscriptions: 0,
+  })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    loadStats()
+  }, [])
+
+  const loadStats = async () => {
+    try {
+      const supabase = createClient()
+
+      // Charger le nombre de formations actives
+      const { count: formationsCount } = await supabase
+        .from('formations')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_active', true)
+
+      // Charger le nombre d'actualités publiées
+      const { count: newsCount } = await supabase
+        .from('news')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_published', true)
+
+      // Charger le nombre de messages de contact non lus
+      const { count: contactsCount } = await supabase
+        .from('contacts')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_read', false)
+
+      // Charger le nombre d'inscriptions en attente
+      const { count: inscriptionsCount } = await supabase
+        .from('inscriptions')
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'pending')
+
+      setStats({
+        formations: formationsCount || 0,
+        news: newsCount || 0,
+        contacts: contactsCount || 0,
+        inscriptions: inscriptionsCount || 0,
+      })
+    } catch (error) {
+      console.error('Error loading stats:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -145,42 +203,48 @@ export default function AdminDashboard() {
       {/* Quick stats */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 p-6">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-          Accès rapide
+          Statistiques rapides
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-[#B22234]/10 dark:bg-[#B22234]/20 rounded-lg p-4">
-            <p className="text-sm text-[#B22234] dark:text-[#CD5C5C] font-medium">
-              Total formations
-            </p>
-            <p className="text-2xl font-bold text-[#800020] dark:text-[#CD5C5C] mt-1">
-              6
-            </p>
+        {loading ? (
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="h-8 w-8 animate-spin text-[#B22234]" />
           </div>
-          <div className="bg-[#800020]/10 dark:bg-[#800020]/20 rounded-lg p-4">
-            <p className="text-sm text-[#800020] dark:text-[#CD5C5C] font-medium">
-              Actualités publiées
-            </p>
-            <p className="text-2xl font-bold text-[#800020] dark:text-[#CD5C5C] mt-1">
-              6
-            </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Link href="/admin/formations" className="bg-[#B22234]/10 dark:bg-[#B22234]/20 rounded-lg p-4 hover:bg-[#B22234]/20 transition-colors">
+              <p className="text-sm text-[#B22234] dark:text-[#CD5C5C] font-medium">
+                Formations actives
+              </p>
+              <p className="text-2xl font-bold text-[#800020] dark:text-[#CD5C5C] mt-1">
+                {stats.formations}
+              </p>
+            </Link>
+            <Link href="/admin/news" className="bg-[#800020]/10 dark:bg-[#800020]/20 rounded-lg p-4 hover:bg-[#800020]/20 transition-colors">
+              <p className="text-sm text-[#800020] dark:text-[#CD5C5C] font-medium">
+                Actualités publiées
+              </p>
+              <p className="text-2xl font-bold text-[#800020] dark:text-[#CD5C5C] mt-1">
+                {stats.news}
+              </p>
+            </Link>
+            <Link href="/admin/contacts" className="bg-[#4A4A4A]/10 dark:bg-[#4A4A4A]/20 rounded-lg p-4 hover:bg-[#4A4A4A]/20 transition-colors">
+              <p className="text-sm text-[#4A4A4A] dark:text-gray-400 font-medium">
+                Messages non lus
+              </p>
+              <p className="text-2xl font-bold text-[#4A4A4A] dark:text-gray-300 mt-1">
+                {stats.contacts}
+              </p>
+            </Link>
+            <Link href="/admin/inscriptions" className="bg-[#CD5C5C]/10 dark:bg-[#CD5C5C]/20 rounded-lg p-4 hover:bg-[#CD5C5C]/20 transition-colors">
+              <p className="text-sm text-[#CD5C5C] dark:text-[#CD5C5C] font-medium">
+                Inscriptions en attente
+              </p>
+              <p className="text-2xl font-bold text-[#CD5C5C] dark:text-[#CD5C5C] mt-1">
+                {stats.inscriptions}
+              </p>
+            </Link>
           </div>
-          <div className="bg-[#4A4A4A]/10 dark:bg-[#4A4A4A]/20 rounded-lg p-4">
-            <p className="text-sm text-[#4A4A4A] dark:text-gray-400 font-medium">
-              Messages reçus
-            </p>
-            <p className="text-2xl font-bold text-[#4A4A4A] dark:text-gray-300 mt-1">
-              -
-            </p>
-          </div>
-          <div className="bg-[#CD5C5C]/10 dark:bg-[#CD5C5C]/20 rounded-lg p-4">
-            <p className="text-sm text-[#CD5C5C] dark:text-[#CD5C5C] font-medium">
-              Inscriptions
-            </p>
-            <p className="text-2xl font-bold text-[#CD5C5C] dark:text-[#CD5C5C] mt-1">
-              -
-            </p>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   )

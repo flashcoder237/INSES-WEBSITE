@@ -39,6 +39,7 @@ export default function AdminNav({ user }: AdminNavProps) {
         { name: 'Formations', href: '/admin/formations' },
         { name: 'Actualités', href: '/admin/news' },
         { name: 'Galerie', href: '/admin/gallery' },
+        { name: 'Vidéos', href: '/admin/videos' },
       ],
     },
     {

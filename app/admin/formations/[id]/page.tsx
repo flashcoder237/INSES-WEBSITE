@@ -88,16 +88,16 @@ export default function FormationEditPage({
       if (formationRes.error) throw formationRes.error
 
       setFormData({
-        slug: formationRes.data.slug,
-        title_fr: formationRes.data.title_fr,
-        title_en: formationRes.data.title_en,
-        short_description_fr: formationRes.data.short_description_fr,
-        short_description_en: formationRes.data.short_description_en,
-        full_description_fr: formationRes.data.full_description_fr,
-        full_description_en: formationRes.data.full_description_en,
-        duration: formationRes.data.duration,
-        level: formationRes.data.level,
-        icon: formationRes.data.icon,
+        slug: formationRes.data.slug || '',
+        title_fr: formationRes.data.title_fr || '',
+        title_en: formationRes.data.title_en || '',
+        short_description_fr: formationRes.data.short_description_fr || '',
+        short_description_en: formationRes.data.short_description_en || '',
+        full_description_fr: formationRes.data.full_description_fr || '',
+        full_description_en: formationRes.data.full_description_en || '',
+        duration: formationRes.data.duration || '',
+        level: formationRes.data.level || '',
+        icon: formationRes.data.icon || '',
         is_active: formationRes.data.is_active,
       })
 

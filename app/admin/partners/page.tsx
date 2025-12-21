@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { Plus, Edit, Trash2, Loader2, Save, X } from 'lucide-react'
+import { Plus, Edit, Trash2, Loader2, Save, X, CheckSquare, Square } from 'lucide-react'
 
 interface Partner {
   id: string
@@ -17,6 +17,7 @@ export default function PartnersAdminPage() {
   const [error, setError] = useState<string | null>(null)
   const [editingId, setEditingId] = useState<string | null>(null)
   const [isCreating, setIsCreating] = useState(false)
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [formData, setFormData] = useState({
     name_fr: '',
     name_en: '',
@@ -95,6 +96,43 @@ export default function PartnersAdminPage() {
     }
   }
 
+  const toggleSelectAll = () => {
+    if (selectedIds.size === partners.length) {
+      setSelectedIds(new Set())
+    } else {
+      setSelectedIds(new Set(partners.map(p => p.id)))
+    }
+  }
+
+  const toggleSelect = (id: string) => {
+    const newSelected = new Set(selectedIds)
+    if (newSelected.has(id)) {
+      newSelected.delete(id)
+    } else {
+      newSelected.add(id)
+    }
+    setSelectedIds(newSelected)
+  }
+
+  const bulkDelete = async () => {
+    if (selectedIds.size === 0) return
+    if (!confirm(`Êtes-vous sûr de vouloir supprimer ${selectedIds.size} partenaire(s) ?`)) return
+
+    try {
+      const supabase = createClient()
+      const { error } = await supabase
+        .from('partners')
+        .delete()
+        .in('id', Array.from(selectedIds))
+
+      if (error) throw error
+      setSelectedIds(new Set())
+      await loadPartners()
+    } catch (err: any) {
+      alert('Erreur: ' + err.message)
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-96">
@@ -133,6 +171,24 @@ export default function PartnersAdminPage() {
           </button>
         )}
       </div>
+
+      {/* Barre d'actions groupées */}
+      {selectedIds.size > 0 && (
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium text-blue-900 dark:text-blue-100">
+              {selectedIds.size} partenaire(s) sélectionné(s)
+            </span>
+            <button
+              onClick={bulkDelete}
+              className="flex items-center px-3 py-1.5 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors"
+            >
+              <Trash2 className="h-4 w-4 mr-1" />
+              Supprimer
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Formulaire de création */}
       {isCreating && (
@@ -195,6 +251,18 @@ export default function PartnersAdminPage() {
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-gray-50 dark:bg-gray-900">
               <tr>
+                <th className="px-6 py-3 text-left">
+                  <button
+                    onClick={toggleSelectAll}
+                    className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+                  >
+                    {selectedIds.size === partners.length && partners.length > 0 ? (
+                      <CheckSquare className="h-5 w-5" />
+                    ) : (
+                      <Square className="h-5 w-5" />
+                    )}
+                  </button>
+                </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   Nom (FR)
                 </th>
@@ -214,6 +282,7 @@ export default function PartnersAdminPage() {
                 >
                   {editingId === partner.id ? (
                     <>
+                      <td className="px-6 py-4"></td>
                       <td className="px-6 py-4">
                         <input
                           type="text"
@@ -253,6 +322,18 @@ export default function PartnersAdminPage() {
                     </>
                   ) : (
                     <>
+                      <td className="px-6 py-4">
+                        <button
+                          onClick={() => toggleSelect(partner.id)}
+                          className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+                        >
+                          {selectedIds.has(partner.id) ? (
+                            <CheckSquare className="h-5 w-5" />
+                          ) : (
+                            <Square className="h-5 w-5" />
+                          )}
+                        </button>
+                      </td>
                       <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">
                         {partner.name_fr}
                       </td>
