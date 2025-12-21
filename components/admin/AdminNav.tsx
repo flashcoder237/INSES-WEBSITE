@@ -18,6 +18,18 @@ interface AdminNavProps {
   user: User
 }
 
+type NavItem = {
+  name: string
+  href: string
+}
+
+type NavGroup = {
+  name: string
+  items: NavItem[]
+}
+
+type NavigationItem = NavItem | NavGroup
+
 export default function AdminNav({ user }: AdminNavProps) {
   const pathname = usePathname()
   const router = useRouter()
@@ -31,7 +43,7 @@ export default function AdminNav({ user }: AdminNavProps) {
     router.refresh()
   }
 
-  const navigation = [
+  const navigation: NavigationItem[] = [
     { name: 'Tableau de bord', href: '/admin' },
     {
       name: 'Contenu',
