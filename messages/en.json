@@ -51,6 +51,28 @@
     "french": "Français",
     "english": "English"
   },
+  "siteInfo": {
+    "pageTitle": "Site Information",
+    "pageSubtitle": "Manage contact details and general information",
+    "saving": "Saving...",
+    "save": "Save",
+    "saveSuccess": "✓ Information saved successfully",
+    "saveError": "Error while saving",
+    "fetchError": "Error while fetching information",
+    "noInfoFound": "No information found",
+    "generalInfo": "General Information",
+    "shortName": "Short Name",
+    "fullName": "Full Name",
+    "description": "Description",
+    "location": "Location",
+    "contact": "Contact",
+    "email": "Email",
+    "mainPhone": "Main Phone",
+    "fixedLine": "Fixed Line",
+    "otherPhones": "Other Phones",
+    "add": "Add",
+    "socialNetworks": "Social Networks"
+  },
   "common": {
     "learnMore": "Learn more",
     "readMore": "Read more",

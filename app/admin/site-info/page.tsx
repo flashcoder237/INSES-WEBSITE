@@ -3,13 +3,19 @@
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Loader2, Save } from 'lucide-react'
+import { useI18n } from '@/components/providers/I18nProvider'; 
+
+type Language = 'fr' | 'en'; // Defined locally
 
 interface SiteInfo {
   id: string
   name: string
-  full_name: string
-  description: string
-  location: string
+  full_name_fr: string 
+  full_name_en: string 
+  description_fr: string 
+  description_en: string 
+  location_fr: string 
+  location_en: string 
   email: string
   phone: string
   whatsapp: string
@@ -22,11 +28,13 @@ interface SiteInfo {
 }
 
 export default function SiteInfoAdminPage() {
+  const { t } = useI18n(); 
   const [siteInfo, setSiteInfo] = useState<SiteInfo | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('fr'); 
 
   useEffect(() => {
     loadSiteInfo()
@@ -41,7 +49,17 @@ export default function SiteInfoAdminPage() {
         .single()
 
       if (error) throw error
-      setSiteInfo(data)
+      
+      const initializedData: SiteInfo = {
+        ...data,
+        full_name_fr: data.full_name_fr || '',
+        full_name_en: data.full_name_en || '',
+        description_fr: data.description_fr || '',
+        description_en: data.description_en || '',
+        location_fr: data.location_fr || '',
+        location_en: data.location_en || '',
+      } as SiteInfo; 
+      setSiteInfo(initializedData)
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -60,9 +78,12 @@ export default function SiteInfoAdminPage() {
         .from('site_info')
         .update({
           name: siteInfo.name,
-          full_name: siteInfo.full_name,
-          description: siteInfo.description,
-          location: siteInfo.location,
+          full_name_fr: siteInfo.full_name_fr, 
+          full_name_en: siteInfo.full_name_en, 
+          description_fr: siteInfo.description_fr, 
+          description_en: siteInfo.description_en, 
+          location_fr: siteInfo.location_fr, 
+          location_en: siteInfo.location_en, 
           email: siteInfo.email,
           phone: siteInfo.phone,
           whatsapp: siteInfo.whatsapp,
@@ -79,7 +100,7 @@ export default function SiteInfoAdminPage() {
       setSuccess(true)
       setTimeout(() => setSuccess(false), 3000)
     } catch (err: any) {
-      alert('Erreur: ' + err.message)
+      alert(t('siteInfo.saveError') + ': ' + err.message) 
     } finally {
       setSaving(false)
     }
@@ -119,7 +140,7 @@ export default function SiteInfoAdminPage() {
   if (error) {
     return (
       <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-4">
-        <p className="text-red-800 dark:text-red-200">Erreur: {error}</p>
+        <p className="text-red-800 dark:text-red-200">{t('siteInfo.fetchError')}: {error}</p> 
       </div>
     )
   }
@@ -128,11 +149,36 @@ export default function SiteInfoAdminPage() {
     return (
       <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4">
         <p className="text-yellow-800 dark:text-yellow-200">
-          Aucune information trouvée
-        </p>
+          {t('siteInfo.noInfoFound')}
+        </p> 
       </div>
     )
   }
+
+  const displayedFullName = currentLanguage === 'fr' ? siteInfo.full_name_fr : siteInfo.full_name_en;
+  const setDisplayedFullName = (value: string) => {
+    setSiteInfo(prev => ({
+      ...prev!,
+      [`full_name_${currentLanguage}`]: value,
+    }));
+  };
+
+  const displayedDescription = currentLanguage === 'fr' ? siteInfo.description_fr : siteInfo.description_en;
+  const setDisplayedDescription = (value: string) => {
+    setSiteInfo(prev => ({
+      ...prev!,
+      [`description_${currentLanguage}`]: value,
+    }));
+  };
+
+  const displayedLocation = currentLanguage === 'fr' ? siteInfo.location_fr : siteInfo.location_en;
+  const setDisplayedLocation = (value: string) => {
+    setSiteInfo(prev => ({
+      ...prev!,
+      [`location_${currentLanguage}`]: value,
+    }));
+  };
+
 
   return (
     <div className="space-y-6">
@@ -140,11 +186,11 @@ export default function SiteInfoAdminPage() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Informations du site
-          </h1>
+            {t('siteInfo.pageTitle')}
+          </h1> 
           <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Gérez les coordonnées et informations générales
-          </p>
+            {t('siteInfo.pageSubtitle')}
+          </p> 
         </div>
         <button
           onClick={handleSave}
@@ -156,29 +202,50 @@ export default function SiteInfoAdminPage() {
           ) : (
             <Save className="h-5 w-5 mr-2" />
           )}
-          {saving ? 'Enregistrement...' : 'Enregistrer'}
+          {saving ? t('siteInfo.saving') : t('siteInfo.save')}
         </button>
       </div>
 
       {success && (
         <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
           <p className="text-green-800 dark:text-green-200">
-            ✓ Informations enregistrées avec succès
-          </p>
+            {t('siteInfo.saveSuccess')}
+          </p> 
         </div>
       )}
+      
+      {/* Language Toggle */}
+      <div className="flex justify-end space-x-2">
+        <button
+          onClick={() => setCurrentLanguage('fr')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium ${
+            currentLanguage === 'fr' ? 'bg-[#B22234] text-white' : 'bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200'
+          }`}
+        >
+          Français
+        </button>
+        <button
+          onClick={() => setCurrentLanguage('en')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium ${
+            currentLanguage === 'en' ? 'bg-[#B22234] text-white' : 'bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-200'
+          }`}
+        >
+          English
+        </button>
+      </div>
+
 
       {/* Formulaire */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 p-6 space-y-6">
         {/* Informations générales */}
         <div>
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Informations générales
+            {t('siteInfo.generalInfo')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Nom court
+                {t('siteInfo.shortName')}
               </label>
               <input
                 type="text"
@@ -191,25 +258,25 @@ export default function SiteInfoAdminPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Nom complet
+                {t('siteInfo.fullName')} ({currentLanguage.toUpperCase()})
               </label>
               <input
                 type="text"
-                value={siteInfo.full_name}
+                value={displayedFullName}
                 onChange={(e) =>
-                  setSiteInfo({ ...siteInfo, full_name: e.target.value })
+                  setDisplayedFullName(e.target.value)
                 }
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               />
             </div>
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Description
+                {t('siteInfo.description')} ({currentLanguage.toUpperCase()})
               </label>
               <textarea
-                value={siteInfo.description}
+                value={displayedDescription}
                 onChange={(e) =>
-                  setSiteInfo({ ...siteInfo, description: e.target.value })
+                  setDisplayedDescription(e.target.value)
                 }
                 rows={3}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
@@ -217,13 +284,13 @@ export default function SiteInfoAdminPage() {
             </div>
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Localisation
+                {t('siteInfo.location')} ({currentLanguage.toUpperCase()})
               </label>
               <input
                 type="text"
-                value={siteInfo.location}
+                value={displayedLocation}
                 onChange={(e) =>
-                  setSiteInfo({ ...siteInfo, location: e.target.value })
+                  setDisplayedLocation(e.target.value)
                 }
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               />
@@ -234,12 +301,12 @@ export default function SiteInfoAdminPage() {
         {/* Contact */}
         <div>
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Contact
+            {t('siteInfo.contact')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Email
+                {t('siteInfo.email')}
               </label>
               <input
                 type="email"
@@ -252,7 +319,7 @@ export default function SiteInfoAdminPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Téléphone principal
+                {t('siteInfo.mainPhone')}
               </label>
               <input
                 type="tel"
@@ -278,7 +345,7 @@ export default function SiteInfoAdminPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Ligne fixe
+                {t('siteInfo.fixedLine')}
               </label>
               <input
                 type="tel"
@@ -294,13 +361,13 @@ export default function SiteInfoAdminPage() {
           <div className="mt-4">
             <div className="flex justify-between items-center mb-2">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Autres téléphones
+                {t('siteInfo.otherPhones')}
               </label>
               <button
                 onClick={addOtherPhone}
                 className="text-sm text-[#B22234] hover:text-[#800020]"
               >
-                + Ajouter
+                + {t('siteInfo.add')}
               </button>
             </div>
             <div className="space-y-2">
@@ -329,7 +396,7 @@ export default function SiteInfoAdminPage() {
         {/* Réseaux sociaux */}
         <div>
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-            Réseaux sociaux
+            {t('siteInfo.socialNetworks')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>

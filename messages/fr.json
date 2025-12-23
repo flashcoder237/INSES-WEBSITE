@@ -51,6 +51,28 @@
     "french": "Français",
     "english": "English"
   },
+  "siteInfo": {
+    "pageTitle": "Informations du site",
+    "pageSubtitle": "Gérez les coordonnées et informations générales",
+    "saving": "Enregistrement...",
+    "save": "Enregistrer",
+    "saveSuccess": "✓ Informations enregistrées avec succès",
+    "saveError": "Erreur lors de l'enregistrement",
+    "fetchError": "Erreur lors du chargement des informations",
+    "noInfoFound": "Aucune information trouvée",
+    "generalInfo": "Informations générales",
+    "shortName": "Nom court",
+    "fullName": "Nom complet",
+    "description": "Description",
+    "location": "Localisation",
+    "contact": "Contact",
+    "email": "Email",
+    "mainPhone": "Téléphone principal",
+    "fixedLine": "Ligne fixe",
+    "otherPhones": "Autres téléphones",
+    "add": "Ajouter",
+    "socialNetworks": "Réseaux sociaux"
+  },
   "common": {
     "learnMore": "En savoir plus",
     "readMore": "Lire la suite",
