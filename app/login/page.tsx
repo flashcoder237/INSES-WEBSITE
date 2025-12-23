@@ -78,7 +78,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#B22234] focus:border-transparent dark:bg-gray-700 dark:text-white transition"
-                    placeholder="admin@inses.cm"
+                    placeholder="admin@univ-inses.com"
                   />
                 </div>
               </div>

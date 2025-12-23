@@ -51,7 +51,7 @@ Interface de connexion avec:
 3. Allez dans **Authentication** > **Users**
 4. Cliquez sur **Add user** > **Create new user**
 5. Renseignez:
-   - **Email**: `admin@inses.cm` (ou votre email)
+   - **Email**: `admin@univ-inses.com` (ou votre email)
    - **Password**: Choisissez un mot de passe sécurisé
    - Cochez **Auto Confirm User** pour éviter la vérification email
 6. Cliquez sur **Create user**

@@ -173,7 +173,7 @@ VALUES (
   '#DC2626',
   '#991B1B',
   'Douala-Bonabéri, Cameroun',
-  'contact@inses.cm',
+  'contact@univ-inses.com',
   '+237 674 93 66 04',
   '+237 674 93 66 04',
   1

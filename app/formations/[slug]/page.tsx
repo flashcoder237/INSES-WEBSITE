@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { useFormation, useFormations } from "@/hooks/useFormations";
 import { useI18n } from "@/components/providers/I18nProvider";
-import MetaHead from "@/components/MetaHead";
 
 export default function FormationDetailPage({
   params,
@@ -47,15 +46,22 @@ export default function FormationDetailPage({
 
   return (
     <div className="overflow-x-hidden">
-      <MetaHead
-        title={formation.title}
-        description={formation.shortDescription}
-        image="/images/og/formation-default.jpg"
-        url={typeof window !== 'undefined' ? window.location.href : `https://inses.ca/formations/${slug}`}
-        type="article"
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Course",
+            "name": formation.title,
+            "description": formation.shortDescription,
+            "provider": {
+              "@type": "Organization",
+              "name": "INSES - Institut Supérieur de l'Espoir",
+              "url": "https://univ-inses.com"
+            }
+          })
+        }}
       />
-
-      {/* Hero Section - Stanford Style */}
       <section className="relative min-h-[60vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
         <div className="container mx-auto px-8 py-32 relative z-10">
           <motion.div

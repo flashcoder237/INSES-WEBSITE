@@ -5,7 +5,7 @@ export const siteInfo = {
   fullName: "Institut Supérieur de l'Espoir",
   description: "Institut de formation professionnelle pour les métiers de la santé à Douala, Cameroun",
   location: "Douala-Bonabéri, Cameroun",
-  email: "contact@inses.cm",
+  email: "contact@univ-inses.com",
   phone: "+237 674 93 66 04",
   otherPhones: [
     "+237 699 818 816",

@@ -31,7 +31,7 @@ Le système d'authentification est **déjà complètement implémenté** et prê
 
 4. **Remplissez le formulaire**
    ```
-   Email: admin@inses.cm
+   Email: admin@univ-inses.com
    (ou n'importe quel email que vous voulez utiliser)
 
    Password: [choisissez un mot de passe sécurisé]
@@ -45,7 +45,7 @@ Le système d'authentification est **déjà complètement implémenté** et prê
 
 6. **Notez vos identifiants** (important!)
    ```
-   Email: admin@inses.cm
+   Email: admin@univ-inses.com
    Mot de passe: [votre mot de passe]
    ```
 
@@ -113,7 +113,7 @@ Votre système d'authentification est maintenant actif!
    - ✅ Si oui, le middleware fonctionne!
 
 3. Connectez-vous:
-   - Entrez l'email: `admin@inses.cm`
+   - Entrez l'email: `admin@univ-inses.com`
    - Entrez le mot de passe que vous avez choisi
    - Cliquez sur **Se connecter**
    - Vous devriez être redirigé vers `/admin`

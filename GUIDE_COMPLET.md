@@ -354,7 +354,7 @@ Dans Supabase → Table Editor :
 
 #### Étape 2 : Remplir les informations
 ```
-Email: admin@inses.cm
+Email: admin@univ-inses.com
 Password: [Choisissez un mot de passe fort]
 ```
 
@@ -1126,7 +1126,7 @@ Cliquez sur **"Deploy site"**
 - [OVH](https://ovh.com)
 - [GoDaddy](https://godaddy.com)
 
-Exemple : `inses.cm`
+Exemple : `univ-inses.com`
 
 #### Configurer le Domaine
 
@@ -1142,7 +1142,7 @@ Exemple : `inses.cm`
 
 ⏱️ Propagation DNS : 24-48h
 
-✅ Site accessible sur `https://inses.cm`
+✅ Site accessible sur `https://univ-inses.com`
 
 ---
 

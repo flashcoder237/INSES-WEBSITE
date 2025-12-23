@@ -50,15 +50,15 @@ Resend a été installé avec succès dans votre projet.
 
 **Par défaut**, les emails sont envoyés depuis `onboarding@resend.dev`
 
-**Pour utiliser votre propre domaine** (ex: `noreply@inses.cm`):
+**Pour utiliser votre propre domaine** (ex: `noreply@univ-inses.com`):
 
 1. Dans Resend, allez dans **Domains**
 2. Cliquez sur **Add Domain**
-3. Entrez votre domaine: `inses.cm`
+3. Entrez votre domaine: `univ-inses.com`
 4. Suivez les instructions pour ajouter les enregistrements DNS
 5. Une fois vérifié, modifiez le fichier `/app/api/send-inscription-email/route.ts`:
    ```typescript
-   from: 'INSES <noreply@inses.cm>', // Au lieu de onboarding@resend.dev
+   from: 'INSES <noreply@univ-inses.com>', // Au lieu de onboarding@resend.dev
    ```
 
 ## 📧 Messages d'emails configurés

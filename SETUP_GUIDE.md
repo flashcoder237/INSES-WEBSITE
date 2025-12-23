@@ -139,7 +139,7 @@ Vous devriez voir:
 2. Cliquez sur **Users**
 3. Cliquez sur "Add user" → "Create new user"
 4. Remplissez:
-   - **Email**: `admin@inses.cm` (ou votre email)
+   - **Email**: `admin@univ-inses.com` (ou votre email)
    - **Password**: Choisissez un mot de passe fort
    - **Auto Confirm User**: ✅ Cochez cette case
 5. Cliquez sur "Create user"

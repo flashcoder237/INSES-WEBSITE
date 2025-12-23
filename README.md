@@ -134,7 +134,7 @@ Voir [SETUP_GUIDE.md](./SETUP_GUIDE.md) pour les détails.
 ## 📱 Contact INSES
 
 - 📍 Douala-Bonabéri, Cameroun
-- 📧 contact@inses.cm
+- 📧 contact@univ-inses.com
 - 📞 +237 674 93 66 04
 - 📠 9293 2000
 

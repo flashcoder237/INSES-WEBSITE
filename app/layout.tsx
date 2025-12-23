@@ -21,9 +21,41 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "INSES - Institut Supérieur de l'Espoir",
-  description: "Institut de formation professionnelle pour les métiers de la santé à Douala, Cameroun. Formations en délégué médical, secrétariat médical, massothérapie, aide chimiste biologiste, diététique et vendeur en pharmacie.",
-  keywords: "INSES, formation santé, Douala, Cameroun, délégué médical, secrétariat médical, massothérapie, aide chimiste, diététique, pharmacie",
+  title: {
+    template: "%s | INSES",
+    default: "INSES - Institut Supérieur de l'Espoir",
+  },
+  description: "Institut de formation professionnelle pour les métiers de la santé à Douala, Cameroun. Formations en délégué médical, secrétariat médical, massothérapie, et plus.",
+  metadataBase: new URL("https://univ-inses.com"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "fr-CM": "/",
+      "en-CM": "/en",
+    },
+  },
+  openGraph: {
+    title: "INSES - Institut Supérieur de l'Espoir",
+    description: "Votre avenir dans les métiers commence ici. Découvrez nos formations.",
+    url: "https://univ-inses.com",
+    siteName: "INSES",
+    images: [
+      {
+        url: "/images/logo/logo-inses.png",
+        width: 800,
+        height: 600,
+        alt: "Logo de l'INSES",
+      },
+    ],
+    locale: "fr_CM",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "INSES - Formations professionnelles en santé",
+    description: "Institut de formation aux métiers de la santé à Douala. Délégué médical, secrétariat médical...",
+    images: ["/images/logo/logo-inses.png"],
+  },
 };
 
 export default function RootLayout({
