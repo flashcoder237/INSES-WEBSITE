@@ -15,6 +15,12 @@ interface SiteInfo {
   socialLinkedin: string;
   socialTwitter: string;
   otherPhones: string[];
+  latitude: number;
+  longitude: number;
+  googleMapsUrl: string;
+  hoursMondayFriday: string;
+  hoursSaturday: string;
+  hoursSunday: string;
 }
 
 export function useSiteInfo(): SiteInfo | null {
@@ -49,6 +55,12 @@ export function useSiteInfo(): SiteInfo | null {
             socialLinkedin: data.social_linkedin || '',
             socialTwitter: data.social_twitter || '',
             otherPhones: data.other_phones || [],
+            latitude: data.latitude || 4.0949692061716885,
+            longitude: data.longitude || 9.664649340589332,
+            googleMapsUrl: data.google_maps_url || 'https://www.google.com/maps?q=4.0949692061716885,9.664649340589332',
+            hoursMondayFriday: data.hours_monday_friday || 'Lundi - Vendredi: 8h00 - 17h00',
+            hoursSaturday: data.hours_saturday || 'Samedi: 8h00 - 13h00',
+            hoursSunday: data.hours_sunday || 'Dimanche: Fermé',
           });
         }
       } catch (error) {

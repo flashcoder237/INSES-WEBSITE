@@ -112,7 +112,7 @@ export default function FormationsPage() {
                   : "bg-white border border-[#D3D3D3] text-[#4A4A4A] hover:bg-[#F5F5F5]"
               }`}
             >
-              2 ans
+              {t('formations.filter2Years')}
             </button>
           </motion.div>
 

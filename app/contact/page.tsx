@@ -191,12 +191,12 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">{t('contact.schedule')}</h3>
                       <p className="text-white/80 text-sm">
-                        {t('contact.mondayFriday')}
+                        {siteInfo.hoursMondayFriday}
                       </p>
                       <p className="text-white/80 text-sm">
-                        {t('contact.saturday')}
+                        {siteInfo.hoursSaturday}
                       </p>
-                      <p className="text-white/80 text-sm">{t('contact.sunday')}</p>
+                      <p className="text-white/80 text-sm">{siteInfo.hoursSunday}</p>
                     </div>
                   </div>
                 </div>
@@ -286,7 +286,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
-                        placeholder="votre@email.com"
+                        placeholder={t('contact.emailPlaceholder')}
                       />
                     </div>
 
@@ -304,7 +304,7 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
-                        placeholder="+237 6XX XX XX XX"
+                        placeholder={t('contact.phonePlaceholder')}
                       />
                     </div>
                   </div>
@@ -402,7 +402,7 @@ export default function ContactPage() {
             className="relative h-[500px] bg-white overflow-hidden border-t-4 border-[#B22234]"
           >
             <iframe
-              src="https://www.google.com/maps?q=4.0949692061716885,9.664649340589332&hl=fr&z=15&output=embed"
+              src={`${siteInfo.googleMapsUrl}&hl=${locale}&z=15&output=embed`}
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -424,7 +424,7 @@ export default function ContactPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=4.0949692061716885,9.664649340589332"
+                href={`https://www.google.com/maps/dir/?api=1&destination=${siteInfo.latitude},${siteInfo.longitude}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-[#B22234] hover:text-[#800020] font-semibold text-sm uppercase tracking-wide"
@@ -433,7 +433,7 @@ export default function ContactPage() {
                 {t('contact.openInMaps')}
               </a>
               <span className="text-[#4A4A4A]/40 text-sm">
-                GPS: 4.0949692, 9.6646493
+                GPS: {siteInfo.latitude}, {siteInfo.longitude}
               </span>
             </div>
           </motion.div>
