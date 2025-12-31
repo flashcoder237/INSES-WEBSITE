@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server'
-import { Resend } from 'resend'
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+const SibApiV3Sdk = require('@getbrevo/brevo')
 
 export async function POST(request: Request) {
   try {
@@ -15,14 +13,18 @@ export async function POST(request: Request) {
       )
     }
 
-    // Vérifier que la clé API Resend est configurée
-    if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY non configurée')
+    // Vérifier que la clé API Brevo est configurée
+    if (!process.env.BREVO_API_KEY) {
+      console.error('BREVO_API_KEY non configurée')
       return NextResponse.json(
         { error: 'Service d\'envoi d\'email non configuré' },
         { status: 500 }
       )
     }
+
+    // Configurer Brevo
+    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi()
+    apiInstance.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY)
 
     const statusMessages = {
       approved: {
@@ -41,28 +43,61 @@ export async function POST(request: Request) {
 
     const emailContent = statusMessages[status as keyof typeof statusMessages]
 
-    // Envoi de l'email avec Resend
-    const { data, error } = await resend.emails.send({
-      from: 'INSES <onboarding@resend.dev>', // Changez ceci après avoir vérifié votre domaine
-      to: email,
-      subject: emailContent.subject,
-      text: emailContent.message,
-    })
+    // Préparer l'email pour Brevo
+    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail()
 
-    if (error) {
-      console.error('Erreur Resend:', error)
-      return NextResponse.json(
-        { error: 'Échec de l\'envoi de l\'email', details: error },
-        { status: 500 }
-      )
+    sendSmtpEmail.sender = {
+      name: "INSES",
+      email: process.env.BREVO_SENDER_EMAIL || "noreply@univ-inses.com"
     }
 
-    console.log('Email envoyé avec succès:', data)
+    sendSmtpEmail.to = [{
+      email: email,
+      name: `${firstName} ${lastName}`
+    }]
+
+    sendSmtpEmail.subject = emailContent.subject
+    sendSmtpEmail.htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta charset="UTF-8">
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background-color: #B22234; color: white; padding: 20px; text-align: center; }
+            .content { padding: 30px 20px; background-color: #f9f9f9; }
+            .footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>INSES</h1>
+              <p>Institut Supérieur de l'Espoir</p>
+            </div>
+            <div class="content">
+              <p>${emailContent.message.replace(/\n/g, '<br>')}</p>
+            </div>
+            <div class="footer">
+              <p>Cet email a été envoyé automatiquement, merci de ne pas y répondre.</p>
+              <p>INSES - Douala, Cameroun</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `
+    sendSmtpEmail.textContent = emailContent.message
+
+    // Envoi de l'email avec Brevo
+    const data = await apiInstance.sendTransacEmail(sendSmtpEmail)
+
+    console.log('Email envoyé avec succès via Brevo:', data)
 
     return NextResponse.json({
       success: true,
       message: 'Email envoyé avec succès',
-      emailId: data?.id,
+      messageId: data.messageId,
     })
 
   } catch (error) {
