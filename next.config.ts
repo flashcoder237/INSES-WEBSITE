@@ -20,10 +20,6 @@ const nextConfig: NextConfig = {
   },
   // Compression
   compress: true,
-  // Optimisation des performances
-  swcMinify: true,
-  // Génération optimisée
-  optimizeFonts: true,
   // Headers de performance et sécurité
   async headers() {
     return [

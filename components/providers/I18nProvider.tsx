@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { useTranslations } from '@/hooks/useTranslations';
 import frMessages from '@/messages/fr.json';
 import enMessages from '@/messages/en.json';
 
@@ -12,31 +13,38 @@ interface I18nContextType {
   setLocale: (locale: Locale) => void;
   t: (key: string) => string;
   messages: Messages;
+  loading: boolean;
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-const messagesMap: Record<Locale, Messages> = {
-  fr: frMessages,
-  en: enMessages,
-};
-
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>('fr');
   const [messages, setMessages] = useState<Messages>(frMessages);
+
+  // Charger les traductions depuis la base de données
+  const { translations, loading } = useTranslations();
 
   // Load locale from localStorage on mount
   useEffect(() => {
     const savedLocale = localStorage.getItem('locale') as Locale;
     if (savedLocale && (savedLocale === 'fr' || savedLocale === 'en')) {
       setLocaleState(savedLocale);
-      setMessages(messagesMap[savedLocale]);
     }
   }, []);
 
+  // Mettre à jour les messages quand les traductions ou la locale changent
+  useEffect(() => {
+    if (!loading) {
+      setMessages(translations[locale] as Messages);
+    }
+  }, [locale, translations, loading]);
+
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
-    setMessages(messagesMap[newLocale]);
+    if (!loading) {
+      setMessages(translations[newLocale] as Messages);
+    }
     localStorage.setItem('locale', newLocale);
 
     // Update HTML lang attribute
@@ -62,7 +70,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <I18nContext.Provider value={{ locale, setLocale, t, messages }}>
+    <I18nContext.Provider value={{ locale, setLocale, t, messages, loading }}>
       {children}
     </I18nContext.Provider>
   );

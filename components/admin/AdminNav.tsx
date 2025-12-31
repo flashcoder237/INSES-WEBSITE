@@ -68,6 +68,7 @@ export default function AdminNav({ user }: AdminNavProps) {
         { name: 'Statistiques', href: '/admin/stats' },
         { name: 'Partenaires', href: '/admin/partners' },
         { name: 'Images', href: '/admin/images' },
+        { name: 'Traductions', href: '/admin/translations' },
       ],
     },
     {
