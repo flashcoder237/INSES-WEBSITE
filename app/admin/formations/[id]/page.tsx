@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { Loader2, Save, ArrowLeft, Plus, X } from 'lucide-react'
 import Link from 'next/link'
+import ImageUpload from '@/components/admin/ImageUpload'
 
 interface FormationFormData {
   slug: string
@@ -17,6 +18,7 @@ interface FormationFormData {
   duration: string
   level: string
   icon: string
+  image_url: string
   is_active: boolean
 }
 
@@ -55,6 +57,7 @@ export default function FormationEditPage({
     duration: '',
     level: '',
     icon: '',
+    image_url: '',
     is_active: true,
   })
   const [skills, setSkills] = useState<Skill[]>([])
@@ -98,6 +101,7 @@ export default function FormationEditPage({
         duration: formationRes.data.duration || '',
         level: formationRes.data.level || '',
         icon: formationRes.data.icon || '',
+        image_url: formationRes.data.image_url || '',
         is_active: formationRes.data.is_active,
       })
 
@@ -331,6 +335,21 @@ export default function FormationEditPage({
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 placeholder="Stethoscope"
               />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Image de la formation (OpenGraph)
+              </label>
+              <ImageUpload
+                value={formData.image_url}
+                onChange={(url) => setFormData({ ...formData, image_url: url })}
+                folder="formations"
+                previewWidth={600}
+                previewHeight={315}
+              />
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                Image utilisée pour le partage sur les réseaux sociaux. Taille recommandée : 1200x630px
+              </p>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

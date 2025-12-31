@@ -2,6 +2,7 @@
 
 import Head from 'next/head'
 import { useEffect } from 'react'
+import { useI18n } from './providers/I18nProvider'
 
 interface MetaHeadProps {
   title: string
@@ -18,6 +19,8 @@ export default function MetaHead({
   url,
   type = 'article',
 }: MetaHeadProps) {
+  const { locale } = useI18n();
+
   // Utiliser useEffect pour mettre à jour les meta tags côté client
   useEffect(() => {
     // Mettre à jour le titre
@@ -61,7 +64,7 @@ export default function MetaHead({
     }
 
     setMetaTag('og:site_name', 'INSES - Institut National Supérieur de l\'Espoir')
-    setMetaTag('og:locale', 'fr_FR')
+    setMetaTag('og:locale', locale === 'fr' ? 'fr_CM' : 'en_CM')
 
     // Twitter Card tags
     setMetaTag('twitter:card', 'summary_large_image')
@@ -73,7 +76,7 @@ export default function MetaHead({
       setMetaTag('twitter:image:alt', title)
     }
 
-  }, [title, description, image, url, type])
+  }, [title, description, image, url, type, locale])
 
   return null
 }

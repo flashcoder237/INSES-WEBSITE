@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useFormation, useFormations } from "@/hooks/useFormations";
 import { useI18n } from "@/components/providers/I18nProvider";
+import MetaHead from "@/components/MetaHead";
 
 export default function FormationDetailPage({
   params,
@@ -46,6 +47,13 @@ export default function FormationDetailPage({
 
   return (
     <div className="overflow-x-hidden">
+      <MetaHead
+        title={formation.title}
+        description={formation.shortDescription}
+        image={formation.image || "/images/formations/default.jpg"}
+        url={`https://univ-inses.com/formations/${slug}`}
+        type="website"
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -134,24 +142,31 @@ export default function FormationDetailPage({
               </p>
             </motion.div>
 
-            {/* Image Placeholder */}
+            {/* Image de la formation */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative h-96 bg-[#F5F5F5] overflow-hidden border-t-4 border-[#B22234]"
+              className="relative h-96 overflow-hidden border-t-4 border-[#B22234]"
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <GraduationCap size={64} className="text-[#B22234] mx-auto mb-4" />
-                  <p className="text-[#4A4A4A]/70 font-medium">
-                    [Image: {formation.title}]
-                  </p>
-                  <p className="text-sm text-[#4A4A4A]/50 mt-2">
-                    formation-{formation.slug}.jpg - 1200x800px
-                  </p>
+              {formation.image ? (
+                <Image
+                  src={formation.image}
+                  alt={formation.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-[#F5F5F5]">
+                  <div className="text-center">
+                    <GraduationCap size={64} className="text-[#B22234] mx-auto mb-4" />
+                    <p className="text-[#4A4A4A]/70 font-medium">
+                      {formation.title}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </motion.div>
           </div>
         </div>

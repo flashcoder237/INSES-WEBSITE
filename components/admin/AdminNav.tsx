@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
@@ -35,6 +35,12 @@ export default function AdminNav({ user }: AdminNavProps) {
   const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleLogout = async () => {
     const supabase = createClient()
@@ -61,6 +67,7 @@ export default function AdminNav({ user }: AdminNavProps) {
         { name: 'Site', href: '/admin/site-info' },
         { name: 'Statistiques', href: '/admin/stats' },
         { name: 'Partenaires', href: '/admin/partners' },
+        { name: 'Images', href: '/admin/images' },
       ],
     },
     {
@@ -94,7 +101,7 @@ export default function AdminNav({ user }: AdminNavProps) {
             <div className="hidden md:ml-8 md:flex md:items-center md:space-x-1">
               {navigation.map((item) => {
                 if ('href' in item) {
-                  const isActive = pathname === item.href
+                  const isActive = mounted && pathname === item.href
                   return (
                     <Link
                       key={item.name}
@@ -111,25 +118,32 @@ export default function AdminNav({ user }: AdminNavProps) {
                 }
 
                 // Dropdown menu
-                const hasActiveChild = item.items?.some(child => pathname?.startsWith(child.href))
+                const hasActiveChild = mounted && item.items?.some(child => pathname?.startsWith(child.href))
                 return (
                   <div key={item.name} className="relative group">
-                    <button className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                      hasActiveChild
-                        ? 'bg-[#B22234]/10 dark:bg-[#B22234]/20 text-[#B22234] dark:text-[#CD5C5C]'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                    }`}>
+                    <button
+                      suppressHydrationWarning
+                      className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                        hasActiveChild
+                          ? 'bg-[#B22234]/10 dark:bg-[#B22234]/20 text-[#B22234] dark:text-[#CD5C5C]'
+                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      }`}
+                    >
                       {item.name}
                       <ChevronDown className="ml-1 h-4 w-4" />
                     </button>
-                    <div className="absolute left-0 mt-1 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                    <div
+                      suppressHydrationWarning
+                      className="absolute left-0 mt-1 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50"
+                    >
                       <div className="py-1">
                         {item.items?.map((child) => {
-                          const isActive = pathname === child.href
+                          const isActive = mounted && pathname === child.href
                           return (
                             <Link
                               key={child.href}
                               href={child.href}
+                              suppressHydrationWarning
                               className={`block px-4 py-2 text-sm ${
                                 isActive
                                   ? 'bg-[#B22234]/10 dark:bg-[#B22234]/20 text-[#B22234] dark:text-[#CD5C5C]'
@@ -215,7 +229,7 @@ export default function AdminNav({ user }: AdminNavProps) {
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navigation.map((item) => {
               if ('href' in item) {
-                const isActive = pathname === item.href
+                const isActive = mounted && pathname === item.href
                 return (
                   <Link
                     key={item.name}
@@ -240,7 +254,7 @@ export default function AdminNav({ user }: AdminNavProps) {
                   </div>
                   <div className="space-y-1">
                     {item.items?.map((child) => {
-                      const isActive = pathname === child.href
+                      const isActive = mounted && pathname === child.href
                       return (
                         <Link
                           key={child.href}

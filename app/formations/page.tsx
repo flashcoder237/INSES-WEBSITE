@@ -14,10 +14,13 @@ import {
 import { useState } from "react";
 import { useI18n } from "@/components/providers/I18nProvider";
 import { useFormations } from "@/hooks/useFormations";
+import { useImages } from "@/hooks/useImages";
+import MetaHead from "@/components/MetaHead";
 
 export default function FormationsPage() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const formations = useFormations();
+  const images = useImages();
   const [filter, setFilter] = useState("all");
 
   const filteredFormations = formations.filter((formation) => {
@@ -28,12 +31,19 @@ export default function FormationsPage() {
 
   return (
     <div className="overflow-x-hidden">
+      <MetaHead
+        title={t('formations.heroTitle')}
+        description={t('formations.heroSubtitle')}
+        image={images['hero-formations']?.url || '/images/hero/hero-formations.jpg'}
+        url="https://univ-inses.com/formations"
+        type="website"
+      />
       {/* Hero Section - Stanford Style */}
       <section className="relative min-h-[50vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/hero/hero-formations.jpg"
-            alt="Formations professionnelles INSES"
+            src={images['hero-formations']?.url || '/images/hero/hero-formations.jpg'}
+            alt={locale === 'fr' ? images['hero-formations']?.alt_fr : images['hero-formations']?.alt_en || 'INSES'}
             fill
             className="object-cover opacity-20"
             priority

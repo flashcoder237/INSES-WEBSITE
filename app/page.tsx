@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import {
   Users,
   Award,
@@ -14,18 +15,22 @@ import {
   Heart,
   TrendingUp,
   Building2,
+  Plus,
 } from "lucide-react";
 import FormationCard from "@/components/FormationCard";
 import { useI18n } from "@/components/providers/I18nProvider";
 import { useFormations } from "@/hooks/useFormations";
 import { useStats } from "@/hooks/useStats";
 import { useAboutInfo } from "@/hooks/useAboutInfo";
+import { useImages } from "@/hooks/useImages";
 
 export default function Home() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const formations = useFormations();
   const stats = useStats();
   const aboutInfo = useAboutInfo();
+  const images = useImages();
+  const [visibleFormations, setVisibleFormations] = useState(6);
 
   // Afficher un état de chargement si les données ne sont pas encore chargées
   if (!aboutInfo) {
@@ -46,8 +51,8 @@ export default function Home() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <Image
-            src="/images/hero/hero-home.jpg"
-            alt="Étudiants INSES - Institut Supérieur de l'Espoir"
+            src={images['hero-home']?.url || '/images/hero/hero-home.jpg'}
+            alt={locale === 'fr' ? images['hero-home']?.alt_fr : images['hero-home']?.alt_en || 'INSES'}
             fill
             className="object-cover opacity-20"
             priority
@@ -381,7 +386,7 @@ export default function Home() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {formations.map((formation, index) => (
+            {formations.slice(0, visibleFormations).map((formation, index) => (
               <FormationCard
                 key={formation.id}
                 formation={formation}
@@ -394,8 +399,22 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="mt-16"
+            className="mt-16 flex flex-col sm:flex-row gap-4 items-center justify-center"
           >
+            {/* Bouton "Voir +" - Affiché seulement s'il y a plus de formations à charger */}
+            {visibleFormations < formations.length && (
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setVisibleFormations(prev => Math.min(prev + 6, formations.length))}
+                className="inline-flex items-center gap-2 border-2 border-[#B22234] text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#B22234] hover:text-white transition-colors group"
+              >
+                <Plus className="group-hover:rotate-90 transition-transform" size={18} />
+                {t('common.viewMore')}
+              </motion.button>
+            )}
+
+            {/* Bouton "Voir toutes les formations" */}
             <Link
               href="/formations"
               className="inline-flex items-center gap-2 bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors group"

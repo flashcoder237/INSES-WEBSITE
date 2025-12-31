@@ -33,6 +33,7 @@ export interface Formation {
   career: string[];
   skills: string[];
   icon: string;
+  image?: string;
 }
 
 export const formations: Formation[] = [

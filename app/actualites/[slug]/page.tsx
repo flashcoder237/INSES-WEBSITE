@@ -138,8 +138,35 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
         title={news.title}
         description={news.excerpt}
         image={news.image}
-        url={shareUrl || `https://inses.ca/actualites/${slug}`}
+        url={shareUrl || `https://univ-inses.com/actualites/${slug}`}
         type="article"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": news.title,
+            "description": news.excerpt,
+            "image": news.image ? [news.image] : [],
+            "datePublished": news.date,
+            "author": {
+              "@type": "Organization",
+              "name": "INSES - Institut National Supérieur de l'Espoir",
+              "url": "https://univ-inses.com"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "INSES - Institut National Supérieur de l'Espoir",
+              "url": "https://univ-inses.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://univ-inses.com/logo.png"
+              }
+            }
+          })
+        }}
       />
 
       {/* Back Button */}

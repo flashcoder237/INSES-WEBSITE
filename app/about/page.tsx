@@ -16,11 +16,14 @@ import {
 import { useI18n } from "@/components/providers/I18nProvider";
 import { useAboutInfo } from "@/hooks/useAboutInfo";
 import { useStats } from "@/hooks/useStats";
+import { useImages } from "@/hooks/useImages";
+import MetaHead from "@/components/MetaHead";
 
 export default function AboutPage() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const aboutInfo = useAboutInfo();
   const stats = useStats();
+  const images = useImages();
 
   // Afficher un état de chargement si les données ne sont pas encore chargées
   if (!aboutInfo) {
@@ -36,6 +39,13 @@ export default function AboutPage() {
 
   return (
     <div className="overflow-x-hidden">
+      <MetaHead
+        title={t('about.heroTitle')}
+        description={t('about.heroSubtitle')}
+        image={images['hero-about']?.url || images['logo']?.url || '/images/logo/logo-inses.png'}
+        url="https://univ-inses.com/about"
+        type="website"
+      />
       {/* Hero Section - Stanford Style */}
       <section className="relative min-h-[50vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
         <div className="container mx-auto px-8 py-32 relative z-10">
@@ -106,24 +116,20 @@ export default function AboutPage() {
             </motion.div>
           </div>
 
-          {/* Image Placeholder */}
+          {/* Campus Image */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="relative h-96 bg-[#F5F5F5] overflow-hidden"
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <Building2 size={64} className="text-[#B22234] mx-auto mb-4" />
-                <p className="text-[#4A4A4A]/70 font-medium">
-                  [Image: Campus INSES - Bâtiment principal]
-                </p>
-                <p className="text-sm text-[#4A4A4A]/50 mt-2">
-                  hero-campus.jpg - 1920x1080px
-                </p>
-              </div>
-            </div>
+            <Image
+              src={images['hero-campus']?.url || '/images/about/hero-campus.jpg'}
+              alt={locale === 'fr' ? images['hero-campus']?.alt_fr : images['hero-campus']?.alt_en || 'Campus INSES'}
+              fill
+              className="object-cover"
+              quality={85}
+            />
           </motion.div>
         </div>
       </section>
@@ -237,17 +243,13 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="relative h-96 bg-[#F5F5F5] overflow-hidden"
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <GraduationCap size={64} className="text-[#B22234] mx-auto mb-4" />
-                  <p className="text-[#4A4A4A]/70 font-medium">
-                    [Image: Étudiants en classe]
-                  </p>
-                  <p className="text-sm text-[#4A4A4A]/50 mt-2">
-                    students-class.jpg - 1200x800px
-                  </p>
-                </div>
-              </div>
+              <Image
+                src={images['students-class']?.url || '/images/about/students-class.jpg'}
+                alt={locale === 'fr' ? images['students-class']?.alt_fr : images['students-class']?.alt_en || 'Étudiants INSES'}
+                fill
+                className="object-cover"
+                quality={85}
+              />
             </motion.div>
           </div>
         </div>

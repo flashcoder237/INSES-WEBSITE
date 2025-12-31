@@ -15,6 +15,7 @@ interface FormationDB {
   duration: string;
   level: string;
   icon: string;
+  image_url?: string;
   is_active: boolean;
   display_order: number;
   skills?: Array<{ skill_fr: string; skill_en: string; display_order: number }>;
@@ -54,6 +55,7 @@ export function useFormations(): Formation[] {
             duration: f.duration,
             level: f.level,
             icon: f.icon,
+            image: f.image_url,
             skills: (f.skills || [])
               .sort((a: any, b: any) => a.display_order - b.display_order)
               .map((s: any) => locale === 'fr' ? s.skill_fr : s.skill_en),

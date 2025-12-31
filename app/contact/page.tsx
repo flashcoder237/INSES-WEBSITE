@@ -15,10 +15,12 @@ import {
 } from "lucide-react";
 import { useI18n } from "@/components/providers/I18nProvider";
 import { useSiteInfo } from "@/hooks/useSiteInfo";
+import { useImages } from "@/hooks/useImages";
 
 export default function ContactPage() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const siteInfo = useSiteInfo();
+  const images = useImages();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -79,8 +81,8 @@ export default function ContactPage() {
       <section className="relative min-h-[50vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/hero/hero-contact.jpg"
-            alt="Contactez l'Institut INSES"
+            src={images['hero-contact']?.url || '/images/hero/hero-contact.jpg'}
+            alt={locale === 'fr' ? images['hero-contact']?.alt_fr : images['hero-contact']?.alt_en || 'INSES'}
             fill
             className="object-cover opacity-20"
             priority
