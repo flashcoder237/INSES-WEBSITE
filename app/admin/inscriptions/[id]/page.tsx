@@ -52,6 +52,7 @@ export default function InscriptionDetailsPage({ params }: { params: Promise<{ i
   const [error, setError] = useState<string | null>(null)
   const [updating, setUpdating] = useState(false)
   const [sendingEmail, setSendingEmail] = useState(false)
+  const [formationTitle, setFormationTitle] = useState<string>('')
 
   useEffect(() => {
     loadInscription()
@@ -68,6 +69,19 @@ export default function InscriptionDetailsPage({ params }: { params: Promise<{ i
 
       if (error) throw error
       setInscription(data)
+
+      // Charger le titre de la formation si disponible
+      if (data.desired_formation) {
+        const { data: formationData } = await supabase
+          .from('formations')
+          .select('title_fr')
+          .eq('slug', data.desired_formation)
+          .single()
+
+        if (formationData) {
+          setFormationTitle(formationData.title_fr)
+        }
+      }
     } catch (err: any) {
       setError(err.message)
     } finally {
@@ -105,7 +119,6 @@ export default function InscriptionDetailsPage({ params }: { params: Promise<{ i
 
     setSendingEmail(true)
     try {
-      // TODO: Implémenter l'envoi d'email via API route
       const response = await fetch('/api/send-inscription-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -114,6 +127,7 @@ export default function InscriptionDetailsPage({ params }: { params: Promise<{ i
           firstName: inscription.first_name,
           lastName: inscription.last_name,
           status: inscription.status,
+          formation: formationTitle || inscription.desired_formation,
         }),
       })
 
@@ -433,7 +447,7 @@ export default function InscriptionDetailsPage({ params }: { params: Promise<{ i
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-600 dark:text-gray-400">Formation</label>
-                <p className="text-base text-gray-900 dark:text-white">{inscription.desired_formation}</p>
+                <p className="text-base text-gray-900 dark:text-white">{formationTitle || inscription.desired_formation}</p>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-600 dark:text-gray-400">Niveau actuel</label>

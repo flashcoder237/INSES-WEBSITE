@@ -16,11 +16,13 @@ import {
 } from "lucide-react";
 import { useI18n } from "@/components/providers/I18nProvider";
 import { useFormations } from "@/hooks/useFormations";
+import { useSiteInfo } from "@/hooks/useSiteInfo";
 import { createClient } from "@/lib/supabase/client";
 
 export default function InscriptionPage() {
   const { t } = useI18n();
   const formations = useFormations();
+  const siteInfo = useSiteInfo();
   const [formData, setFormData] = useState({
     // Informations personnelles
     firstName: "",
@@ -71,6 +73,8 @@ export default function InscriptionPage() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 4;
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
+  const [showErrors, setShowErrors] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -144,6 +148,26 @@ export default function InscriptionPage() {
     doc.text(`Date: ${new Date().toLocaleDateString('fr-FR')}`, 15, 63);
 
     yPos = 70;
+
+    // Formation choisie - Encadré mis en avant
+    const formationTitle = formations.find(f => f.slug === formData.formation)?.title || formData.formation;
+    if (formationTitle) {
+      doc.setDrawColor(0, 100, 180);
+      doc.setLineWidth(1.5);
+      doc.setFillColor(240, 249, 255);
+      doc.roundedRect(10, yPos, 190, 18, 2, 2, 'FD');
+
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 100, 180);
+      doc.text('FORMATION DEMANDÉE', 105, yPos + 6, { align: 'center' });
+
+      doc.setFontSize(13);
+      doc.setTextColor(0, 60, 120);
+      doc.text(formationTitle, 105, yPos + 13, { align: 'center' });
+
+      yPos += 23;
+    }
 
     // Informations personnelles avec style amélioré
     doc.setFillColor(245, 245, 245);
@@ -272,23 +296,20 @@ export default function InscriptionPage() {
       yPos += 5;
     }
 
-    // Formation souhaitée avec style amélioré
+    // Parcours académique avec style amélioré
     doc.setFillColor(245, 245, 245);
     doc.rect(10, yPos - 5, 190, 8, 'F');
 
     doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(178, 34, 52);
-    doc.text('FORMATION SOUHAITÉE', 15, yPos);
+    doc.text('PARCOURS ACADÉMIQUE', 15, yPos);
     doc.setTextColor(0, 0, 0);
     yPos += 10;
 
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    const formationTitle = formations.find(f => f.slug === formData.formation)?.title || formData.formation;
-    doc.text(`Formation: ${formationTitle}`, 20, yPos);
-    yPos += 6;
-    doc.text(`Niveau: ${formData.level}`, 20, yPos);
+    doc.text(`Niveau actuel: ${formData.level}`, 20, yPos);
     yPos += 6;
     if (formData.lastSchool) {
       doc.text(`Dernier établissement: ${formData.lastSchool}`, 20, yPos);
@@ -305,6 +326,60 @@ export default function InscriptionPage() {
     if (formData.preferredStartDate) {
       doc.text(`Date de début souhaitée: ${formData.preferredStartDate}`, 20, yPos);
       yPos += 6;
+    }
+
+    // Motivation (si fournie)
+    if (formData.whyThisFormation || formData.careerGoals || formData.message) {
+      // Nouvelle page si nécessaire
+      if (yPos > 200) {
+        doc.addPage();
+        yPos = 20;
+      } else {
+        yPos += 8;
+      }
+
+      doc.setFillColor(245, 245, 245);
+      doc.rect(10, yPos - 5, 190, 8, 'F');
+
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(178, 34, 52);
+      doc.text('MOTIVATION ET PROJET PROFESSIONNEL', 15, yPos);
+      doc.setTextColor(0, 0, 0);
+      yPos += 10;
+
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'normal');
+
+      if (formData.whyThisFormation) {
+        doc.setFont('helvetica', 'bold');
+        doc.text('Pourquoi cette formation :', 20, yPos);
+        yPos += 5;
+        doc.setFont('helvetica', 'normal');
+        const whyLines = doc.splitTextToSize(formData.whyThisFormation, 170);
+        doc.text(whyLines, 20, yPos);
+        yPos += whyLines.length * 4 + 3;
+      }
+
+      if (formData.careerGoals) {
+        doc.setFont('helvetica', 'bold');
+        doc.text('Objectifs de carrière :', 20, yPos);
+        yPos += 5;
+        doc.setFont('helvetica', 'normal');
+        const goalLines = doc.splitTextToSize(formData.careerGoals, 170);
+        doc.text(goalLines, 20, yPos);
+        yPos += goalLines.length * 4 + 3;
+      }
+
+      if (formData.message) {
+        doc.setFont('helvetica', 'bold');
+        doc.text('Message complémentaire :', 20, yPos);
+        yPos += 5;
+        doc.setFont('helvetica', 'normal');
+        const messageLines = doc.splitTextToSize(formData.message, 170);
+        doc.text(messageLines, 20, yPos);
+        yPos += messageLines.length * 4;
+      }
     }
 
     // Note importante avec design amélioré
@@ -350,10 +425,46 @@ export default function InscriptionPage() {
     doc.setTextColor(178, 34, 52);
     doc.text('Cette fiche d\'inscription est un document provisoire sujet à validation.', 15, yPos);
 
+    // Section signature et date
+    if (yPos > 250) {
+      doc.addPage();
+      yPos = 20;
+    } else {
+      yPos += 15;
+    }
+
+    // Signatures
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(60, 60, 60);
+
+    // Signature étudiant
+    doc.text('Signature du candidat :', 20, yPos);
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.3);
+    doc.line(20, yPos + 18, 85, yPos + 18);
+    doc.setFontSize(7);
+    doc.text('Date : ____/____/________', 20, yPos + 22);
+
+    // Signature administration
+    doc.text('Signature de l\'administration :', 115, yPos);
+    doc.line(115, yPos + 18, 180, yPos + 18);
+    doc.text('Date : ____/____/________', 115, yPos + 22);
+
     // Pied de page professionnel
     const pageCount = doc.getNumberOfPages();
     for (let i = 1; i <= pageCount; i++) {
       doc.setPage(i);
+
+      // Watermark diagonal
+      doc.setTextColor(220, 220, 220);
+      doc.setFontSize(50);
+      doc.setFont('helvetica', 'bold');
+      doc.text('PROVISOIRE', 105, 150, {
+        align: 'center',
+        angle: 45,
+        opacity: 0.15
+      });
 
       // Ligne de séparation
       doc.setDrawColor(178, 34, 52);
@@ -368,8 +479,8 @@ export default function InscriptionPage() {
 
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(100, 100, 100);
-      doc.text('Douala-Bonabéri, Cameroun', 105, 290, { align: 'center' });
-      doc.text('+237 674 93 66 04 | contact@univ-inses.com | www.univ-inses.com', 105, 294, { align: 'center' });
+      doc.text(siteInfo.location || 'Douala-Bonabéri, Cameroun', 105, 290, { align: 'center' });
+      doc.text(`${siteInfo.phone || '+237 674 93 66 04'} | ${siteInfo.email || 'contact@univ-inses.com'} | www.univ-inses.com`, 105, 294, { align: 'center' });
 
       // Numéro de page
       doc.setFontSize(7);
@@ -382,7 +493,81 @@ export default function InscriptionPage() {
     doc.save(fileName);
   };
 
+  const validateStep = (step: number): string[] => {
+    const errors: string[] = [];
+
+    switch (step) {
+      case 1: // Personal Information
+        if (!formData.firstName.trim()) {
+          errors.push(t('inscription.firstName') || 'Prénom');
+        }
+        if (!formData.lastName.trim()) {
+          errors.push(t('inscription.lastName') || 'Nom');
+        }
+        if (!formData.email.trim()) {
+          errors.push(t('inscription.email') || 'Email');
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+          errors.push('Email (format invalide)');
+        }
+        if (!formData.phone.trim()) {
+          errors.push(t('inscription.phone') || 'Téléphone');
+        }
+        if (!formData.dateOfBirth) {
+          errors.push(t('inscription.dateOfBirth') || 'Date de naissance');
+        }
+        if (!photo) {
+          errors.push(t('inscription.photo') || 'Photo');
+        }
+        if (!formData.gender) {
+          errors.push(t('inscription.gender') || 'Genre');
+        }
+        if (!formData.city.trim()) {
+          errors.push(t('inscription.city') || 'Ville');
+        }
+        if (!formData.address.trim()) {
+          errors.push(t('inscription.fullAddress') || 'Adresse complète');
+        }
+        break;
+
+      case 2: // Family Information (all optional)
+        // No required fields
+        break;
+
+      case 3: // Formation
+        if (!formData.formation) {
+          errors.push(t('inscription.chooseFormation') || 'Formation souhaitée');
+        }
+        if (!formData.level) {
+          errors.push(t('inscription.currentLevel') || 'Niveau actuel');
+        }
+        break;
+
+      case 4: // Motivation (at least one field recommended)
+        // Optional but recommended
+        break;
+
+      default:
+        break;
+    }
+
+    return errors;
+  };
+
   const nextStep = () => {
+    // Validate current step before advancing
+    const errors = validateStep(currentStep);
+
+    if (errors.length > 0) {
+      setValidationErrors(errors);
+      setShowErrors(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // Clear errors and advance to next step
+    setValidationErrors([]);
+    setShowErrors(false);
+
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -390,6 +575,10 @@ export default function InscriptionPage() {
   };
 
   const prevStep = () => {
+    // Clear errors when going back
+    setValidationErrors([]);
+    setShowErrors(false);
+
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -423,6 +612,20 @@ export default function InscriptionPage() {
 
     // Ne soumettre que si on est à la dernière étape
     if (currentStep !== totalSteps) {
+      return;
+    }
+
+    // Validate all steps before final submission
+    let allErrors: string[] = [];
+    for (let step = 1; step <= totalSteps; step++) {
+      const stepErrors = validateStep(step);
+      allErrors = [...allErrors, ...stepErrors];
+    }
+
+    if (allErrors.length > 0) {
+      setValidationErrors(allErrors);
+      setShowErrors(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
@@ -491,6 +694,28 @@ export default function InscriptionPage() {
         throw new Error(error.message || 'Failed to submit inscription');
       }
 
+      // Envoyer l'email de confirmation à l'étudiant
+      try {
+        const formationTitle = formations.find(f => f.slug === formData.formation)?.title || formData.formation;
+
+        await fetch('/api/send-inscription-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            formation: formationTitle,
+            status: 'pending',
+          }),
+        });
+      } catch (emailError) {
+        console.error('Email sending failed:', emailError);
+        // Ne pas bloquer l'inscription si l'email échoue
+      }
+
       setSubmitStatus("success");
 
       // Générer et télécharger le PDF
@@ -534,6 +759,8 @@ export default function InscriptionPage() {
         setCurrentStep(1); // Reset to first step
         setPhoto(null);
         setPhotoPreview("");
+        setValidationErrors([]);
+        setShowErrors(false);
       }, 5000);
     } catch (error: any) {
       console.error('Inscription error:', {
@@ -630,6 +857,29 @@ export default function InscriptionPage() {
                   <p className="text-red-700 text-[15px]">
                     Une erreur s'est produite. Veuillez réessayer ou nous contacter.
                   </p>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Validation Errors */}
+            {showErrors && validationErrors.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-red-50 border-l-4 border-red-500 p-6 mb-8"
+              >
+                <div className="flex items-start gap-4">
+                  <AlertCircle className="text-red-500 flex-shrink-0 mt-1" size={24} />
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-red-900 mb-3">
+                      Veuillez remplir tous les champs obligatoires
+                    </h3>
+                    <ul className="list-disc list-inside space-y-1 text-red-700 text-[15px]">
+                      {validationErrors.map((error, index) => (
+                        <li key={index}>{error}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </motion.div>
             )}
