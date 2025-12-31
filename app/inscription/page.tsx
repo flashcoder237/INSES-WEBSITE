@@ -460,11 +460,12 @@ export default function InscriptionPage() {
       doc.setTextColor(220, 220, 220);
       doc.setFontSize(50);
       doc.setFont('helvetica', 'bold');
+      doc.setGState({ opacity: 0.15 });
       doc.text('PROVISOIRE', 105, 150, {
         align: 'center',
-        angle: 45,
-        opacity: 0.15
+        angle: 45
       });
+      doc.setGState({ opacity: 1 });
 
       // Ligne de séparation
       doc.setDrawColor(178, 34, 52);
@@ -479,8 +480,8 @@ export default function InscriptionPage() {
 
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(100, 100, 100);
-      doc.text(siteInfo.location || 'Douala-Bonabéri, Cameroun', 105, 290, { align: 'center' });
-      doc.text(`${siteInfo.phone || '+237 674 93 66 04'} | ${siteInfo.email || 'contact@univ-inses.com'} | www.univ-inses.com`, 105, 294, { align: 'center' });
+      doc.text(siteInfo?.location || 'Douala-Bonabéri, Cameroun', 105, 290, { align: 'center' });
+      doc.text(`${siteInfo?.phone || '+237 674 93 66 04'} | ${siteInfo?.email || 'contact@univ-inses.com'} | www.univ-inses.com`, 105, 294, { align: 'center' });
 
       // Numéro de page
       doc.setFontSize(7);

@@ -107,17 +107,10 @@ export async function POST(request: Request) {
               text-align: center;
             }
             .logo {
-              width: 80px;
-              height: 80px;
+              width: 120px;
+              height: auto;
               margin: 0 auto 20px;
-              background-color: white;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 32px;
-              font-weight: bold;
-              color: #B22234;
+              display: block;
             }
             .header h1 {
               color: white;
@@ -257,7 +250,7 @@ export async function POST(request: Request) {
             <div class="email-container">
               <!-- Header avec logo -->
               <div class="header">
-                <div class="logo">IN</div>
+                <img src="https://univ-inses.com/images/logo/logo-inses-white.png" alt="Logo INSES" class="logo" />
                 <h1>INSES</h1>
                 <p>Institut Supérieur de l'Espoir</p>
               </div>
