@@ -456,17 +456,6 @@ export default function InscriptionPage() {
     for (let i = 1; i <= pageCount; i++) {
       doc.setPage(i);
 
-      // Watermark diagonal
-      doc.setTextColor(220, 220, 220);
-      doc.setFontSize(50);
-      doc.setFont('helvetica', 'bold');
-      doc.setGState({ opacity: 0.15 });
-      doc.text('PROVISOIRE', 105, 150, {
-        align: 'center',
-        angle: 45
-      });
-      doc.setGState({ opacity: 1 });
-
       // Ligne de séparation
       doc.setDrawColor(178, 34, 52);
       doc.setLineWidth(0.5);
@@ -608,8 +597,10 @@ export default function InscriptionPage() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent | React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+    }
 
     // Ne soumettre que si on est à la dernière étape
     if (currentStep !== totalSteps) {
@@ -913,7 +904,7 @@ export default function InscriptionPage() {
                 </h3>
               </div>
 
-              <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="space-y-10">
+              <form onSubmit={(e) => e.preventDefault()} onKeyDown={handleKeyDown} className="space-y-10">
                 {/* Step 1: Informations personnelles */}
                 {currentStep === 1 && (
                 <div>
@@ -1649,7 +1640,8 @@ export default function InscriptionPage() {
                       </motion.button>
                     ) : (
                       <motion.button
-                        type="submit"
+                        type="button"
+                        onClick={handleSubmit}
                         disabled={isSubmitting}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}

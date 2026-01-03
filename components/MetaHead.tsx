@@ -26,6 +26,22 @@ export default function MetaHead({
     // Mettre à jour le titre
     document.title = `${title} | INSES`
 
+    // Convertir l'image relative en URL absolue
+    const getAbsoluteImageUrl = (imagePath?: string): string | undefined => {
+      if (!imagePath) return undefined;
+
+      // Si l'image est déjà une URL absolue, la retourner telle quelle
+      if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        return imagePath;
+      }
+
+      // Convertir le chemin relatif en URL absolue
+      const baseUrl = 'https://univ-inses.com';
+      return `${baseUrl}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+    };
+
+    const absoluteImageUrl = getAbsoluteImageUrl(image);
+
     // Fonction helper pour set/update meta tag
     const setMetaTag = (property: string, content: string) => {
       let element = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement
@@ -56,11 +72,12 @@ export default function MetaHead({
       setMetaTag('og:url', url)
     }
 
-    if (image) {
-      setMetaTag('og:image', image)
+    if (absoluteImageUrl) {
+      setMetaTag('og:image', absoluteImageUrl)
       setMetaTag('og:image:width', '1200')
       setMetaTag('og:image:height', '630')
       setMetaTag('og:image:alt', title)
+      setMetaTag('og:image:type', 'image/jpeg')
     }
 
     setMetaTag('og:site_name', 'INSES - Institut National Supérieur de l\'Espoir')
@@ -71,8 +88,8 @@ export default function MetaHead({
     setMetaTag('twitter:title', title)
     setMetaTag('twitter:description', description)
 
-    if (image) {
-      setMetaTag('twitter:image', image)
+    if (absoluteImageUrl) {
+      setMetaTag('twitter:image', absoluteImageUrl)
       setMetaTag('twitter:image:alt', title)
     }
 
