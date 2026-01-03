@@ -1,10 +1,10 @@
 -- =====================================================
 -- Import des traductions depuis fr.json et en.json
--- Généré automatiquement le 2025-12-31T12:09:19.695Z
+-- Généré automatiquement le 2026-01-03T13:31:27.190Z
 -- =====================================================
 
 -- Supprimer les anciennes traductions
-DELETE FROM site_content WHERE category IN ('nav', 'footer', 'search', 'theme', 'language', 'siteInfo', 'common', 'home', 'about', 'formations', 'formationDetail', 'gallery', 'contact', 'news', 'inscription');
+DELETE FROM site_content WHERE category IN ('nav', 'footer', 'search', 'theme', 'language', 'siteInfo', 'common', 'home', 'about', 'formations', 'formationDetail', 'gallery', 'contact', 'news', 'inscription', 'fiche');
 
 -- Insérer les nouvelles traductions
 INSERT INTO site_content (key, category, section, content_fr, content_en, description, content_type, is_active)
@@ -87,6 +87,7 @@ VALUES
 ('common.contactUs', 'common', NULL, 'Nous contacter', 'Contact us', 'Traduction pour: common.contactUs', 'text', true),
 ('common.discoverMore', 'common', NULL, 'Découvrez nos autres formations', 'Discover our other programs', 'Traduction pour: common.discoverMore', 'text', true),
 ('common.backTo', 'common', NULL, 'Retour aux', 'Back to', 'Traduction pour: common.backTo', 'text', true),
+('common.back', 'common', NULL, 'Retour', 'Back', 'Traduction pour: common.back', 'text', true),
 ('home.heroBadge', 'home', NULL, 'Excellence en Formation Professionnelle', 'Excellence in Professional Training', 'Traduction pour: home.heroBadge', 'text', true),
 ('home.heroTitle', 'home', NULL, 'Former les professionnels de santé de demain', 'Training Tomorrow''s Healthcare Professionals', 'Traduction pour: home.heroTitle', 'text', true),
 ('home.heroSubtitle', 'home', NULL, 'Excellence académique et formation pratique pour une carrière réussie dans le domaine de la santé', 'Academic excellence and practical training for a successful career in healthcare', 'Traduction pour: home.heroSubtitle', 'text', true),
@@ -332,7 +333,57 @@ VALUES
 ('inscription.registrationSuccess', 'inscription', NULL, 'Merci pour votre demande d''inscription. Votre fiche d''inscription a été téléchargée automatiquement. Conservez-la précieusement, vous devrez la présenter avec les documents originaux si votre candidature est acceptée.', 'Thank you for your registration request. Your registration form has been downloaded automatically. Keep it safe, you will need to present it with the original documents if your application is accepted.', 'Traduction pour: inscription.registrationSuccess', 'text', true),
 ('inscription.pdfNote', 'inscription', NULL, 'Votre fiche d''inscription sera générée et téléchargée automatiquement après validation du formulaire.', 'Your registration form will be generated and downloaded automatically after form validation.', 'Traduction pour: inscription.pdfNote', 'text', true),
 ('inscription.pdfNoteTitle', 'inscription', NULL, 'Téléchargement automatique de votre fiche', 'Automatic download of your form', 'Traduction pour: inscription.pdfNoteTitle', 'text', true),
-('inscription.documentsRequiredNote', 'inscription', NULL, 'Si votre candidature est acceptée, vous devrez fournir les documents originaux lors de votre inscription définitive.', 'If your application is accepted, you will need to provide the original documents during your final registration.', 'Traduction pour: inscription.documentsRequiredNote', 'text', true)
+('inscription.documentsRequiredNote', 'inscription', NULL, 'Si votre candidature est acceptée, vous devrez fournir les documents originaux lors de votre inscription définitive.', 'If your application is accepted, you will need to provide the original documents during your final registration.', 'Traduction pour: inscription.documentsRequiredNote', 'text', true),
+('fiche.yourForm', 'fiche', NULL, 'Votre fiche d''inscription', 'Your registration form', 'Traduction pour: fiche.yourForm', 'text', true),
+('fiche.fileNumber', 'fiche', NULL, 'Dossier N°', 'File No.', 'Traduction pour: fiche.fileNumber', 'text', true),
+('fiche.downloadPDF', 'fiche', NULL, 'Télécharger PDF', 'Download PDF', 'Traduction pour: fiche.downloadPDF', 'text', true),
+('fiche.loading', 'fiche', NULL, 'Chargement de votre fiche...', 'Loading your form...', 'Traduction pour: fiche.loading', 'text', true),
+('fiche.registrationForm', 'fiche', NULL, 'FICHE D''INSCRIPTION', 'REGISTRATION FORM', 'Traduction pour: fiche.registrationForm', 'text', true),
+('fiche.fileNumberLabel', 'fiche', NULL, 'N° Dossier:', 'File No:', 'Traduction pour: fiche.fileNumberLabel', 'text', true),
+('fiche.dateLabel', 'fiche', NULL, 'Date:', 'Date:', 'Traduction pour: fiche.dateLabel', 'text', true),
+('fiche.desiredFormation', 'fiche', NULL, 'Formation demandée', 'Desired program', 'Traduction pour: fiche.desiredFormation', 'text', true),
+('fiche.personalInfo', 'fiche', NULL, 'Informations Personnelles', 'Personal Information', 'Traduction pour: fiche.personalInfo', 'text', true),
+('fiche.lastName', 'fiche', NULL, 'Nom', 'Last name', 'Traduction pour: fiche.lastName', 'text', true),
+('fiche.firstName', 'fiche', NULL, 'Prénom', 'First name', 'Traduction pour: fiche.firstName', 'text', true),
+('fiche.gender', 'fiche', NULL, 'Genre', 'Gender', 'Traduction pour: fiche.gender', 'text', true),
+('fiche.male', 'fiche', NULL, 'Masculin', 'Male', 'Traduction pour: fiche.male', 'text', true),
+('fiche.female', 'fiche', NULL, 'Féminin', 'Female', 'Traduction pour: fiche.female', 'text', true),
+('fiche.dateOfBirth', 'fiche', NULL, 'Date de naissance', 'Date of birth', 'Traduction pour: fiche.dateOfBirth', 'text', true),
+('fiche.placeOfBirth', 'fiche', NULL, 'Lieu de naissance', 'Place of birth', 'Traduction pour: fiche.placeOfBirth', 'text', true),
+('fiche.nationality', 'fiche', NULL, 'Nationalité', 'Nationality', 'Traduction pour: fiche.nationality', 'text', true),
+('fiche.contactInfo', 'fiche', NULL, 'Coordonnées', 'Contact Information', 'Traduction pour: fiche.contactInfo', 'text', true),
+('fiche.email', 'fiche', NULL, 'Email', 'Email', 'Traduction pour: fiche.email', 'text', true),
+('fiche.phone', 'fiche', NULL, 'Téléphone', 'Phone', 'Traduction pour: fiche.phone', 'text', true),
+('fiche.whatsapp', 'fiche', NULL, 'WhatsApp', 'WhatsApp', 'Traduction pour: fiche.whatsapp', 'text', true),
+('fiche.city', 'fiche', NULL, 'Ville', 'City', 'Traduction pour: fiche.city', 'text', true),
+('fiche.address', 'fiche', NULL, 'Adresse', 'Address', 'Traduction pour: fiche.address', 'text', true),
+('fiche.familyInfo', 'fiche', NULL, 'Informations Familiales', 'Family Information', 'Traduction pour: fiche.familyInfo', 'text', true),
+('fiche.father', 'fiche', NULL, 'Père', 'Father', 'Traduction pour: fiche.father', 'text', true),
+('fiche.profession', 'fiche', NULL, 'Profession', 'Profession', 'Traduction pour: fiche.profession', 'text', true),
+('fiche.mother', 'fiche', NULL, 'Mère', 'Mother', 'Traduction pour: fiche.mother', 'text', true),
+('fiche.emergencyContact', 'fiche', NULL, 'Contact d''urgence', 'Emergency contact', 'Traduction pour: fiche.emergencyContact', 'text', true),
+('fiche.relationship', 'fiche', NULL, 'Relation', 'Relationship', 'Traduction pour: fiche.relationship', 'text', true),
+('fiche.academicInfo', 'fiche', NULL, 'Parcours Académique', 'Academic Background', 'Traduction pour: fiche.academicInfo', 'text', true),
+('fiche.currentLevel', 'fiche', NULL, 'Niveau actuel', 'Current level', 'Traduction pour: fiche.currentLevel', 'text', true),
+('fiche.lastSchool', 'fiche', NULL, 'Dernier établissement', 'Last school attended', 'Traduction pour: fiche.lastSchool', 'text', true),
+('fiche.lastDiploma', 'fiche', NULL, 'Dernier diplôme', 'Last diploma', 'Traduction pour: fiche.lastDiploma', 'text', true),
+('fiche.diplomaYear', 'fiche', NULL, 'Année d''obtention', 'Year obtained', 'Traduction pour: fiche.diplomaYear', 'text', true),
+('fiche.preferredStartDate', 'fiche', NULL, 'Date de début souhaitée', 'Preferred start date', 'Traduction pour: fiche.preferredStartDate', 'text', true),
+('fiche.motivationInfo', 'fiche', NULL, 'Motivation et Projet Professionnel', 'Motivation and Professional Goals', 'Traduction pour: fiche.motivationInfo', 'text', true),
+('fiche.whyThisFormation', 'fiche', NULL, 'Pourquoi cette formation ?', 'Why this program?', 'Traduction pour: fiche.whyThisFormation', 'text', true),
+('fiche.careerGoals', 'fiche', NULL, 'Objectifs de carrière', 'Career goals', 'Traduction pour: fiche.careerGoals', 'text', true),
+('fiche.additionalMessage', 'fiche', NULL, 'Message complémentaire', 'Additional message', 'Traduction pour: fiche.additionalMessage', 'text', true),
+('fiche.requiredDocuments', 'fiche', NULL, 'Documents requis pour l''inscription définitive', 'Required documents for final registration', 'Traduction pour: fiche.requiredDocuments', 'text', true),
+('fiche.birthCertificate', 'fiche', NULL, 'Acte de naissance ou attestation de naissance', 'Birth certificate or birth attestation', 'Traduction pour: fiche.birthCertificate', 'text', true),
+('fiche.lastDiplomaOriginal', 'fiche', NULL, 'Dernier diplôme obtenu (original et photocopie)', 'Last diploma obtained (original and photocopy)', 'Traduction pour: fiche.lastDiplomaOriginal', 'text', true),
+('fiche.photos', 'fiche', NULL, '4 photos d''identité récentes et identiques', '4 recent and identical ID photos', 'Traduction pour: fiche.photos', 'text', true),
+('fiche.idCard', 'fiche', NULL, 'Carte nationale d''identité ou passeport (photocopie)', 'National ID card or passport (photocopy)', 'Traduction pour: fiche.idCard', 'text', true),
+('fiche.medicalCertificate', 'fiche', NULL, 'Certificat médical de moins de 3 mois', 'Medical certificate less than 3 months old', 'Traduction pour: fiche.medicalCertificate', 'text', true),
+('fiche.provisionalDocument', 'fiche', NULL, 'Cette fiche d''inscription est un document provisoire sujet à validation.', 'This registration form is a provisional document subject to validation.', 'Traduction pour: fiche.provisionalDocument', 'text', true),
+('fiche.candidateSignature', 'fiche', NULL, 'Signature du candidat', 'Candidate''s signature', 'Traduction pour: fiche.candidateSignature', 'text', true),
+('fiche.adminSignature', 'fiche', NULL, 'Signature de l''administration', 'Administration signature', 'Traduction pour: fiche.adminSignature', 'text', true),
+('fiche.downloadPrompt', 'fiche', NULL, 'Cliquez sur le bouton ci-dessous pour télécharger votre fiche en PDF', 'Click the button below to download your form in PDF', 'Traduction pour: fiche.downloadPrompt', 'text', true),
+('fiche.downloadMyForm', 'fiche', NULL, 'Télécharger ma fiche (PDF)', 'Download my form (PDF)', 'Traduction pour: fiche.downloadMyForm', 'text', true)
 ON CONFLICT (key) DO UPDATE SET
   content_fr = EXCLUDED.content_fr,
   content_en = EXCLUDED.content_en,

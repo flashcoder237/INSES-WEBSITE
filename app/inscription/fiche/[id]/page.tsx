@@ -119,7 +119,7 @@ export default function FicheInscriptionPage({
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#B22234] mx-auto mb-4"></div>
-          <p className="text-gray-600">Chargement de votre fiche...</p>
+          <p className="text-gray-600">{t('fiche.loading')}</p>
         </div>
       </div>
     );
@@ -138,10 +138,10 @@ export default function FicheInscriptionPage({
         <div className="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm border border-gray-200">
           <div>
             <h2 className="text-lg font-bold text-gray-900">
-              Votre fiche d'inscription
+              {t('fiche.yourForm')}
             </h2>
             <p className="text-sm text-gray-600">
-              Dossier N° {dossierNumber}
+              {t('fiche.fileNumber')} {dossierNumber}
             </p>
           </div>
           <div className="flex gap-3">
@@ -149,7 +149,7 @@ export default function FicheInscriptionPage({
               onClick={() => router.push("/inscription")}
               className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              Retour
+              {t('common.back')}
             </button>
             <button
               onClick={handleDownloadPDF}
@@ -168,7 +168,7 @@ export default function FicheInscriptionPage({
                   d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                 />
               </svg>
-              Télécharger PDF
+              {t('fiche.downloadPDF')}
             </button>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function FicheInscriptionPage({
             </p>
 
             <div className="inline-block bg-white text-[#B22234] px-8 py-2 rounded-full font-bold mt-6 text-lg">
-              FICHE D'INSCRIPTION
+              {t('fiche.registrationForm')}
             </div>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function FicheInscriptionPage({
             <div className="space-y-1">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-semibold text-gray-600">
-                  N° Dossier:
+                  {t('fiche.fileNumberLabel')}
                 </span>
                 <span className="text-base font-bold text-[#B22234]">
                   {dossierNumber}
@@ -211,7 +211,7 @@ export default function FicheInscriptionPage({
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-sm font-semibold text-gray-600">
-                  Date:
+                  {t('fiche.dateLabel')}
                 </span>
                 <span className="text-sm text-gray-800">
                   {new Date(inscription.created_at).toLocaleDateString("fr-FR", {
@@ -257,7 +257,7 @@ export default function FicheInscriptionPage({
               </div>
               <div>
                 <p className="text-sm font-semibold text-blue-700 uppercase tracking-wide">
-                  Formation demandée
+                  {t('fiche.desiredFormation')}
                 </p>
                 <h2 className="text-2xl font-bold text-blue-900">
                   {inscription.desired_formation}
@@ -271,22 +271,22 @@ export default function FicheInscriptionPage({
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1 h-8 bg-[#B22234] rounded"></div>
               <h3 className="text-xl font-bold text-gray-800">
-                Informations Personnelles
+                {t('fiche.personalInfo')}
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-x-8 gap-y-4 pl-6">
-              <InfoItem label="Nom" value={inscription.last_name} />
-              <InfoItem label="Prénom" value={inscription.first_name} />
+              <InfoItem label={t('fiche.lastName')} value={inscription.last_name} />
+              <InfoItem label={t('fiche.firstName')} value={inscription.first_name} />
               <InfoItem
-                label="Genre"
-                value={inscription.gender === "male" ? "Masculin" : "Féminin"}
+                label={t('fiche.gender')}
+                value={inscription.gender === "male" ? t('fiche.male') : t('fiche.female')}
               />
-              <InfoItem label="Date de naissance" value={inscription.date_of_birth} />
+              <InfoItem label={t('fiche.dateOfBirth')} value={inscription.date_of_birth} />
               {inscription.place_of_birth && (
-                <InfoItem label="Lieu de naissance" value={inscription.place_of_birth} />
+                <InfoItem label={t('fiche.placeOfBirth')} value={inscription.place_of_birth} />
               )}
               {inscription.nationality && (
-                <InfoItem label="Nationalité" value={inscription.nationality} />
+                <InfoItem label={t('fiche.nationality')} value={inscription.nationality} />
               )}
             </div>
           </div>
@@ -295,17 +295,17 @@ export default function FicheInscriptionPage({
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1 h-8 bg-[#B22234] rounded"></div>
-              <h3 className="text-xl font-bold text-gray-800">Coordonnées</h3>
+              <h3 className="text-xl font-bold text-gray-800">{t('fiche.contactInfo')}</h3>
             </div>
             <div className="grid grid-cols-2 gap-x-8 gap-y-4 pl-6">
-              <InfoItem label="Email" value={inscription.email} link />
-              <InfoItem label="Téléphone" value={inscription.phone} />
+              <InfoItem label={t('fiche.email')} value={inscription.email} link />
+              <InfoItem label={t('fiche.phone')} value={inscription.phone} />
               {inscription.whatsapp && (
-                <InfoItem label="WhatsApp" value={inscription.whatsapp} />
+                <InfoItem label={t('fiche.whatsapp')} value={inscription.whatsapp} />
               )}
-              <InfoItem label="Ville" value={inscription.city} />
+              <InfoItem label={t('fiche.city')} value={inscription.city} />
               <div className="col-span-2">
-                <InfoItem label="Adresse" value={inscription.address} />
+                <InfoItem label={t('fiche.address')} value={inscription.address} />
               </div>
             </div>
           </div>
@@ -316,33 +316,33 @@ export default function FicheInscriptionPage({
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-1 h-8 bg-[#B22234] rounded"></div>
                 <h3 className="text-xl font-bold text-gray-800">
-                  Informations Familiales
+                  {t('fiche.familyInfo')}
                 </h3>
               </div>
               <div className="grid grid-cols-2 gap-x-8 gap-y-4 pl-6">
                 {inscription.father_name && (
                   <>
                     <div className="col-span-2">
-                      <InfoItem label="Père" value={inscription.father_name} />
+                      <InfoItem label={t('fiche.father')} value={inscription.father_name} />
                     </div>
                     {inscription.father_profession && (
-                      <InfoItem label="Profession" value={inscription.father_profession} />
+                      <InfoItem label={t('fiche.profession')} value={inscription.father_profession} />
                     )}
                     {inscription.father_phone && (
-                      <InfoItem label="Téléphone" value={inscription.father_phone} />
+                      <InfoItem label={t('fiche.phone')} value={inscription.father_phone} />
                     )}
                   </>
                 )}
                 {inscription.mother_name && (
                   <>
                     <div className="col-span-2">
-                      <InfoItem label="Mère" value={inscription.mother_name} />
+                      <InfoItem label={t('fiche.mother')} value={inscription.mother_name} />
                     </div>
                     {inscription.mother_profession && (
-                      <InfoItem label="Profession" value={inscription.mother_profession} />
+                      <InfoItem label={t('fiche.profession')} value={inscription.mother_profession} />
                     )}
                     {inscription.mother_phone && (
-                      <InfoItem label="Téléphone" value={inscription.mother_phone} />
+                      <InfoItem label={t('fiche.phone')} value={inscription.mother_phone} />
                     )}
                   </>
                 )}
@@ -350,19 +350,19 @@ export default function FicheInscriptionPage({
                   <>
                     <div className="col-span-2 mt-3">
                       <InfoItem
-                        label="Contact d'urgence"
+                        label={t('fiche.emergencyContact')}
                         value={inscription.emergency_contact_name}
                       />
                     </div>
                     {inscription.emergency_contact_relationship && (
                       <InfoItem
-                        label="Relation"
+                        label={t('fiche.relationship')}
                         value={inscription.emergency_contact_relationship}
                       />
                     )}
                     {inscription.emergency_contact_phone && (
                       <InfoItem
-                        label="Téléphone"
+                        label={t('fiche.phone')}
                         value={inscription.emergency_contact_phone}
                       />
                     )}
@@ -377,26 +377,26 @@ export default function FicheInscriptionPage({
             <div className="flex items-center gap-3 mb-4">
               <div className="w-1 h-8 bg-[#B22234] rounded"></div>
               <h3 className="text-xl font-bold text-gray-800">
-                Parcours Académique
+                {t('fiche.academicInfo')}
               </h3>
             </div>
             <div className="grid grid-cols-2 gap-x-8 gap-y-4 pl-6">
-              <InfoItem label="Niveau actuel" value={inscription.academic_level} />
+              <InfoItem label={t('fiche.currentLevel')} value={inscription.academic_level} />
               {inscription.last_school_attended && (
                 <InfoItem
-                  label="Dernier établissement"
+                  label={t('fiche.lastSchool')}
                   value={inscription.last_school_attended}
                 />
               )}
               {inscription.last_diploma_obtained && (
-                <InfoItem label="Dernier diplôme" value={inscription.last_diploma_obtained} />
+                <InfoItem label={t('fiche.lastDiploma')} value={inscription.last_diploma_obtained} />
               )}
               {inscription.diploma_year && (
-                <InfoItem label="Année d'obtention" value={inscription.diploma_year} />
+                <InfoItem label={t('fiche.diplomaYear')} value={inscription.diploma_year} />
               )}
               {inscription.preferred_start_date && (
                 <InfoItem
-                  label="Date de début souhaitée"
+                  label={t('fiche.preferredStartDate')}
                   value={inscription.preferred_start_date}
                 />
               )}
@@ -411,14 +411,14 @@ export default function FicheInscriptionPage({
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-1 h-8 bg-[#B22234] rounded"></div>
                 <h3 className="text-xl font-bold text-gray-800">
-                  Motivation et Projet Professionnel
+                  {t('fiche.motivationInfo')}
                 </h3>
               </div>
               <div className="space-y-4 pl-6">
                 {inscription.why_this_formation && (
                   <div>
                     <p className="text-sm font-semibold text-gray-600 mb-1">
-                      Pourquoi cette formation ?
+                      {t('fiche.whyThisFormation')}
                     </p>
                     <p className="text-gray-800 leading-relaxed">
                       {inscription.why_this_formation}
@@ -428,7 +428,7 @@ export default function FicheInscriptionPage({
                 {inscription.career_goals && (
                   <div>
                     <p className="text-sm font-semibold text-gray-600 mb-1">
-                      Objectifs de carrière
+                      {t('fiche.careerGoals')}
                     </p>
                     <p className="text-gray-800 leading-relaxed">
                       {inscription.career_goals}
@@ -438,7 +438,7 @@ export default function FicheInscriptionPage({
                 {inscription.motivation_message && (
                   <div>
                     <p className="text-sm font-semibold text-gray-600 mb-1">
-                      Message complémentaire
+                      {t('fiche.additionalMessage')}
                     </p>
                     <p className="text-gray-800 leading-relaxed">
                       {inscription.motivation_message}
@@ -469,33 +469,32 @@ export default function FicheInscriptionPage({
               </div>
               <div className="flex-1">
                 <h4 className="font-bold text-amber-900 mb-3 text-lg">
-                  Documents requis pour l'inscription définitive
+                  {t('fiche.requiredDocuments')}
                 </h4>
                 <ul className="space-y-2 text-sm text-amber-800">
                   <li className="flex items-start gap-2">
                     <span className="text-amber-600 mt-1">•</span>
-                    <span>Acte de naissance ou attestation de naissance</span>
+                    <span>{t('fiche.birthCertificate')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-amber-600 mt-1">•</span>
-                    <span>Dernier diplôme obtenu (original et photocopie)</span>
+                    <span>{t('fiche.lastDiplomaOriginal')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-amber-600 mt-1">•</span>
-                    <span>4 photos d'identité récentes et identiques</span>
+                    <span>{t('fiche.photos')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-amber-600 mt-1">•</span>
-                    <span>Carte nationale d'identité ou passeport (photocopie)</span>
+                    <span>{t('fiche.idCard')}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-amber-600 mt-1">•</span>
-                    <span>Certificat médical de moins de 3 mois</span>
+                    <span>{t('fiche.medicalCertificate')}</span>
                   </li>
                 </ul>
                 <p className="text-xs text-amber-700 mt-4 italic">
-                  Cette fiche d'inscription est un document provisoire sujet à
-                  validation.
+                  {t('fiche.provisionalDocument')}
                 </p>
               </div>
             </div>
@@ -505,7 +504,7 @@ export default function FicheInscriptionPage({
           <div className="grid grid-cols-2 gap-12 mb-8">
             <div>
               <p className="text-sm font-semibold text-gray-700 mb-8">
-                Signature du candidat
+                {t('fiche.candidateSignature')}
               </p>
               <div className="border-t-2 border-gray-300 pt-2">
                 <p className="text-xs text-gray-500">
@@ -515,7 +514,7 @@ export default function FicheInscriptionPage({
             </div>
             <div>
               <p className="text-sm font-semibold text-gray-700 mb-8">
-                Signature de l'administration
+                {t('fiche.adminSignature')}
               </p>
               <div className="border-t-2 border-gray-300 pt-2">
                 <p className="text-xs text-gray-500">
@@ -543,7 +542,7 @@ export default function FicheInscriptionPage({
       <div className="max-w-4xl mx-auto px-4 mt-6 print:hidden">
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 text-center">
           <p className="text-gray-600 mb-4">
-            Cliquez sur le bouton ci-dessous pour télécharger votre fiche en PDF
+            {t('fiche.downloadPrompt')}
           </p>
           <button
             onClick={handleDownloadPDF}
@@ -562,7 +561,7 @@ export default function FicheInscriptionPage({
                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
               />
             </svg>
-            Télécharger ma fiche (PDF)
+            {t('fiche.downloadMyForm')}
           </button>
         </div>
       </div>
