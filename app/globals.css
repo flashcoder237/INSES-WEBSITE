@@ -1,32 +1,25 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@config "../tailwind.config.ts";
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #4A4A4A;
 
-@variant dark (&:where(.dark, .dark *));
+    /* Stanford-inspired Institutional Red Palette */
+    --red-primary: #B22234;
+    --red-dark: #800020;
+    --red-light: #CD5C5C;
+    --gray-slate: #4A4A4A;
+    --gray-pearl: #D3D3D3;
+    --white: #FFFFFF;
+  }
 
-:root {
-  --background: #ffffff;
-  --foreground: #4A4A4A;
-
-  /* Stanford-inspired Institutional Red Palette */
-  --red-primary: #B22234;
-  --red-dark: #800020;
-  --red-light: #CD5C5C;
-  --gray-slate: #4A4A4A;
-  --gray-pearl: #D3D3D3;
-  --white: #FFFFFF;
-}
-
-.dark {
-  --background: #1A1A1A;
-  --foreground: #FFFFFF;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  .dark {
+    --background: #1A1A1A;
+    --foreground: #FFFFFF;
+  }
 }
 
 body {
