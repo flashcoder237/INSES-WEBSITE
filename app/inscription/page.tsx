@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   User,
   Mail,
@@ -67,6 +68,7 @@ export default function InscriptionPage() {
     whyThisFormation: "",
   });
 
+  const router = useRouter();
   const [photo, setPhoto] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -96,407 +98,6 @@ export default function InscriptionPage() {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const generateRegistrationPDF = async () => {
-    const { jsPDF } = await import('jspdf');
-    const doc = new jsPDF();
-
-    // ========== HEADER MODERNE AVEC GRADIENT ==========
-    // Gradient simulé avec plusieurs rectangles
-    doc.setFillColor(178, 34, 52); // Rouge principal
-    doc.rect(0, 0, 210, 45, 'F');
-
-    doc.setFillColor(160, 30, 46); // Légèrement plus foncé
-    doc.rect(0, 35, 210, 10, 'F');
-
-    // Accents décoratifs
-    doc.setFillColor(255, 255, 255);
-    doc.setGlobalAlpha(0.1);
-    doc.circle(200, -10, 40, 'F');
-    doc.circle(-15, 15, 35, 'F');
-    doc.setGlobalAlpha(1);
-
-    // Titre principal - Design épuré
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(32);
-    doc.setFont('helvetica', 'bold');
-    doc.text('INSES', 105, 18, { align: 'center' });
-
-    // Ligne décorative sous le titre
-    doc.setDrawColor(255, 255, 255);
-    doc.setLineWidth(1.5);
-    doc.line(75, 22, 135, 22);
-
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.text('Institut Supérieur de l\'Espoir', 105, 29, { align: 'center' });
-
-    // Badge moderne pour "FICHE D'INSCRIPTION"
-    doc.setFillColor(255, 255, 255);
-    doc.setDrawColor(255, 255, 255);
-    doc.roundedRect(68, 33, 74, 8, 2, 2, 'F');
-    doc.setTextColor(178, 34, 52);
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text('FICHE D\'INSCRIPTION', 105, 38, { align: 'center' });
-
-    // Reset
-    doc.setTextColor(50, 50, 50);
-
-    let yPos = 55;
-
-    // Encadré pour la photo avec bordure élégante
-    if (photoPreview) {
-      // Bordure décorative autour de la photo
-      doc.setDrawColor(178, 34, 52);
-      doc.setLineWidth(2);
-      doc.rect(165, 55, 35, 45, 'S');
-      doc.addImage(photoPreview, 'JPEG', 167, 57, 31, 41);
-    }
-
-    // Numéro de dossier (généré automatiquement)
-    const dossierNumber = `INS-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(100, 100, 100);
-    doc.text(`N° Dossier: ${dossierNumber}`, 15, 58);
-    doc.text(`Date: ${new Date().toLocaleDateString('fr-FR')}`, 15, 63);
-
-    yPos = 70;
-
-    // Formation choisie - Encadré mis en avant
-    const formationTitle = formations.find(f => f.slug === formData.formation)?.title || formData.formation;
-    if (formationTitle) {
-      doc.setDrawColor(0, 100, 180);
-      doc.setLineWidth(1.5);
-      doc.setFillColor(240, 249, 255);
-      doc.roundedRect(10, yPos, 190, 18, 2, 2, 'FD');
-
-      doc.setFontSize(11);
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(0, 100, 180);
-      doc.text('FORMATION DEMANDÉE', 105, yPos + 6, { align: 'center' });
-
-      doc.setFontSize(13);
-      doc.setTextColor(0, 60, 120);
-      doc.text(formationTitle, 105, yPos + 13, { align: 'center' });
-
-      yPos += 23;
-    }
-
-    // Informations personnelles avec style amélioré
-    doc.setFillColor(245, 245, 245);
-    doc.rect(10, yPos - 5, 190, 8, 'F');
-
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(178, 34, 52);
-    doc.text('INFORMATIONS PERSONNELLES', 15, yPos);
-    doc.setTextColor(0, 0, 0);
-    yPos += 10;
-
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.text(`Nom: ${formData.lastName}`, 20, yPos);
-    yPos += 6;
-    doc.text(`Prénom: ${formData.firstName}`, 20, yPos);
-    yPos += 6;
-    doc.text(`Genre: ${formData.gender === 'male' ? 'Masculin' : formData.gender === 'female' ? 'Féminin' : ''}`, 20, yPos);
-    yPos += 6;
-    doc.text(`Date de naissance: ${formData.dateOfBirth}`, 20, yPos);
-    yPos += 6;
-    if (formData.placeOfBirth) {
-      doc.text(`Lieu de naissance: ${formData.placeOfBirth}`, 20, yPos);
-      yPos += 6;
-    }
-    if (formData.nationality) {
-      doc.text(`Nationalité: ${formData.nationality}`, 20, yPos);
-      yPos += 6;
-    }
-
-    yPos += 5;
-
-    // Coordonnées avec style amélioré
-    doc.setFillColor(245, 245, 245);
-    doc.rect(10, yPos - 5, 190, 8, 'F');
-
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(178, 34, 52);
-    doc.text('COORDONNÉES', 15, yPos);
-    doc.setTextColor(0, 0, 0);
-    yPos += 10;
-
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.text(`Email: ${formData.email}`, 20, yPos);
-    yPos += 6;
-    doc.text(`Téléphone: ${formData.phone}`, 20, yPos);
-    yPos += 6;
-    if (formData.whatsapp) {
-      doc.text(`WhatsApp: ${formData.whatsapp}`, 20, yPos);
-      yPos += 6;
-    }
-    doc.text(`Adresse: ${formData.address}`, 20, yPos);
-    yPos += 6;
-    doc.text(`Ville: ${formData.city}`, 20, yPos);
-    yPos += 6;
-
-    // Nouvelle page si nécessaire
-    if (yPos > 250) {
-      doc.addPage();
-      yPos = 20;
-    } else {
-      yPos += 5;
-    }
-
-    // Informations familiales avec style amélioré
-    doc.setFillColor(245, 245, 245);
-    doc.rect(10, yPos - 5, 190, 8, 'F');
-
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(178, 34, 52);
-    doc.text('INFORMATIONS FAMILIALES', 15, yPos);
-    doc.setTextColor(0, 0, 0);
-    yPos += 10;
-
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    if (formData.fatherName) {
-      doc.text(`Père: ${formData.fatherName}`, 20, yPos);
-      yPos += 6;
-      if (formData.fatherProfession) {
-        doc.text(`Profession: ${formData.fatherProfession}`, 30, yPos);
-        yPos += 6;
-      }
-      if (formData.fatherPhone) {
-        doc.text(`Téléphone: ${formData.fatherPhone}`, 30, yPos);
-        yPos += 6;
-      }
-    }
-
-    if (formData.motherName) {
-      doc.text(`Mère: ${formData.motherName}`, 20, yPos);
-      yPos += 6;
-      if (formData.motherProfession) {
-        doc.text(`Profession: ${formData.motherProfession}`, 30, yPos);
-        yPos += 6;
-      }
-      if (formData.motherPhone) {
-        doc.text(`Téléphone: ${formData.motherPhone}`, 30, yPos);
-        yPos += 6;
-      }
-    }
-
-    if (formData.emergencyContactName) {
-      yPos += 3;
-      doc.text(`Contact d'urgence: ${formData.emergencyContactName}`, 20, yPos);
-      yPos += 6;
-      if (formData.emergencyContactRelationship) {
-        doc.text(`Relation: ${formData.emergencyContactRelationship}`, 30, yPos);
-        yPos += 6;
-      }
-      if (formData.emergencyContactPhone) {
-        doc.text(`Téléphone: ${formData.emergencyContactPhone}`, 30, yPos);
-        yPos += 6;
-      }
-    }
-
-    // Nouvelle page si nécessaire
-    if (yPos > 250) {
-      doc.addPage();
-      yPos = 20;
-    } else {
-      yPos += 5;
-    }
-
-    // Parcours académique avec style amélioré
-    doc.setFillColor(245, 245, 245);
-    doc.rect(10, yPos - 5, 190, 8, 'F');
-
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(178, 34, 52);
-    doc.text('PARCOURS ACADÉMIQUE', 15, yPos);
-    doc.setTextColor(0, 0, 0);
-    yPos += 10;
-
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.text(`Niveau actuel: ${formData.level}`, 20, yPos);
-    yPos += 6;
-    if (formData.lastSchool) {
-      doc.text(`Dernier établissement: ${formData.lastSchool}`, 20, yPos);
-      yPos += 6;
-    }
-    if (formData.lastDiploma) {
-      doc.text(`Dernier diplôme: ${formData.lastDiploma}`, 20, yPos);
-      yPos += 6;
-    }
-    if (formData.diplomaYear) {
-      doc.text(`Année d'obtention: ${formData.diplomaYear}`, 20, yPos);
-      yPos += 6;
-    }
-    if (formData.preferredStartDate) {
-      doc.text(`Date de début souhaitée: ${formData.preferredStartDate}`, 20, yPos);
-      yPos += 6;
-    }
-
-    // Motivation (si fournie)
-    if (formData.whyThisFormation || formData.careerGoals || formData.message) {
-      // Nouvelle page si nécessaire
-      if (yPos > 200) {
-        doc.addPage();
-        yPos = 20;
-      } else {
-        yPos += 8;
-      }
-
-      doc.setFillColor(245, 245, 245);
-      doc.rect(10, yPos - 5, 190, 8, 'F');
-
-      doc.setFontSize(14);
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(178, 34, 52);
-      doc.text('MOTIVATION ET PROJET PROFESSIONNEL', 15, yPos);
-      doc.setTextColor(0, 0, 0);
-      yPos += 10;
-
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'normal');
-
-      if (formData.whyThisFormation) {
-        doc.setFont('helvetica', 'bold');
-        doc.text('Pourquoi cette formation :', 20, yPos);
-        yPos += 5;
-        doc.setFont('helvetica', 'normal');
-        const whyLines = doc.splitTextToSize(formData.whyThisFormation, 170);
-        doc.text(whyLines, 20, yPos);
-        yPos += whyLines.length * 4 + 3;
-      }
-
-      if (formData.careerGoals) {
-        doc.setFont('helvetica', 'bold');
-        doc.text('Objectifs de carrière :', 20, yPos);
-        yPos += 5;
-        doc.setFont('helvetica', 'normal');
-        const goalLines = doc.splitTextToSize(formData.careerGoals, 170);
-        doc.text(goalLines, 20, yPos);
-        yPos += goalLines.length * 4 + 3;
-      }
-
-      if (formData.message) {
-        doc.setFont('helvetica', 'bold');
-        doc.text('Message complémentaire :', 20, yPos);
-        yPos += 5;
-        doc.setFont('helvetica', 'normal');
-        const messageLines = doc.splitTextToSize(formData.message, 170);
-        doc.text(messageLines, 20, yPos);
-        yPos += messageLines.length * 4;
-      }
-    }
-
-    // Note importante avec design amélioré
-    if (yPos > 235) {
-      doc.addPage();
-      yPos = 20;
-    } else {
-      yPos += 12;
-    }
-
-    // Bordure décorative pour la note
-    doc.setDrawColor(178, 34, 52);
-    doc.setLineWidth(0.5);
-    doc.setFillColor(255, 248, 240);
-    doc.roundedRect(12, yPos - 7, 186, 35, 3, 3, 'FD');
-
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(178, 34, 52);
-    doc.text('DOCUMENTS À FOURNIR POUR L\'INSCRIPTION DÉFINITIVE', 15, yPos);
-    yPos += 7;
-
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(60, 60, 60);
-    doc.setFontSize(9);
-
-    const documents = [
-      '• Acte de naissance ou attestation de naissance',
-      '• Dernier diplôme obtenu (original et photocopie)',
-      '• 4 photos d\'identité récentes et identiques',
-      '• Carte nationale d\'identité ou passeport (photocopie)',
-      '• Certificat médical de moins de 3 mois'
-    ];
-
-    documents.forEach(doc_item => {
-      doc.text(doc_item, 18, yPos);
-      yPos += 5;
-    });
-
-    yPos += 3;
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'italic');
-    doc.setTextColor(178, 34, 52);
-    doc.text('Cette fiche d\'inscription est un document provisoire sujet à validation.', 15, yPos);
-
-    // Section signature et date
-    if (yPos > 250) {
-      doc.addPage();
-      yPos = 20;
-    } else {
-      yPos += 15;
-    }
-
-    // Signatures
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(60, 60, 60);
-
-    // Signature étudiant
-    doc.text('Signature du candidat :', 20, yPos);
-    doc.setDrawColor(200, 200, 200);
-    doc.setLineWidth(0.3);
-    doc.line(20, yPos + 18, 85, yPos + 18);
-    doc.setFontSize(7);
-    doc.text('Date : ____/____/________', 20, yPos + 22);
-
-    // Signature administration
-    doc.text('Signature de l\'administration :', 115, yPos);
-    doc.line(115, yPos + 18, 180, yPos + 18);
-    doc.text('Date : ____/____/________', 115, yPos + 22);
-
-    // Pied de page professionnel
-    const pageCount = doc.getNumberOfPages();
-    for (let i = 1; i <= pageCount; i++) {
-      doc.setPage(i);
-
-      // Ligne de séparation
-      doc.setDrawColor(178, 34, 52);
-      doc.setLineWidth(0.5);
-      doc.line(15, 280, 195, 280);
-
-      // Informations de contact
-      doc.setFontSize(8);
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(80, 80, 80);
-      doc.text('INSES - Institut Supérieur de l\'Espoir', 105, 285, { align: 'center' });
-
-      doc.setFont('helvetica', 'normal');
-      doc.setTextColor(100, 100, 100);
-      doc.text(siteInfo?.location || 'Douala-Bonabéri, Cameroun', 105, 290, { align: 'center' });
-      doc.text(`${siteInfo?.phone || '+237 674 93 66 04'} | ${siteInfo?.email || 'contact@univ-inses.com'} | www.univ-inses.com`, 105, 294, { align: 'center' });
-
-      // Numéro de page
-      doc.setFontSize(7);
-      doc.setTextColor(150, 150, 150);
-      doc.text(`Page ${i} / ${pageCount}`, 195, 294, { align: 'right' });
-    }
-
-    // Télécharger le PDF
-    const fileName = `Fiche_inscription_INSES_${formData.lastName}_${formData.firstName}.pdf`;
-    doc.save(fileName);
   };
 
   const validateStep = (step: number): string[] => {
@@ -643,7 +244,7 @@ export default function InscriptionPage() {
     try {
       const supabase = createClient();
 
-      const { error } = await supabase.from('inscriptions').insert({
+      const { data: inscriptionData, error } = await supabase.from('inscriptions').insert({
         // Informations personnelles
         first_name: formData.firstName,
         last_name: formData.lastName,
@@ -690,16 +291,16 @@ export default function InscriptionPage() {
         // Statut
         status: 'pending',
         source: 'website',
-      });
+      }).select().single();
 
-      if (error) {
+      if (error || !inscriptionData) {
         console.error('Supabase error details:', {
-          message: error.message,
-          details: error.details,
-          hint: error.hint,
-          code: error.code,
+          message: error?.message,
+          details: error?.details,
+          hint: error?.hint,
+          code: error?.code,
         });
-        throw new Error(error.message || 'Failed to submit inscription');
+        throw new Error(error?.message || 'Failed to submit inscription');
       }
 
       // Envoyer l'email de confirmation à l'étudiant
@@ -726,50 +327,8 @@ export default function InscriptionPage() {
 
       setSubmitStatus("success");
 
-      // Générer et télécharger le PDF
-      await generateRegistrationPDF();
-
-      // Reset form after 5 seconds
-      setTimeout(() => {
-        setFormData({
-          firstName: "",
-          lastName: "",
-          gender: "",
-          dateOfBirth: "",
-          placeOfBirth: "",
-          nationality: "Camerounaise",
-          email: "",
-          phone: "",
-          whatsapp: "",
-          address: "",
-          city: "",
-          postalCode: "",
-          fatherName: "",
-          fatherProfession: "",
-          fatherPhone: "",
-          motherName: "",
-          motherProfession: "",
-          motherPhone: "",
-          emergencyContactName: "",
-          emergencyContactRelationship: "",
-          emergencyContactPhone: "",
-          formation: "",
-          level: "",
-          lastSchool: "",
-          lastDiploma: "",
-          diplomaYear: "",
-          preferredStartDate: "",
-          message: "",
-          careerGoals: "",
-          whyThisFormation: "",
-        });
-        setSubmitStatus("idle");
-        setCurrentStep(1); // Reset to first step
-        setPhoto(null);
-        setPhotoPreview("");
-        setValidationErrors([]);
-        setShowErrors(false);
-      }, 5000);
+      // Rediriger vers la page de la fiche d'inscription
+      router.push(`/inscription/fiche/${inscriptionData.id}`);
     } catch (error: any) {
       console.error('Inscription error:', {
         message: error?.message || 'Unknown error',
