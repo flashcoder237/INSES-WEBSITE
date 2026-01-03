@@ -102,33 +102,49 @@ export default function InscriptionPage() {
     const { jsPDF } = await import('jspdf');
     const doc = new jsPDF();
 
-    // En-tête moderne avec dégradé simulé
-    doc.setFillColor(178, 34, 52); // #B22234
-    doc.rect(0, 0, 210, 50, 'F');
+    // ========== HEADER MODERNE AVEC GRADIENT ==========
+    // Gradient simulé avec plusieurs rectangles
+    doc.setFillColor(178, 34, 52); // Rouge principal
+    doc.rect(0, 0, 210, 45, 'F');
 
-    // Sous-barre décorative
-    doc.setFillColor(128, 24, 37); // Couleur plus foncée
-    doc.rect(0, 45, 210, 5, 'F');
+    doc.setFillColor(160, 30, 46); // Légèrement plus foncé
+    doc.rect(0, 35, 210, 10, 'F');
 
-    // Logo/Nom de l'institution
+    // Accents décoratifs
+    doc.setFillColor(255, 255, 255);
+    doc.setGlobalAlpha(0.1);
+    doc.circle(200, -10, 40, 'F');
+    doc.circle(-15, 15, 35, 'F');
+    doc.setGlobalAlpha(1);
+
+    // Titre principal - Design épuré
     doc.setTextColor(255, 255, 255);
-    doc.setFontSize(28);
+    doc.setFontSize(32);
     doc.setFont('helvetica', 'bold');
-    doc.text('INSES', 105, 20, { align: 'center' });
+    doc.text('INSES', 105, 18, { align: 'center' });
 
-    doc.setFontSize(11);
+    // Ligne décorative sous le titre
+    doc.setDrawColor(255, 255, 255);
+    doc.setLineWidth(1.5);
+    doc.line(75, 22, 135, 22);
+
+    doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
-    doc.text('Institut Supérieur de l\'Espoir', 105, 28, { align: 'center' });
-    doc.text('Douala-Bonabéri, Cameroun', 105, 34, { align: 'center' });
+    doc.text('Institut Supérieur de l\'Espoir', 105, 29, { align: 'center' });
 
-    doc.setFontSize(14);
+    // Badge moderne pour "FICHE D'INSCRIPTION"
+    doc.setFillColor(255, 255, 255);
+    doc.setDrawColor(255, 255, 255);
+    doc.roundedRect(68, 33, 74, 8, 2, 2, 'F');
+    doc.setTextColor(178, 34, 52);
+    doc.setFontSize(11);
     doc.setFont('helvetica', 'bold');
-    doc.text('FICHE D\'INSCRIPTION', 105, 42, { align: 'center' });
+    doc.text('FICHE D\'INSCRIPTION', 105, 38, { align: 'center' });
 
-    // Reset text color
-    doc.setTextColor(0, 0, 0);
+    // Reset
+    doc.setTextColor(50, 50, 50);
 
-    let yPos = 60;
+    let yPos = 55;
 
     // Encadré pour la photo avec bordure élégante
     if (photoPreview) {

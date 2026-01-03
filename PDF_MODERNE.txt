@@ -1,0 +1,327 @@
+// Nouvelle fonction generateRegistrationPDF - Design Moderne
+
+const generateRegistrationPDF = async () => {
+  const { jsPDF } = await import('jspdf');
+  const doc = new jsPDF();
+
+  // ========== HELPER FUNCTIONS ==========
+  const drawCard = (x: number, y: number, width: number, height: number, color: number[]) => {
+    // Ombre (simulée avec rectangle gris décalé)
+    doc.setFillColor(230, 230, 230);
+    doc.roundedRect(x + 1, y + 1, width, height, 3, 3, 'F');
+
+    // Card principale
+    doc.setFillColor(color[0], color[1], color[2]);
+    doc.roundedRect(x, y, width, height, 3, 3, 'F');
+  };
+
+  const drawSectionHeader = (title: string, y: number, icon?: string) => {
+    // Barre colorée à gauche
+    doc.setFillColor(178, 34, 52);
+    doc.roundedRect(12, y - 3, 4, 10, 1, 1, 'F');
+
+    // Texte du titre
+    doc.setFontSize(13);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(45, 45, 45);
+    doc.text(title, 19, y + 4);
+
+    // Ligne décorative sous le titre
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.5);
+    doc.line(19, y + 7, 195, y + 7);
+  };
+
+  // ========== HEADER MODERNE ==========
+  // Fond principal avec dégradé simulé
+  doc.setFillColor(178, 34, 52);
+  doc.rect(0, 0, 210, 40, 'F');
+
+  doc.setFillColor(160, 30, 46);
+  doc.rect(0, 32, 210, 8, 'F');
+
+  // Titre avec design minimaliste
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(40);
+  doc.setFont('helvetica', 'bold');
+  doc.text('INSES', 105, 16, { align: 'center' });
+
+  // Ligne élégante
+  doc.setDrawColor(255, 255, 255);
+  doc.setLineWidth(1);
+  doc.line(75, 20, 135, 20);
+
+  // Sous-titre
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Institut Supérieur de l\'Espoir', 105, 26, { align: 'center' });
+
+  // Badge "Fiche d'inscription"
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(67, 30, 76, 8, 2, 2, 'F');
+  doc.setTextColor(178, 34, 52);
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'bold');
+  doc.text('FICHE D\'INSCRIPTION', 105, 34.5, { align: 'center' });
+
+  let yPos = 50;
+
+  // ========== INFO CARD (Numéro + Date) ==========
+  drawCard(10, yPos, 130, 12, [248, 250, 252]);
+
+  doc.setTextColor(70, 70, 70);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+
+  const dossierNumber = `INS-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+  doc.text(`📋 Dossier: ${dossierNumber}`, 14, yPos + 5);
+  doc.text(`📅 Date: ${new Date().toLocaleDateString('fr-FR')}`, 14, yPos + 9);
+
+  // Photo avec bordure moderne
+  if (photoPreview) {
+    doc.setDrawColor(178, 34, 52);
+    doc.setLineWidth(2);
+    doc.roundedRect(147, yPos, 48, 60, 2, 2, 'S');
+    doc.addImage(photoPreview, 'JPEG', 149, yPos + 2, 44, 56);
+  }
+
+  yPos += (photoPreview ? 65 : 17);
+
+  // ========== FORMATION CARD (Mise en avant) ==========
+  const formationTitle = formations.find(f => f.slug === formData.formation)?.title || formData.formation;
+  if (formationTitle) {
+    drawCard(10, yPos, 190, 20, [240, 249, 255]);
+
+    // Accent coloré
+    doc.setFillColor(59, 130, 246);
+    doc.rect(10, yPos, 4, 20, 'F');
+
+    doc.setTextColor(30, 64, 175);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text('🎓 FORMATION DEMANDÉE', 17, yPos + 8);
+
+    doc.setFontSize(13);
+    doc.setTextColor(29, 78, 216);
+    doc.text(formationTitle, 17, yPos + 15);
+
+    yPos += 25;
+  }
+
+  // ========== SECTION: INFORMATIONS PERSONNELLES ==========
+  drawSectionHeader('INFORMATIONS PERSONNELLES', yPos);
+  yPos += 12;
+
+  // Grid layout pour les informations
+  doc.setFontSize(9);
+  doc.setTextColor(60, 60, 60);
+  doc.setFont('helvetica', 'normal');
+
+  const leftCol = 15;
+  const rightCol = 110;
+
+  // Colonne gauche
+  doc.setFont('helvetica', 'bold');
+  doc.text('Nom complet:', leftCol, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text(`${formData.firstName} ${formData.lastName}`, leftCol + 35, yPos);
+  yPos += 5;
+
+  doc.setFont('helvetica', 'bold');
+  doc.text('Genre:', leftCol, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text(formData.gender === 'male' ? 'Masculin' : 'Féminin', leftCol + 35, yPos);
+  yPos += 5;
+
+  doc.setFont('helvetica', 'bold');
+  doc.text('Date de naissance:', leftCol, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text(formData.dateOfBirth, leftCol + 35, yPos);
+  yPos += 5;
+
+  if (formData.placeOfBirth) {
+    doc.setFont('helvetica', 'bold');
+    doc.text('Lieu de naissance:', leftCol, yPos);
+    doc.setFont('helvetica', 'normal');
+    doc.text(formData.placeOfBirth, leftCol + 35, yPos);
+    yPos += 5;
+  }
+
+  yPos += 3;
+
+  // ========== SECTION: COORDONNÉES ==========
+  drawSectionHeader('COORDONNÉES', yPos);
+  yPos += 12;
+
+  doc.setFont('helvetica', 'bold');
+  doc.text('Email:', leftCol, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(59, 130, 246);
+  doc.text(formData.email, leftCol + 15, yPos);
+  doc.setTextColor(60, 60, 60);
+  yPos += 5;
+
+  doc.setFont('helvetica', 'bold');
+  doc.text('Téléphone:', leftCol, yPos);
+  doc.setFont('helvetica', 'normal');
+  doc.text(formData.phone, leftCol + 25, yPos);
+  yPos += 5;
+
+  if (formData.whatsapp) {
+    doc.setFont('helvetica', 'bold');
+    doc.text('WhatsApp:', leftCol, yPos);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(34, 197, 94);
+    doc.text(formData.whatsapp, leftCol + 25, yPos);
+    doc.setTextColor(60, 60, 60);
+    yPos += 5;
+  }
+
+  doc.setFont('helvetica', 'bold');
+  doc.text('Adresse:', leftCol, yPos);
+  doc.setFont('helvetica', 'normal');
+  const addressLines = doc.splitTextToSize(`${formData.address}, ${formData.city}`, 140);
+  doc.text(addressLines, leftCol + 20, yPos);
+  yPos += addressLines.length * 4.5 + 5;
+
+  // Nouvelle page si nécessaire
+  if (yPos > 240) {
+    doc.addPage();
+    yPos = 20;
+  }
+
+  // ========== SECTION: PARCOURS ACADÉMIQUE ==========
+  drawSectionHeader('PARCOURS ACADÉMIQUE', yPos);
+  yPos += 12;
+
+  // Card pour le niveau actuel
+  drawCard(12, yPos, 186, 8, [243, 244, 246]);
+  doc.setTextColor(60, 60, 60);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Niveau actuel:', 16, yPos + 5.5);
+  doc.setFont('helvetica', 'normal');
+  doc.text(formData.level, 48, yPos + 5.5);
+  yPos += 12;
+
+  if (formData.lastSchool) {
+    doc.setFont('helvetica', 'bold');
+    doc.text('Dernier établissement:', leftCol, yPos);
+    doc.setFont('helvetica', 'normal');
+    doc.text(formData.lastSchool, leftCol + 45, yPos);
+    yPos += 5;
+  }
+
+  if (formData.lastDiploma) {
+    doc.setFont('helvetica', 'bold');
+    doc.text('Dernier diplôme:', leftCol, yPos);
+    doc.setFont('helvetica', 'normal');
+    doc.text(formData.lastDiploma, leftCol + 35, yPos);
+    yPos += 5;
+  }
+
+  yPos += 5;
+
+  // ========== SECTION: DOCUMENTS REQUIS ==========
+  if (yPos > 200) {
+    doc.addPage();
+    yPos = 20;
+  }
+
+  // Card attention
+  drawCard(10, yPos, 190, 42, [254, 249, 242]);
+
+  // Icône attention
+  doc.setFillColor(251, 146, 60);
+  doc.rect(15, yPos + 5, 3, 12, 'F');
+
+  doc.setTextColor(194, 65, 12);
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'bold');
+  doc.text('⚠️  DOCUMENTS REQUIS POUR L\'INSCRIPTION', 22, yPos + 9);
+
+  doc.setTextColor(120, 53, 15);
+  doc.setFontSize(8.5);
+  doc.setFont('helvetica', 'normal');
+
+  const docs = [
+    '• Acte de naissance ou attestation',
+    '• Dernier diplôme (original + copie)',
+    '• 4 photos d\'identité récentes',
+    '• CNI ou passeport (photocopie)',
+    '• Certificat médical < 3 mois'
+  ];
+
+  let docY = yPos + 16;
+  docs.forEach(item => {
+    doc.text(item, 22, docY);
+    docY += 5;
+  });
+
+  yPos += 47;
+
+  // ========== SECTION: SIGNATURES ==========
+  if (yPos > 240) {
+    doc.addPage();
+    yPos = 20;
+  }
+
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(70, 70, 70);
+
+  // Signature candidat
+  doc.text('Signature du candidat', 20, yPos);
+  doc.setDrawColor(200, 200, 200);
+  doc.setLineWidth(0.3);
+  doc.line(20, yPos + 15, 90, yPos + 15);
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Date : ___/___/______', 20, yPos + 19);
+
+  // Signature administration
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Signature administration', 120, yPos);
+  doc.line(120, yPos + 15, 190, yPos + 15);
+  doc.setFontSize(7);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Date : ___/___/______', 120, yPos + 19);
+
+  // ========== FOOTER MODERNE ==========
+  const pageCount = doc.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+
+    // Ligne séparatrice élégante
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.5);
+    doc.line(10, 275, 200, 275);
+
+    // Informations centred
+    doc.setFontSize(7.5);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(100, 100, 100);
+    doc.text('INSES - Institut Supérieur de l\'Espoir', 105, 281, { align: 'center' });
+
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(130, 130, 130);
+    doc.text(siteInfo?.location || 'Douala-Bonabéri, Cameroun', 105, 285, { align: 'center' });
+
+    doc.setFontSize(7);
+    doc.text(
+      `${siteInfo?.phone || '+237 674 93 66 04'} • ${siteInfo?.email || 'contact@univ-inses.com'} • www.univ-inses.com`,
+      105,
+      289,
+      { align: 'center' }
+    );
+
+    // Numéro de page avec style
+    doc.setFontSize(7);
+    doc.setTextColor(150, 150, 150);
+    doc.text(`${i} / ${pageCount}`, 195, 292, { align: 'right' });
+  }
+
+  // Télécharger le PDF
+  const fileName = `Inscription_INSES_${formData.lastName}_${formData.firstName}.pdf`;
+  doc.save(fileName);
+};
