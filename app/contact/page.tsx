@@ -45,11 +45,25 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simuler l'envoi
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Erreur lors de l\'envoi du message');
+      }
+
       setIsSubmitting(false);
       setSubmitStatus("success");
 
+      // Reset form after 3 seconds
       setTimeout(() => {
         setFormData({
           name: "",
@@ -60,7 +74,16 @@ export default function ContactPage() {
         });
         setSubmitStatus("idle");
       }, 3000);
-    }, 2000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setIsSubmitting(false);
+      setSubmitStatus("error");
+
+      // Reset error status after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus("idle");
+      }, 5000);
+    }
   };
 
   // Afficher un état de chargement si les données ne sont pas encore chargées
@@ -232,6 +255,25 @@ export default function ContactPage() {
                     </h3>
                     <p className="text-green-700 text-[15px]">
                       {t('contact.messageSuccess')}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {submitStatus === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-red-50 border-l-4 border-red-500 p-6 mb-8 flex items-center gap-4"
+                >
+                  <div className="text-red-500 flex-shrink-0">⚠</div>
+                  <div>
+                    <h3 className="text-xl font-bold text-red-900 mb-1">
+                      Erreur
+                    </h3>
+                    <p className="text-red-700 text-[15px]">
+                      Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.
                     </p>
                   </div>
                 </motion.div>
