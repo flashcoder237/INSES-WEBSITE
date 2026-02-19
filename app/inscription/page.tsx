@@ -414,14 +414,14 @@ export default function InscriptionPage() {
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-red-50 border-l-4 border-red-500 p-6 mb-8 flex items-center gap-4"
+                className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8 flex items-center gap-4"
               >
-                <AlertCircle className="text-red-500 flex-shrink-0" size={28} />
+                <AlertCircle className="text-blue-500 flex-shrink-0" size={28} />
                 <div>
-                  <h3 className="text-xl font-bold text-red-900 mb-1">
+                  <h3 className="text-xl font-bold text-blue-900 mb-1">
                     Erreur lors de l'inscription
                   </h3>
-                  <p className="text-red-700 text-[15px]">
+                  <p className="text-blue-700 text-[15px]">
                     Une erreur s'est produite. Veuillez réessayer ou nous contacter.
                   </p>
                 </div>
@@ -433,15 +433,15 @@ export default function InscriptionPage() {
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-red-50 border-l-4 border-red-500 p-6 mb-8"
+                className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8"
               >
                 <div className="flex items-start gap-4">
-                  <AlertCircle className="text-red-500 flex-shrink-0 mt-1" size={24} />
+                  <AlertCircle className="text-blue-500 flex-shrink-0 mt-1" size={24} />
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold text-red-900 mb-3">
+                    <h3 className="text-lg font-bold text-blue-900 mb-3">
                       Veuillez remplir tous les champs obligatoires
                     </h3>
-                    <ul className="list-disc list-inside space-y-1 text-red-700 text-[15px]">
+                    <ul className="list-disc list-inside space-y-1 text-blue-700 text-[15px]">
                       {validationErrors.map((error, index) => (
                         <li key={index}>{error}</li>
                       ))}
@@ -1209,7 +1209,7 @@ export default function InscriptionPage() {
                         onClick={nextStep}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors"
+                        className="bg-[#0000fe] text-white px-8 py-4 font-semibold text-base hover:bg-[#0000b3] transition-colors"
                       >
                         Suivant →
                       </motion.button>
@@ -1220,7 +1220,7 @@ export default function InscriptionPage() {
                         disabled={isSubmitting}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-[#0000fe] text-white px-8 py-4 font-semibold text-base hover:bg-[#0000b3] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? t('inscription.submitting') : t('inscription.submitButton')}
                       </motion.button>

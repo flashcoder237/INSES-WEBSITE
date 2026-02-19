@@ -77,7 +77,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="inline-block mb-8"
               >
-                <div className="bg-[#B22234] text-white px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
+                <div className="bg-[#0000fe] text-white px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
                   {t('home.heroBadge')}
                 </div>
               </motion.div>
@@ -97,7 +97,7 @@ export default function Home() {
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Link
                     href="/formations"
-                    className="bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors inline-flex items-center gap-2 group"
+                    className="bg-[#0000fe] text-white px-8 py-4 font-semibold text-base hover:bg-[#0000b3] transition-colors inline-flex items-center gap-2 group"
                   >
                     {t('home.explorePrograms')}
                     <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
@@ -250,7 +250,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-20"
           >
-            <div className="inline-block px-4 py-1.5 bg-[#B22234] text-white text-sm font-semibold uppercase tracking-wider mb-6">
+            <div className="inline-block px-4 py-1.5 bg-[#0000fe] text-white text-sm font-semibold uppercase tracking-wider mb-6">
               {t('home.aboutBadge')}
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
@@ -303,7 +303,7 @@ export default function Home() {
             <div className="p-12 md:p-16">
               <div className="grid md:grid-cols-2 gap-16 items-start">
                 <div className="space-y-8">
-                  <div className="inline-block px-4 py-1.5 bg-[#B22234] text-white text-sm font-semibold uppercase tracking-wider">
+                  <div className="inline-block px-4 py-1.5 bg-[#0000fe] text-white text-sm font-semibold uppercase tracking-wider">
                     {t('home.pedagogyBadge')}
                   </div>
                   <h3 className="text-3xl md:text-4xl font-bold text-[#4A4A4A]">
@@ -373,7 +373,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-20"
           >
-            <div className="inline-block px-4 py-1.5 bg-[#B22234] text-white text-sm font-semibold uppercase tracking-wider mb-6">
+            <div className="inline-block px-4 py-1.5 bg-[#0000fe] text-white text-sm font-semibold uppercase tracking-wider mb-6">
               {t('home.formationsBadge')}
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
@@ -417,7 +417,7 @@ export default function Home() {
             {/* Bouton "Voir toutes les formations" */}
             <Link
               href="/formations"
-              className="inline-flex items-center gap-2 bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors group"
+              className="inline-flex items-center gap-2 bg-[#0000fe] text-white px-8 py-4 font-semibold text-base hover:bg-[#0000b3] transition-colors group"
             >
               {t('home.viewAllFormations')}
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
@@ -427,7 +427,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section - Stanford Clean Style */}
-      <section className="relative py-32 overflow-hidden bg-[#B22234]">
+      <section className="relative py-32 overflow-hidden bg-[#0000fe]">
         <div className="container mx-auto px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -447,7 +447,7 @@ export default function Home() {
                 href="/inscription"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-white text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
+                className="bg-white text-[#0000fe] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
               >
                 {t('common.registerNow')}
               </motion.a>
@@ -455,7 +455,7 @@ export default function Home() {
                 href="/contact"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#B22234] transition-colors"
+                className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#0000fe] transition-colors"
               >
                 {t('common.contactUs')}
               </motion.a>

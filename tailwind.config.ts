@@ -16,8 +16,8 @@ const config: Config = {
           accent: '#02baf4',
         },
         'inses-red': {
-          DEFAULT: '#B22234',
-          dark: '#800020',
+          DEFAULT: '#0000fe',
+          dark: '#0000b3',
         },
       },
     },

@@ -108,8 +108,8 @@ export default function LoginPage() {
 
               {/* Message d'erreur */}
               {error && (
-                <div className="rounded-lg bg-red-50 dark:bg-red-900/20 p-4">
-                  <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
+                <div className="rounded-lg bg-blue-50 dark:bg-blue-900/20 p-4">
+                  <p className="text-sm text-blue-800 dark:text-blue-200">{error}</p>
                 </div>
               )}
 
@@ -117,7 +117,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-[#B22234] hover:bg-[#800020] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#B22234] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-semibold text-white bg-[#0000fe] hover:bg-[#0000b3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0000fe] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {loading ? (
                   <>

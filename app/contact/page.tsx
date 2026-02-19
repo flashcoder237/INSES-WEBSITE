@@ -265,14 +265,14 @@ export default function ContactPage() {
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-red-50 border-l-4 border-red-500 p-6 mb-8 flex items-center gap-4"
+                  className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8 flex items-center gap-4"
                 >
-                  <div className="text-red-500 flex-shrink-0">⚠</div>
+                  <div className="text-blue-500 flex-shrink-0">⚠</div>
                   <div>
-                    <h3 className="text-xl font-bold text-red-900 mb-1">
+                    <h3 className="text-xl font-bold text-blue-900 mb-1">
                       Erreur
                     </h3>
-                    <p className="text-red-700 text-[15px]">
+                    <p className="text-blue-700 text-[15px]">
                       Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.
                     </p>
                   </div>
@@ -398,7 +398,7 @@ export default function ContactPage() {
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-[#B22234] text-white px-8 py-4 font-semibold text-base hover:bg-[#800020] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-[#0000fe] text-white px-8 py-4 font-semibold text-base hover:bg-[#0000b3] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       t('contact.sending')

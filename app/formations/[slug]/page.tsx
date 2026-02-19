@@ -318,7 +318,7 @@ export default function FormationDetailPage({
       </section>
 
       {/* CTA Section - Stanford Style */}
-      <section className="py-32 bg-[#B22234] text-white">
+      <section className="py-32 bg-[#0000fe] text-white">
         <div className="container mx-auto px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -337,7 +337,7 @@ export default function FormationDetailPage({
                 href="/inscription"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-white text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
+                className="bg-white text-[#0000fe] px-8 py-4 font-semibold text-base hover:bg-[#D3D3D3] transition-colors"
               >
                 {t('common.registerNow')}
               </motion.a>
@@ -345,7 +345,7 @@ export default function FormationDetailPage({
                 href="/contact"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#B22234] transition-colors"
+                className="border-2 border-white text-white px-8 py-4 font-semibold text-base hover:bg-white hover:text-[#0000fe] transition-colors"
               >
                 {t('common.contactUs')}
               </motion.a>

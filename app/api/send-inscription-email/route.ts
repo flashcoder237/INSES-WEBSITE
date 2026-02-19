@@ -154,7 +154,7 @@ export async function POST(request: Request) {
             .cta-button {
               display: inline-block;
               padding: 14px 32px;
-              background-color: #B22234;
+              background-color: #0000fe;
               color: white;
               text-decoration: none;
               border-radius: 6px;
@@ -163,7 +163,7 @@ export async function POST(request: Request) {
               transition: background-color 0.3s;
             }
             .cta-button:hover {
-              background-color: #800020;
+              background-color: #0000b3;
             }
             .divider {
               height: 1px;
