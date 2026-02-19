@@ -27,7 +27,7 @@ export default function ActualitesPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#1A1A1A]">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#B22234] via-[#800020] to-[#4A4A4A] dark:from-[#800020] dark:via-[#4A4A4A] dark:to-[#1A1A1A] text-white py-24">
+      <section className="relative bg-gradient-to-br from-[#0000fe] via-[#0000b3] to-[#4A4A4A] dark:from-[#0000b3] dark:via-[#4A4A4A] dark:to-[#1A1A1A] text-white py-24">
         <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10"></div>
         <div className="container mx-auto px-8 relative z-10">
           <motion.div
@@ -64,7 +64,7 @@ export default function ActualitesPage() {
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-6 py-3 font-medium transition-all ${
                   selectedCategory === category.id
-                    ? "bg-[#B22234] text-white shadow-md"
+                    ? "bg-[#0000fe] text-white shadow-md"
                     : "bg-[#F5F5F5] dark:bg-[#3A3A3A] text-[#4A4A4A] dark:text-white hover:bg-[#D3D3D3] dark:hover:bg-[#4A4A4A]"
                 }`}
               >

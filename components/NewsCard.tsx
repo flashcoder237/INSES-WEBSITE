@@ -14,7 +14,7 @@ interface NewsCardProps {
 
 const categoryColors = {
   event: "bg-orange-600",
-  announcement: "bg-[#B22234]",
+  announcement: "bg-[#0000fe]",
   success: "bg-green-600",
 };
 
@@ -46,7 +46,7 @@ export default function NewsCard({ news, index = 0 }: NewsCardProps) {
       className="group h-full"
     >
       <Link href={`/actualites/${news.slug}`}>
-        <div className="relative h-full bg-white dark:bg-[#2A2A2A] overflow-hidden hover:shadow-md transition-all border-t-4 border-[#B22234]">
+        <div className="relative h-full bg-white dark:bg-[#2A2A2A] overflow-hidden hover:shadow-md transition-all border-t-4 border-[#0000fe]">
           {/* Image */}
           <div className="relative h-64 overflow-hidden bg-[#F5F5F5] dark:bg-[#1A1A1A]">
             <Image
@@ -72,7 +72,7 @@ export default function NewsCard({ news, index = 0 }: NewsCardProps) {
 
           {/* Content */}
           <div className="p-8">
-            <h3 className="text-xl font-bold text-[#4A4A4A] dark:text-white mb-4 group-hover:text-[#B22234] transition-colors line-clamp-2">
+            <h3 className="text-xl font-bold text-[#4A4A4A] dark:text-white mb-4 group-hover:text-[#0000fe] transition-colors line-clamp-2">
               {news.title}
             </h3>
 
@@ -81,7 +81,7 @@ export default function NewsCard({ news, index = 0 }: NewsCardProps) {
             </p>
 
             {/* CTA */}
-            <div className="flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
+            <div className="flex items-center gap-2 text-[#0000fe] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
               {t('news.readMore')}
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
             </div>

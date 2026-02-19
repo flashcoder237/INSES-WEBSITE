@@ -28,14 +28,14 @@ export default function ThemeToggle() {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="w-10 h-10 bg-[#D3D3D3]/20 hover:bg-[#B22234]/10 flex items-center justify-center transition-colors group"
+      className="w-10 h-10 bg-[#D3D3D3]/20 hover:bg-[#0000fe]/10 flex items-center justify-center transition-colors group"
       aria-label="Toggle theme"
       title={theme === "dark" ? t('theme.light') : t('theme.dark')}
     >
       {theme === "dark" ? (
-        <Sun size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#B22234]" />
+        <Sun size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#0000fe]" />
       ) : (
-        <Moon size={18} className="text-[#4A4A4A] group-hover:text-[#B22234]" />
+        <Moon size={18} className="text-[#4A4A4A] group-hover:text-[#0000fe]" />
       )}
     </motion.button>
   );

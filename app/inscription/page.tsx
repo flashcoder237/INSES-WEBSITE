@@ -344,7 +344,7 @@ export default function InscriptionPage() {
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section - Stanford Style */}
-      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
+      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#0000fe] overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/images/hero/hero-inscription.jpg"
@@ -354,7 +354,7 @@ export default function InscriptionPage() {
             priority
             quality={85}
           />
-          <div className="absolute inset-0 bg-[#B22234]/80" />
+          <div className="absolute inset-0 bg-[#0000fe]/80" />
         </div>
 
         <div className="container mx-auto px-8 py-32 relative z-10">
@@ -370,7 +370,7 @@ export default function InscriptionPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-block mb-6"
             >
-              <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
+              <div className="bg-white text-[#0000fe] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
                 {t('inscription.heroTag')}
               </div>
             </motion.div>
@@ -454,7 +454,7 @@ export default function InscriptionPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white border-t-4 border-[#B22234] p-10 md:p-12"
+              className="bg-white border-t-4 border-[#0000fe] p-10 md:p-12"
             >
               {/* Progress Indicator */}
               <div className="mb-10">
@@ -462,13 +462,13 @@ export default function InscriptionPage() {
                   <span className="text-sm font-semibold text-[#4A4A4A] uppercase tracking-wide">
                     Étape {currentStep} sur {totalSteps}
                   </span>
-                  <span className="text-sm font-semibold text-[#B22234]">
+                  <span className="text-sm font-semibold text-[#0000fe]">
                     {Math.round((currentStep / totalSteps) * 100)}%
                   </span>
                 </div>
                 <div className="w-full bg-[#D3D3D3] h-2">
                   <motion.div
-                    className="bg-[#B22234] h-2"
+                    className="bg-[#0000fe] h-2"
                     initial={{ width: 0 }}
                     animate={{ width: `${(currentStep / totalSteps) * 100}%` }}
                     transition={{ duration: 0.3 }}
@@ -484,7 +484,7 @@ export default function InscriptionPage() {
                 {currentStep === 1 && (
                 <div>
                   <h2 className="text-2xl font-bold text-[#4A4A4A] mb-8 flex items-center gap-3">
-                    <User className="text-[#B22234]" size={28} />
+                    <User className="text-[#0000fe]" size={28} />
                     {t('inscription.personalInfoTitle')}
                   </h2>
 
@@ -503,7 +503,7 @@ export default function InscriptionPage() {
                         required
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder="Votre prénom"
                       />
                     </div>
@@ -522,7 +522,7 @@ export default function InscriptionPage() {
                         required
                         value={formData.lastName}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder="Votre nom"
                       />
                     </div>
@@ -546,7 +546,7 @@ export default function InscriptionPage() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                           placeholder="votre@email.com"
                         />
                       </div>
@@ -571,7 +571,7 @@ export default function InscriptionPage() {
                           required
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                           placeholder="+237 6XX XX XX XX"
                         />
                       </div>
@@ -596,7 +596,7 @@ export default function InscriptionPage() {
                           required
                           value={formData.dateOfBirth}
                           onChange={handleChange}
-                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         />
                       </div>
                     </div>
@@ -615,7 +615,7 @@ export default function InscriptionPage() {
                         accept="image/*"
                         required
                         onChange={handlePhotoChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                       />
                       {photoPreview && (
                         <div className="mt-3">
@@ -644,7 +644,7 @@ export default function InscriptionPage() {
                         required
                         value={formData.gender}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                       >
                         <option value="">{t('inscription.selectLevel')}</option>
                         <option value="male">{t('inscription.male')}</option>
@@ -665,7 +665,7 @@ export default function InscriptionPage() {
                         name="placeOfBirth"
                         value={formData.placeOfBirth}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder={t('inscription.placeOfBirthPlaceholder')}
                       />
                     </div>
@@ -683,7 +683,7 @@ export default function InscriptionPage() {
                         name="nationality"
                         value={formData.nationality}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder={t('inscription.nationalityPlaceholder')}
                       />
                     </div>
@@ -706,7 +706,7 @@ export default function InscriptionPage() {
                           name="whatsapp"
                           value={formData.whatsapp}
                           onChange={handleChange}
-                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                           placeholder={t('inscription.whatsappPlaceholder')}
                         />
                       </div>
@@ -731,7 +731,7 @@ export default function InscriptionPage() {
                           required
                           value={formData.city}
                           onChange={handleChange}
-                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full pl-11 pr-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                           placeholder={t('inscription.cityPlaceholder')}
                         />
                       </div>
@@ -750,7 +750,7 @@ export default function InscriptionPage() {
                         name="postalCode"
                         value={formData.postalCode}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder={t('inscription.postalCodePlaceholder')}
                       />
                     </div>
@@ -770,7 +770,7 @@ export default function InscriptionPage() {
                       required
                       value={formData.address}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                       placeholder={t('inscription.addressPlaceholder')}
                     />
                   </div>
@@ -781,7 +781,7 @@ export default function InscriptionPage() {
                 {currentStep === 2 && (
                 <div>
                   <h2 className="text-2xl font-bold text-[#4A4A4A] mb-8 flex items-center gap-3">
-                    <User className="text-[#B22234]" size={28} />
+                    <User className="text-[#0000fe]" size={28} />
                     {t('inscription.familyInfoTitle')}
                   </h2>
 
@@ -803,7 +803,7 @@ export default function InscriptionPage() {
                           name="fatherName"
                           value={formData.fatherName}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         />
                       </div>
 
@@ -816,7 +816,7 @@ export default function InscriptionPage() {
                           name="fatherProfession"
                           value={formData.fatherProfession}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         />
                       </div>
 
@@ -829,7 +829,7 @@ export default function InscriptionPage() {
                           name="fatherPhone"
                           value={formData.fatherPhone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                           placeholder="+237 6XX XX XX XX"
                         />
                       </div>
@@ -850,7 +850,7 @@ export default function InscriptionPage() {
                           name="motherName"
                           value={formData.motherName}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         />
                       </div>
 
@@ -863,7 +863,7 @@ export default function InscriptionPage() {
                           name="motherProfession"
                           value={formData.motherProfession}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         />
                       </div>
 
@@ -876,7 +876,7 @@ export default function InscriptionPage() {
                           name="motherPhone"
                           value={formData.motherPhone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                           placeholder="+237 6XX XX XX XX"
                         />
                       </div>
@@ -897,7 +897,7 @@ export default function InscriptionPage() {
                           name="emergencyContactName"
                           value={formData.emergencyContactName}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         />
                       </div>
 
@@ -911,7 +911,7 @@ export default function InscriptionPage() {
                           value={formData.emergencyContactRelationship}
                           onChange={handleChange}
                           placeholder={t('inscription.relationshipPlaceholder')}
-                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         />
                       </div>
 
@@ -924,7 +924,7 @@ export default function InscriptionPage() {
                           name="emergencyContactPhone"
                           value={formData.emergencyContactPhone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                          className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                           placeholder="+237 6XX XX XX XX"
                         />
                       </div>
@@ -937,7 +937,7 @@ export default function InscriptionPage() {
                 {currentStep === 3 && (
                 <div>
                   <h2 className="text-2xl font-bold text-[#4A4A4A] mb-8 flex items-center gap-3">
-                    <GraduationCap className="text-[#B22234]" size={28} />
+                    <GraduationCap className="text-[#0000fe]" size={28} />
                     {t('inscription.desiredFormationTitle')}
                   </h2>
 
@@ -955,7 +955,7 @@ export default function InscriptionPage() {
                         required
                         value={formData.formation}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                       >
                         <option value="">{t('inscription.selectFormation')}</option>
                         {formations.map((formation) => (
@@ -979,7 +979,7 @@ export default function InscriptionPage() {
                         required
                         value={formData.level}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                       >
                         <option value="">{t('inscription.selectLevel')}</option>
                         <option value="bepc">{t('inscription.bepc')}</option>
@@ -1003,7 +1003,7 @@ export default function InscriptionPage() {
                         name="lastSchool"
                         value={formData.lastSchool}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder={t('inscription.lastSchoolPlaceholder')}
                       />
                     </div>
@@ -1021,7 +1021,7 @@ export default function InscriptionPage() {
                         name="lastDiploma"
                         value={formData.lastDiploma}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder={t('inscription.lastDiplomaPlaceholder')}
                       />
                     </div>
@@ -1040,7 +1040,7 @@ export default function InscriptionPage() {
                         value={formData.diplomaYear}
                         onChange={handleChange}
                         maxLength={4}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder={t('inscription.diplomaYearPlaceholder')}
                       />
                     </div>
@@ -1057,7 +1057,7 @@ export default function InscriptionPage() {
                         name="preferredStartDate"
                         value={formData.preferredStartDate}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                       >
                         <option value="">{t('inscription.selectStartDate')}</option>
                         <option value="Janvier 2025">Janvier 2025</option>
@@ -1076,8 +1076,8 @@ export default function InscriptionPage() {
                   {/* Info Messages */}
                   <div className="space-y-4 mb-8">
                     {/* Documents à fournir */}
-                    <div className="bg-[#F5F5F5] border-l-4 border-[#B22234] p-6 flex items-start gap-3">
-                      <AlertCircle className="text-[#B22234] flex-shrink-0 mt-1" size={20} />
+                    <div className="bg-[#F5F5F5] border-l-4 border-[#0000fe] p-6 flex items-start gap-3">
+                      <AlertCircle className="text-[#0000fe] flex-shrink-0 mt-1" size={20} />
                       <div className="text-sm text-[#4A4A4A]/80">
                         <p className="font-semibold text-[#4A4A4A] mb-2 uppercase tracking-wide text-xs">
                           {t('inscription.documentsTitle')}
@@ -1088,7 +1088,7 @@ export default function InscriptionPage() {
                           <li>• {t('inscription.photos')}</li>
                           <li>• {t('inscription.idCard')}</li>
                         </ul>
-                        <p className="text-xs font-semibold text-[#B22234]">
+                        <p className="text-xs font-semibold text-[#0000fe]">
                           {t('inscription.documentsRequiredNote')}
                         </p>
                       </div>
@@ -1110,7 +1110,7 @@ export default function InscriptionPage() {
 
                 <div>
                   <h2 className="text-2xl font-bold text-[#4A4A4A] mb-8 flex items-center gap-3">
-                    <FileText className="text-[#B22234]" size={28} />
+                    <FileText className="text-[#0000fe]" size={28} />
                     {t('inscription.messageTitle')}
                   </h2>
 
@@ -1128,7 +1128,7 @@ export default function InscriptionPage() {
                         value={formData.whyThisFormation}
                         onChange={handleChange}
                         rows={3}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all resize-none"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all resize-none"
                         placeholder={t('inscription.whyThisFormationPlaceholder')}
                       />
                     </div>
@@ -1146,7 +1146,7 @@ export default function InscriptionPage() {
                         value={formData.careerGoals}
                         onChange={handleChange}
                         rows={3}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all resize-none"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all resize-none"
                         placeholder={t('inscription.careerGoalsPlaceholder')}
                       />
                     </div>
@@ -1164,7 +1164,7 @@ export default function InscriptionPage() {
                         value={formData.message}
                         onChange={handleChange}
                         rows={4}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all resize-none"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all resize-none"
                         placeholder={t('inscription.messagePlaceholder')}
                       />
                     </div>
@@ -1182,7 +1182,7 @@ export default function InscriptionPage() {
                       onClick={prevStep}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="border-2 border-[#B22234] text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#B22234] hover:text-white transition-colors"
+                      className="border-2 border-[#0000fe] text-[#0000fe] px-8 py-4 font-semibold text-base hover:bg-[#0000fe] hover:text-white transition-colors"
                     >
                       ← Précédent
                     </motion.button>

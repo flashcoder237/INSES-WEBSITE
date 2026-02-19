@@ -42,7 +42,7 @@ export default function LanguageSelector() {
         >
           {/* Icon */}
           <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 bg-[#B22234] rounded-full flex items-center justify-center">
+            <div className="w-16 h-16 bg-[#0000fe] rounded-full flex items-center justify-center">
               <Globe className="text-white" size={32} />
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function LanguageSelector() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => handleLanguageSelect("fr")}
-              className="w-full bg-[#B22234] text-white py-4 px-6 rounded font-semibold text-lg hover:bg-[#800020] transition-colors flex items-center justify-center gap-3"
+              className="w-full bg-[#0000fe] text-white py-4 px-6 rounded font-semibold text-lg hover:bg-[#0000b3] transition-colors flex items-center justify-center gap-3"
             >
               <span className="text-2xl">🇫🇷</span>
               Français

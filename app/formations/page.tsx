@@ -39,7 +39,7 @@ export default function FormationsPage() {
         type="website"
       />
       {/* Hero Section - Stanford Style */}
-      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
+      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#0000fe] overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src={images['hero-formations']?.url || '/images/hero/hero-formations.jpg'}
@@ -49,7 +49,7 @@ export default function FormationsPage() {
             priority
             quality={85}
           />
-          <div className="absolute inset-0 bg-[#B22234]/80" />
+          <div className="absolute inset-0 bg-[#0000fe]/80" />
         </div>
 
         <div className="container mx-auto px-8 py-32 relative z-10">
@@ -65,7 +65,7 @@ export default function FormationsPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-block mb-6"
             >
-              <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
+              <div className="bg-white text-[#0000fe] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
                 {t('formations.heroTag')}
               </div>
             </motion.div>
@@ -98,7 +98,7 @@ export default function FormationsPage() {
               onClick={() => setFilter("all")}
               className={`px-6 py-2 font-medium transition-all text-sm uppercase tracking-wide ${
                 filter === "all"
-                  ? "bg-[#B22234] text-white"
+                  ? "bg-[#0000fe] text-white"
                   : "bg-white border border-[#D3D3D3] text-[#4A4A4A] hover:bg-[#F5F5F5]"
               }`}
             >
@@ -108,7 +108,7 @@ export default function FormationsPage() {
               onClick={() => setFilter("2ans")}
               className={`px-6 py-2 font-medium transition-all text-sm uppercase tracking-wide ${
                 filter === "2ans"
-                  ? "bg-[#B22234] text-white"
+                  ? "bg-[#0000fe] text-white"
                   : "bg-white border border-[#D3D3D3] text-[#4A4A4A] hover:bg-[#F5F5F5]"
               }`}
             >
@@ -127,14 +127,14 @@ export default function FormationsPage() {
                 className="group"
               >
                 <Link href={`/formations/${formation.slug}`}>
-                  <div className="bg-white p-10 hover:shadow-md transition-all border-t-4 border-[#B22234] h-full flex flex-col">
+                  <div className="bg-white p-10 hover:shadow-md transition-all border-t-4 border-[#0000fe] h-full flex flex-col">
                     {/* Icon */}
-                    <div className="w-14 h-14 bg-[#B22234] flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                    <div className="w-14 h-14 bg-[#0000fe] flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
                       <GraduationCap className="text-white" size={28} />
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4 group-hover:text-[#B22234] transition-colors">
+                    <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4 group-hover:text-[#0000fe] transition-colors">
                       {formation.title}
                     </h3>
 
@@ -160,7 +160,7 @@ export default function FormationsPage() {
                     </div>
 
                     {/* CTA */}
-                    <div className="flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
+                    <div className="flex items-center gap-2 text-[#0000fe] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
                       {t('common.learnMore')}
                       <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
                     </div>
@@ -184,7 +184,7 @@ export default function FormationsPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
               {t('home.aboutTitle')}
             </h2>
-            <div className="w-20 h-1 bg-[#B22234]" />
+            <div className="w-20 h-1 bg-[#0000fe]" />
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
@@ -192,9 +192,9 @@ export default function FormationsPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-10 border-t-4 border-[#B22234] hover:shadow-md transition-all"
+              className="bg-white p-10 border-t-4 border-[#0000fe] hover:shadow-md transition-all"
             >
-              <div className="w-14 h-14 bg-[#B22234] flex items-center justify-center mx-auto mb-8">
+              <div className="w-14 h-14 bg-[#0000fe] flex items-center justify-center mx-auto mb-8">
                 <BookOpen className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4 text-center">
@@ -210,9 +210,9 @@ export default function FormationsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-white p-10 border-t-4 border-[#800020] hover:shadow-md transition-all"
+              className="bg-white p-10 border-t-4 border-[#0000b3] hover:shadow-md transition-all"
             >
-              <div className="w-14 h-14 bg-[#800020] flex items-center justify-center mx-auto mb-8">
+              <div className="w-14 h-14 bg-[#0000b3] flex items-center justify-center mx-auto mb-8">
                 <Award className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4 text-center">
@@ -228,9 +228,9 @@ export default function FormationsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-white p-10 border-t-4 border-[#CD5C5C] hover:shadow-md transition-all"
+              className="bg-white p-10 border-t-4 border-[#02baf4] hover:shadow-md transition-all"
             >
-              <div className="w-14 h-14 bg-[#CD5C5C] flex items-center justify-center mx-auto mb-8">
+              <div className="w-14 h-14 bg-[#02baf4] flex items-center justify-center mx-auto mb-8">
                 <GraduationCap className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4 text-center">

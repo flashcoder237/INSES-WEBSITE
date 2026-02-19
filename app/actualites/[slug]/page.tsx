@@ -13,7 +13,7 @@ import MetaHead from "@/components/MetaHead";
 
 const categoryColors = {
   event: "bg-orange-600",
-  announcement: "bg-[#B22234]",
+  announcement: "bg-[#0000fe]",
   success: "bg-green-600",
 };
 
@@ -61,7 +61,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
           </h1>
           <Link
             href="/actualites"
-            className="text-[#B22234] hover:underline flex items-center gap-2 justify-center"
+            className="text-[#0000fe] hover:underline flex items-center gap-2 justify-center"
           >
             <ArrowLeft size={20} />
             {t('news.backToNews')}
@@ -174,7 +174,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
         <div className="container mx-auto px-8 py-4">
           <Link
             href="/actualites"
-            className="inline-flex items-center gap-2 text-[#4A4A4A] dark:text-white hover:text-[#B22234] transition-colors"
+            className="inline-flex items-center gap-2 text-[#4A4A4A] dark:text-white hover:text-[#0000fe] transition-colors"
           >
             <ArrowLeft size={20} />
             <span className="font-medium">{t('news.backToNews')}</span>
@@ -217,12 +217,12 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
             {news.title}
           </h1>
 
-          <p className="text-xl text-[#4A4A4A]/80 dark:text-white/80 mb-12 leading-relaxed italic border-l-4 border-[#B22234] pl-6">
+          <p className="text-xl text-[#4A4A4A]/80 dark:text-white/80 mb-12 leading-relaxed italic border-l-4 border-[#0000fe] pl-6">
             {news.excerpt}
           </p>
 
           {/* Social Share Buttons */}
-          <div className="bg-[#F5F5F5] dark:bg-[#2A2A2A] p-8 mb-12 border-l-4 border-[#B22234]">
+          <div className="bg-[#F5F5F5] dark:bg-[#2A2A2A] p-8 mb-12 border-l-4 border-[#0000fe]">
             <h3 className="text-lg font-bold text-[#4A4A4A] dark:text-white mb-4 flex items-center gap-2">
               <Share2 size={20} />
               {t('news.share')}
@@ -284,7 +284,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ slug: str
               prose-p:text-[#4A4A4A]/80 dark:prose-p:text-white/80
               prose-li:text-[#4A4A4A]/80 dark:prose-li:text-white/80
               prose-strong:text-[#4A4A4A] dark:prose-strong:text-white
-              prose-a:text-[#B22234] hover:prose-a:underline"
+              prose-a:text-[#0000fe] hover:prose-a:underline"
             dangerouslySetInnerHTML={{ __html: news.content }}
           />
         </motion.div>

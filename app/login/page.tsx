@@ -45,7 +45,7 @@ export default function LoginPage() {
       <div className="max-w-md w-full space-y-8">
         {/* Logo et titre */}
         <div className="text-center">
-          <div className="mx-auto h-20 w-20 bg-[#B22234] rounded-lg flex items-center justify-center shadow-lg">
+          <div className="mx-auto h-20 w-20 bg-[#0000fe] rounded-lg flex items-center justify-center shadow-lg">
             <Lock className="h-10 w-10 text-white" />
           </div>
           <h2 className="mt-6 text-3xl font-bold text-[#4A4A4A] dark:text-white">
@@ -77,7 +77,7 @@ export default function LoginPage() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#B22234] focus:border-transparent dark:bg-gray-700 dark:text-white transition"
+                    className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0000fe] focus:border-transparent dark:bg-gray-700 dark:text-white transition"
                     placeholder="admin@univ-inses.com"
                   />
                 </div>
@@ -100,7 +100,7 @@ export default function LoginPage() {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#B22234] focus:border-transparent dark:bg-gray-700 dark:text-white transition"
+                    className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0000fe] focus:border-transparent dark:bg-gray-700 dark:text-white transition"
                     placeholder="••••••••"
                   />
                 </div>

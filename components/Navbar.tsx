@@ -65,7 +65,7 @@ export default function Navbar() {
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="bg-[#800020] dark:bg-[#2A2A2A] text-white py-2.5 hidden md:block"
+        className="bg-[#0000b3] dark:bg-[#2A2A2A] text-white py-2.5 hidden md:block"
       >
         <div className="container mx-auto px-8">
           <div className="flex justify-between items-center text-sm">
@@ -150,12 +150,12 @@ export default function Navbar() {
                     href={item.href}
                     className={`font-medium text-[15px] transition-colors relative group ${
                       isActive
-                        ? "text-[#B22234]"
-                        : "text-[#4A4A4A] dark:text-white hover:text-[#B22234]"
+                        ? "text-[#0000fe]"
+                        : "text-[#4A4A4A] dark:text-white hover:text-[#0000fe]"
                     }`}
                   >
                     {item.name}
-                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#B22234] transition-all duration-300 ${
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#0000fe] transition-all duration-300 ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`} />
                   </Link>
@@ -170,11 +170,11 @@ export default function Navbar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsSearchOpen(true)}
-                className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#B22234]/10 dark:hover:bg-[#B22234]/20 flex items-center justify-center transition-colors group"
+                className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#0000fe]/10 dark:hover:bg-[#0000fe]/20 flex items-center justify-center transition-colors group"
                 aria-label={t('nav.search')}
                 title={t('nav.searchShortcut')}
               >
-                <Search size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#B22234] dark:group-hover:text-[#B22234]" />
+                <Search size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#0000fe] dark:group-hover:text-[#0000fe]" />
               </motion.button>
 
               {/* Language Switcher */}
@@ -231,7 +231,7 @@ export default function Navbar() {
             >
               <div className="p-6">
                 <div className="flex justify-between items-center mb-10 pb-6 border-b border-[#D3D3D3] dark:border-[#4A4A4A]">
-                  <div className="bg-[#B22234] text-white font-bold text-lg px-5 py-2">
+                  <div className="bg-[#0000fe] text-white font-bold text-lg px-5 py-2">
                     INSES
                   </div>
                   <button
@@ -259,8 +259,8 @@ export default function Navbar() {
                           onClick={() => setIsOpen(false)}
                           className={`block py-3 px-4 font-medium transition-all border-l-4 ${
                             isActive
-                              ? "bg-[#B22234]/10 text-[#B22234] border-[#B22234]"
-                              : "text-[#4A4A4A] dark:text-white hover:bg-[#D3D3D3]/20 dark:hover:bg-[#4A4A4A]/40 hover:text-[#B22234] border-transparent hover:border-[#B22234]/30"
+                              ? "bg-[#0000fe]/10 text-[#0000fe] border-[#0000fe]"
+                              : "text-[#4A4A4A] dark:text-white hover:bg-[#D3D3D3]/20 dark:hover:bg-[#4A4A4A]/40 hover:text-[#0000fe] border-transparent hover:border-[#0000fe]/30"
                           }`}
                         >
                           {item.name}
@@ -285,11 +285,11 @@ export default function Navbar() {
                 <div className="mt-8 pt-8 border-t border-[#D3D3D3] dark:border-[#4A4A4A]">
                   <div className="space-y-3 text-sm text-[#4A4A4A] dark:text-white">
                     <div className="flex items-center gap-2">
-                      <Phone size={16} className="text-[#B22234]" />
+                      <Phone size={16} className="text-[#0000fe]" />
                       <a href={`tel:${siteInfo.phone}`}>{siteInfo.phone}</a>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Mail size={16} className="text-[#B22234]" />
+                      <Mail size={16} className="text-[#0000fe]" />
                       <a href={`mailto:${siteInfo.email}`}>{siteInfo.email}</a>
                     </div>
                   </div>
@@ -303,7 +303,7 @@ export default function Navbar() {
                         setIsOpen(false);
                         setIsSearchOpen(true);
                       }}
-                      className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#B22234]/10 dark:hover:bg-[#B22234]/20 flex items-center justify-center transition-colors rounded"
+                      className="w-10 h-10 bg-[#D3D3D3]/20 dark:bg-[#4A4A4A]/40 hover:bg-[#0000fe]/10 dark:hover:bg-[#0000fe]/20 flex items-center justify-center transition-colors rounded"
                       aria-label={t('nav.search')}
                     >
                       <Search size={18} className="text-[#4A4A4A] dark:text-white" />

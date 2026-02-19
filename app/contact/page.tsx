@@ -91,7 +91,7 @@ export default function ContactPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#B22234] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#0000fe] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-[#4A4A4A] text-lg">Chargement...</p>
         </div>
       </div>
@@ -101,7 +101,7 @@ export default function ContactPage() {
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section - Stanford Style */}
-      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
+      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#0000fe] overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src={images['hero-contact']?.url || '/images/hero/hero-contact.jpg'}
@@ -111,7 +111,7 @@ export default function ContactPage() {
             priority
             quality={85}
           />
-          <div className="absolute inset-0 bg-[#B22234]/80" />
+          <div className="absolute inset-0 bg-[#0000fe]/80" />
         </div>
 
         <div className="container mx-auto px-8 py-32 relative z-10">
@@ -127,7 +127,7 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-block mb-6"
             >
-              <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
+              <div className="bg-white text-[#0000fe] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
                 {t('contact.heroTag')}
               </div>
             </motion.div>
@@ -161,7 +161,7 @@ export default function ContactPage() {
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <MapPin className="flex-shrink-0 mt-1 text-[#B22234]" size={20} />
+                    <MapPin className="flex-shrink-0 mt-1 text-[#02baf4]" size={20} />
                     <div>
                       <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">{t('contact.address')}</h3>
                       <p className="text-white/80 text-[15px]">{siteInfo.location}</p>
@@ -169,7 +169,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <Phone className="flex-shrink-0 mt-1 text-[#B22234]" size={20} />
+                    <Phone className="flex-shrink-0 mt-1 text-[#02baf4]" size={20} />
                     <div>
                       <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">{t('contact.phone')}</h3>
                       <a
@@ -197,7 +197,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <Mail className="flex-shrink-0 mt-1 text-[#B22234]" size={20} />
+                    <Mail className="flex-shrink-0 mt-1 text-[#02baf4]" size={20} />
                     <div>
                       <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">{t('contact.email')}</h3>
                       <a
@@ -210,7 +210,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <Clock className="flex-shrink-0 mt-1 text-[#B22234]" size={20} />
+                    <Clock className="flex-shrink-0 mt-1 text-[#02baf4]" size={20} />
                     <div>
                       <h3 className="font-semibold mb-1 text-sm uppercase tracking-wide">{t('contact.schedule')}</h3>
                       <p className="text-white/80 text-sm">
@@ -283,10 +283,10 @@ export default function ContactPage() {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="bg-white border-t-4 border-[#B22234] p-10"
+                className="bg-white border-t-4 border-[#0000fe] p-10"
               >
                 <div className="flex items-center gap-3 mb-8">
-                  <MessageSquare className="text-[#B22234]" size={28} />
+                  <MessageSquare className="text-[#0000fe]" size={28} />
                   <h2 className="text-2xl font-bold text-[#4A4A4A]">
                     {t('contact.sendMessageTitle')}
                   </h2>
@@ -307,7 +307,7 @@ export default function ContactPage() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                       placeholder={t('contact.fullName')}
                     />
                   </div>
@@ -327,7 +327,7 @@ export default function ContactPage() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder={t('contact.emailPlaceholder')}
                       />
                     </div>
@@ -345,7 +345,7 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                         placeholder={t('contact.phonePlaceholder')}
                       />
                     </div>
@@ -364,7 +364,7 @@ export default function ContactPage() {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all"
                     >
                       <option value="">{t('contact.selectSubject')}</option>
                       <option value="inscription">{t('contact.registrationRequest')}</option>
@@ -388,7 +388,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={6}
-                      className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#B22234] focus:border-transparent transition-all resize-none"
+                      className="w-full px-4 py-3 border border-[#D3D3D3] focus:ring-2 focus:ring-[#0000fe] focus:border-transparent transition-all resize-none"
                       placeholder={t('contact.writeMessage')}
                     />
                   </div>
@@ -426,12 +426,12 @@ export default function ContactPage() {
             className="mb-20"
           >
             <div className="flex items-center gap-3 mb-4">
-              <Map className="text-[#B22234]" size={28} />
+              <Map className="text-[#0000fe]" size={28} />
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A]">
                 {t('contact.locationTitle')}
               </h2>
             </div>
-            <div className="w-20 h-1 bg-[#B22234] mb-4" />
+            <div className="w-20 h-1 bg-[#0000fe] mb-4" />
             <p className="text-lg text-[#4A4A4A]/70">
               {t('contact.visitUs')}
             </p>
@@ -441,7 +441,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative h-[500px] bg-white overflow-hidden border-t-4 border-[#B22234]"
+            className="relative h-[500px] bg-white overflow-hidden border-t-4 border-[#0000fe]"
           >
             <iframe
               src={`${siteInfo.googleMapsUrl}&hl=${locale}&z=15&output=embed`}
@@ -469,7 +469,7 @@ export default function ContactPage() {
                 href={`https://www.google.com/maps/dir/?api=1&destination=${siteInfo.latitude},${siteInfo.longitude}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[#B22234] hover:text-[#800020] font-semibold text-sm uppercase tracking-wide"
+                className="inline-flex items-center gap-2 text-[#0000fe] hover:text-[#0000b3] font-semibold text-sm uppercase tracking-wide"
               >
                 <MapPin size={18} />
                 {t('contact.openInMaps')}

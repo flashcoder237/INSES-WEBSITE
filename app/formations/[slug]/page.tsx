@@ -37,7 +37,7 @@ export default function FormationDetailPage({
           </h1>
           <Link
             href="/formations"
-            className="text-[#B22234] hover:text-[#800020] font-semibold"
+            className="text-[#0000fe] hover:text-[#0000b3] font-semibold"
           >
             {t('formationDetail.backToFormations')}
           </Link>
@@ -71,7 +71,7 @@ export default function FormationDetailPage({
           })
         }}
       />
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center justify-center bg-[#0000fe] overflow-hidden">
         <div className="container mx-auto px-8 py-32 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -93,7 +93,7 @@ export default function FormationDetailPage({
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-block mb-6"
             >
-              <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
+              <div className="bg-white text-[#0000fe] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
                 {t('formationDetail.tag')}
               </div>
             </motion.div>
@@ -137,7 +137,7 @@ export default function FormationDetailPage({
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
                 {t('formationDetail.presentationTitle')}
               </h2>
-              <div className="w-20 h-1 bg-[#B22234] mb-8" />
+              <div className="w-20 h-1 bg-[#0000fe] mb-8" />
               <p className="text-lg text-[#4A4A4A]/70 leading-relaxed">
                 {formation.fullDescription}
               </p>
@@ -148,7 +148,7 @@ export default function FormationDetailPage({
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative h-96 overflow-hidden border-t-4 border-[#B22234]"
+              className="relative h-96 overflow-hidden border-t-4 border-[#0000fe]"
             >
               {formation.image ? (
                 <Image
@@ -161,7 +161,7 @@ export default function FormationDetailPage({
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-[#F5F5F5]">
                   <div className="text-center">
-                    <GraduationCap size={64} className="text-[#B22234] mx-auto mb-4" />
+                    <GraduationCap size={64} className="text-[#0000fe] mx-auto mb-4" />
                     <p className="text-[#4A4A4A]/70 font-medium">
                       {formation.title}
                     </p>
@@ -183,13 +183,13 @@ export default function FormationDetailPage({
               viewport={{ once: true }}
               className="mb-20"
             >
-              <div className="w-14 h-14 bg-[#B22234] flex items-center justify-center mx-auto mb-6">
+              <div className="w-14 h-14 bg-[#0000fe] flex items-center justify-center mx-auto mb-6">
                 <Target className="text-white" size={28} />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-4 text-center">
                 {t('formationDetail.skillsTitle')}
               </h2>
-              <div className="w-20 h-1 bg-[#B22234] mx-auto mb-6" />
+              <div className="w-20 h-1 bg-[#0000fe] mx-auto mb-6" />
               <p className="text-lg text-[#4A4A4A]/70 text-center">
                 {t('formationDetail.skillsSubtitle')}
               </p>
@@ -203,9 +203,9 @@ export default function FormationDetailPage({
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-start gap-4 bg-white p-6 border-l-4 border-[#B22234] hover:shadow-md transition-shadow"
+                  className="flex items-start gap-4 bg-white p-6 border-l-4 border-[#0000fe] hover:shadow-md transition-shadow"
                 >
-                  <CheckCircle className="text-[#B22234] flex-shrink-0 mt-1" size={20} />
+                  <CheckCircle className="text-[#0000fe] flex-shrink-0 mt-1" size={20} />
                   <span className="text-[#4A4A4A]/80 text-[15px]">{skill}</span>
                 </motion.div>
               ))}
@@ -224,13 +224,13 @@ export default function FormationDetailPage({
               viewport={{ once: true }}
               className="mb-20"
             >
-              <div className="w-14 h-14 bg-[#800020] flex items-center justify-center mx-auto mb-6">
+              <div className="w-14 h-14 bg-[#0000fe] flex items-center justify-center mx-auto mb-6">
                 <Briefcase className="text-white" size={28} />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-4 text-center">
                 {t('formationDetail.careersTitle')}
               </h2>
-              <div className="w-20 h-1 bg-[#B22234] mx-auto mb-6" />
+              <div className="w-20 h-1 bg-[#0000fe] mx-auto mb-6" />
               <p className="text-lg text-[#4A4A4A]/70 text-center">
                 {t('formationDetail.careersSubtitle')}
               </p>
@@ -244,10 +244,10 @@ export default function FormationDetailPage({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-6 border-t-4 border-[#B22234] hover:shadow-md transition-shadow"
+                  className="bg-white p-6 border-t-4 border-[#0000fe] hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-[#B22234] flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 bg-[#0000fe] flex items-center justify-center flex-shrink-0">
                       <Briefcase className="text-white" size={18} />
                     </div>
                     <div>
@@ -274,7 +274,7 @@ export default function FormationDetailPage({
               <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6 text-center">
                 {t('formationDetail.practicalInfoTitle')}
               </h2>
-              <div className="w-20 h-1 bg-[#B22234] mx-auto" />
+              <div className="w-20 h-1 bg-[#0000fe] mx-auto" />
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-10">
@@ -282,9 +282,9 @@ export default function FormationDetailPage({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white p-10 border-t-4 border-[#B22234] text-center"
+                className="bg-white p-10 border-t-4 border-[#0000fe] text-center"
               >
-                <Clock size={32} className="text-[#B22234] mx-auto mb-4" />
+                <Clock size={32} className="text-[#0000fe] mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">{t('common.duration')}</h3>
                 <p className="text-[#4A4A4A]/70">{formation.duration}</p>
               </motion.div>
@@ -294,9 +294,9 @@ export default function FormationDetailPage({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="bg-white p-10 border-t-4 border-[#800020] text-center"
+                className="bg-white p-10 border-t-4 border-[#0000fe] text-center"
               >
-                <Award size={32} className="text-[#800020] mx-auto mb-4" />
+                <Award size={32} className="text-[#0000fe] mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">{t('formationDetail.requiredLevel')}</h3>
                 <p className="text-[#4A4A4A]/70">{formation.level}</p>
               </motion.div>
@@ -306,9 +306,9 @@ export default function FormationDetailPage({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="bg-white p-10 border-t-4 border-[#CD5C5C] text-center"
+                className="bg-white p-10 border-t-4 border-[#0000fe] text-center"
               >
-                <BookOpen size={32} className="text-[#CD5C5C] mx-auto mb-4" />
+                <BookOpen size={32} className="text-[#0000fe] mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-[#4A4A4A] mb-2">{t('formationDetail.training')}</h3>
                 <p className="text-[#4A4A4A]/70">{t('formationDetail.theoryPracticeInternship')}</p>
               </motion.div>
@@ -366,7 +366,7 @@ export default function FormationDetailPage({
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6 text-center">
               {t('formationDetail.otherFormationsTitle')}
             </h2>
-            <div className="w-20 h-1 bg-[#B22234] mx-auto" />
+            <div className="w-20 h-1 bg-[#0000fe] mx-auto" />
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
@@ -383,8 +383,8 @@ export default function FormationDetailPage({
                   whileHover={{ y: -4 }}
                 >
                   <Link href={`/formations/${otherFormation.slug}`}>
-                    <div className="bg-white p-6 border-t-4 border-[#B22234] hover:shadow-md transition-all h-full">
-                      <div className="w-12 h-12 bg-[#B22234] flex items-center justify-center mb-4">
+                    <div className="bg-white p-6 border-t-4 border-[#0000fe] hover:shadow-md transition-all h-full">
+                      <div className="w-12 h-12 bg-[#0000fe] flex items-center justify-center mb-4">
                         <GraduationCap className="text-white" size={24} />
                       </div>
                       <h3 className="text-xl font-bold text-[#4A4A4A] mb-3">
@@ -393,7 +393,7 @@ export default function FormationDetailPage({
                       <p className="text-[#4A4A4A]/70 text-sm mb-4">
                         {otherFormation.shortDescription}
                       </p>
-                      <div className="flex items-center gap-2 text-[#B22234] font-semibold text-sm uppercase tracking-wide">
+                      <div className="flex items-center gap-2 text-[#0000fe] font-semibold text-sm uppercase tracking-wide">
                         En savoir plus
                         <ArrowRight size={14} />
                       </div>

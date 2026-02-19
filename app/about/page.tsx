@@ -30,7 +30,7 @@ export default function AboutPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#B22234] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#0000fe] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-[#4A4A4A] text-lg">Chargement...</p>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function AboutPage() {
         type="website"
       />
       {/* Hero Section - Stanford Style */}
-      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
+      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#0000fe] overflow-hidden">
         <div className="container mx-auto px-8 py-32 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -61,7 +61,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-block mb-6"
             >
-              <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
+              <div className="bg-white text-[#0000fe] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
                 {t('about.heroTag')}
               </div>
             </motion.div>
@@ -85,9 +85,9 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-12 border-l-4 border-[#B22234] hover:shadow-md transition-all"
+              className="bg-white p-12 border-l-4 border-[#0000fe] hover:shadow-md transition-all"
             >
-              <div className="w-14 h-14 bg-[#B22234] flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-[#0000fe] flex items-center justify-center mb-6">
                 <Target className="text-white" size={28} />
               </div>
               <h2 className="text-3xl font-bold text-[#4A4A4A] mb-6">
@@ -102,9 +102,9 @@ export default function AboutPage() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-12 border-l-4 border-[#800020] hover:shadow-md transition-all"
+              className="bg-white p-12 border-l-4 border-[#0000b3] hover:shadow-md transition-all"
             >
-              <div className="w-14 h-14 bg-[#800020] flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-[#0000b3] flex items-center justify-center mb-6">
                 <Lightbulb className="text-white" size={28} />
               </div>
               <h2 className="text-3xl font-bold text-[#4A4A4A] mb-6">
@@ -146,7 +146,7 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
               {t('about.valuesTitle')}
             </h2>
-            <div className="w-20 h-1 bg-[#B22234]" />
+            <div className="w-20 h-1 bg-[#0000fe]" />
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -158,9 +158,9 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="bg-white p-8 hover:shadow-md transition-all border-t-4 border-[#B22234]"
+                className="bg-white p-8 hover:shadow-md transition-all border-t-4 border-[#0000fe]"
               >
-                <div className="w-14 h-14 bg-[#B22234] flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-[#0000fe] flex items-center justify-center mb-6">
                   {index === 0 && <Award className="text-white" size={28} />}
                   {index === 1 && <Target className="text-white" size={28} />}
                   {index === 2 && <Lightbulb className="text-white" size={28} />}
@@ -190,7 +190,7 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
               {t('home.pedagogyTitle')}
             </h2>
-            <div className="w-20 h-1 bg-[#B22234] mb-6" />
+            <div className="w-20 h-1 bg-[#0000fe] mb-6" />
             <p className="text-lg text-[#4A4A4A]/70 max-w-3xl">
               {t('about.whoWeAreText')}
             </p>
@@ -203,7 +203,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <div className="flex items-start gap-6 border-l-2 border-[#B22234] pl-6">
+              <div className="flex items-start gap-6 border-l-2 border-[#0000fe] pl-6">
                 <div>
                   <h3 className="text-2xl font-bold text-[#4A4A4A] mb-3">
                     {t('home.theoreticalTitle')}
@@ -214,7 +214,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-6 border-l-2 border-[#800020] pl-6">
+              <div className="flex items-start gap-6 border-l-2 border-[#0000b3] pl-6">
                 <div>
                   <h3 className="text-2xl font-bold text-[#4A4A4A] mb-3">
                     {t('home.practicalTitle')}
@@ -225,7 +225,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-6 border-l-2 border-[#CD5C5C] pl-6">
+              <div className="flex items-start gap-6 border-l-2 border-[#02baf4] pl-6">
                 <div>
                   <h3 className="text-2xl font-bold text-[#4A4A4A] mb-3">
                     {t('home.evaluationTitle')}
@@ -256,7 +256,7 @@ export default function AboutPage() {
       </section>
 
       {/* Partenaires - Stanford Style */}
-      <section className="py-32 bg-[#4A4A4A] text-white">
+      <section className="py-32 bg-[#0000b3] text-white">
         <div className="container mx-auto px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -267,7 +267,7 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               {t('about.partnersTitle')}
             </h2>
-            <div className="w-20 h-1 bg-[#B22234] mb-6" />
+            <div className="w-20 h-1 bg-[#02baf4] mb-6" />
             <p className="text-xl text-white/80 max-w-3xl">
               {t('about.partnersSubtitle')}
             </p>
@@ -281,9 +281,9 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white/10 p-10 border-l-4 border-[#B22234]"
+                className="bg-white/10 p-10 border-l-4 border-[#02baf4]"
               >
-                <Building2 size={32} className="text-[#B22234] mb-4" />
+                <Building2 size={32} className="text-[#02baf4] mb-4" />
                 <h3 className="text-2xl font-bold mb-2">{partner}</h3>
                 <p className="text-white/70">{t('about.partnerText')}</p>
               </motion.div>
@@ -304,7 +304,7 @@ export default function AboutPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
               {t('about.statsTitle')}
             </h2>
-            <div className="w-20 h-1 bg-[#B22234]" />
+            <div className="w-20 h-1 bg-[#0000fe]" />
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
@@ -315,9 +315,9 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center p-10 bg-white border-t-4 border-[#B22234] hover:shadow-md transition-all"
+                className="text-center p-10 bg-white border-t-4 border-[#0000fe] hover:shadow-md transition-all"
               >
-                <div className="text-4xl md:text-5xl font-bold text-[#B22234] mb-3">
+                <div className="text-4xl md:text-5xl font-bold text-[#0000fe] mb-3">
                   {stat.value}
                 </div>
                 <div className="text-[#4A4A4A]/70 font-medium text-base">{stat.label}</div>

@@ -65,7 +65,7 @@ export default function PageLoader() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute inset-0 -m-20 rounded-full bg-[#B22234]/10 dark:bg-[#B22234]/20"
+              className="absolute inset-0 -m-20 rounded-full bg-[#0000fe]/10 dark:bg-[#0000fe]/20"
             />
             <motion.div
               animate={{
@@ -78,7 +78,7 @@ export default function PageLoader() {
                 ease: "easeInOut",
                 delay: 0.2,
               }}
-              className="absolute inset-0 -m-32 rounded-full bg-[#B22234]/10 dark:bg-[#B22234]/20"
+              className="absolute inset-0 -m-32 rounded-full bg-[#0000fe]/10 dark:bg-[#0000fe]/20"
             />
 
             {/* Logo container */}
@@ -148,7 +148,7 @@ export default function PageLoader() {
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className="h-full w-1/3 bg-gradient-to-r from-[#B22234] via-[#800020] to-[#B22234]"
+                  className="h-full w-1/3 bg-gradient-to-r from-[#0000fe] via-[#0000b3] to-[#0000fe]"
                 />
               </div>
 
@@ -160,7 +160,7 @@ export default function PageLoader() {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="mt-6 w-12 h-12 border-4 border-[#D3D3D3] dark:border-[#4A4A4A] border-t-[#B22234] rounded-full"
+                className="mt-6 w-12 h-12 border-4 border-[#D3D3D3] dark:border-[#4A4A4A] border-t-[#0000fe] rounded-full"
               />
             </motion.div>
           </div>

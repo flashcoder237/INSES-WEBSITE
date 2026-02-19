@@ -41,7 +41,7 @@ export default function GalleryPage() {
   return (
     <div className="overflow-x-hidden">
       {/* Hero Section - Stanford Style */}
-      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#B22234] overflow-hidden">
+      <section className="relative min-h-[50vh] flex items-center justify-center bg-[#0000fe] overflow-hidden">
         <div className="container mx-auto px-8 py-32 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -55,7 +55,7 @@ export default function GalleryPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="inline-block mb-6"
             >
-              <div className="bg-white text-[#B22234] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
+              <div className="bg-white text-[#0000fe] px-4 py-1.5 text-sm font-semibold uppercase tracking-wider">
                 Galerie Photos
               </div>
             </motion.div>
@@ -86,7 +86,7 @@ export default function GalleryPage() {
                 onClick={() => setActiveCategory(category)}
                 className={`px-6 py-2 font-medium transition-all text-sm uppercase tracking-wide ${
                   activeCategory === category
-                    ? "bg-[#B22234] text-white"
+                    ? "bg-[#0000fe] text-white"
                     : "bg-white border border-[#D3D3D3] text-[#4A4A4A] hover:bg-[#F5F5F5]"
                 }`}
               >
@@ -146,7 +146,7 @@ export default function GalleryPage() {
                 <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
                   Vidéos
                 </h2>
-                <div className="w-20 h-1 bg-[#B22234]" />
+                <div className="w-20 h-1 bg-[#0000fe]" />
               </div>
 
               <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
@@ -168,7 +168,7 @@ export default function GalleryPage() {
                           className="object-cover"
                         />
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors">
-                          <div className="w-20 h-20 bg-[#B22234] flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <div className="w-20 h-20 bg-[#0000fe] flex items-center justify-center group-hover:scale-110 transition-transform">
                             <Play size={32} className="text-white ml-1" />
                           </div>
                         </div>
@@ -177,7 +177,7 @@ export default function GalleryPage() {
                       /* Placeholder sans thumbnail */
                       <div className="flex items-center justify-center h-full">
                         <div className="text-center">
-                          <div className={`w-20 h-20 ${index % 2 === 0 ? 'bg-[#B22234]' : 'bg-[#800020]'} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
+                          <div className={`w-20 h-20 ${index % 2 === 0 ? 'bg-[#0000fe]' : 'bg-[#0000b3]'} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
                             <Play size={32} className="text-white ml-1" />
                           </div>
                           <p className="font-medium text-[#4A4A4A] px-4">

@@ -118,7 +118,7 @@ export default function FicheInscriptionPage({
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#B22234] mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0000fe] mx-auto mb-4"></div>
           <p className="text-gray-600">{t('fiche.loading')}</p>
         </div>
       </div>
@@ -177,7 +177,7 @@ export default function FicheInscriptionPage({
       {/* Fiche d'inscription (Format A4) */}
       <div id="fiche-inscription" className="max-w-4xl mx-auto bg-white shadow-2xl print:shadow-none print:max-w-none">
         {/* En-tête moderne */}
-        <div className="bg-gradient-to-br from-[#B22234] to-[#800020] text-white p-12 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-[#0000fe] to-[#0000b3] text-white p-12 relative overflow-hidden">
           {/* Éléments décoratifs */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
@@ -190,7 +190,7 @@ export default function FicheInscriptionPage({
               {siteInfo?.location || "Douala-Bonabéri, Cameroun"}
             </p>
 
-            <div className="inline-block bg-white text-[#B22234] px-8 py-2 rounded-full font-bold mt-6 text-lg">
+            <div className="inline-block bg-white text-[#0000fe] px-8 py-2 rounded-full font-bold mt-6 text-lg">
               {t('fiche.registrationForm')}
             </div>
           </div>
@@ -205,7 +205,7 @@ export default function FicheInscriptionPage({
                 <span className="text-sm font-semibold text-gray-600">
                   {t('fiche.fileNumberLabel')}
                 </span>
-                <span className="text-base font-bold text-[#B22234]">
+                <span className="text-base font-bold text-[#0000fe]">
                   {dossierNumber}
                 </span>
               </div>
@@ -224,7 +224,7 @@ export default function FicheInscriptionPage({
             </div>
 
             {inscription.photo_url && (
-              <div className="w-32 h-40 relative border-4 border-[#B22234] rounded-lg overflow-hidden shadow-lg">
+              <div className="w-32 h-40 relative border-4 border-[#0000fe] rounded-lg overflow-hidden shadow-lg">
                 <Image
                   src={inscription.photo_url}
                   alt="Photo"
@@ -269,7 +269,7 @@ export default function FicheInscriptionPage({
           {/* Section: Informations personnelles */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-1 h-8 bg-[#B22234] rounded"></div>
+              <div className="w-1 h-8 bg-[#0000fe] rounded"></div>
               <h3 className="text-xl font-bold text-gray-800">
                 {t('fiche.personalInfo')}
               </h3>
@@ -294,7 +294,7 @@ export default function FicheInscriptionPage({
           {/* Section: Coordonnées */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-1 h-8 bg-[#B22234] rounded"></div>
+              <div className="w-1 h-8 bg-[#0000fe] rounded"></div>
               <h3 className="text-xl font-bold text-gray-800">{t('fiche.contactInfo')}</h3>
             </div>
             <div className="grid grid-cols-2 gap-x-8 gap-y-4 pl-6">
@@ -314,7 +314,7 @@ export default function FicheInscriptionPage({
           {(inscription.father_name || inscription.mother_name || inscription.emergency_contact_name) && (
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-1 h-8 bg-[#B22234] rounded"></div>
+                <div className="w-1 h-8 bg-[#0000fe] rounded"></div>
                 <h3 className="text-xl font-bold text-gray-800">
                   {t('fiche.familyInfo')}
                 </h3>
@@ -375,7 +375,7 @@ export default function FicheInscriptionPage({
           {/* Section: Parcours académique */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-1 h-8 bg-[#B22234] rounded"></div>
+              <div className="w-1 h-8 bg-[#0000fe] rounded"></div>
               <h3 className="text-xl font-bold text-gray-800">
                 {t('fiche.academicInfo')}
               </h3>
@@ -409,7 +409,7 @@ export default function FicheInscriptionPage({
             inscription.motivation_message) && (
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-1 h-8 bg-[#B22234] rounded"></div>
+                <div className="w-1 h-8 bg-[#0000fe] rounded"></div>
                 <h3 className="text-xl font-bold text-gray-800">
                   {t('fiche.motivationInfo')}
                 </h3>

@@ -37,7 +37,7 @@ export default function FormationCard({ formation, index = 0, centerSlug }: Form
       className="group h-full"
     >
       <Link href={formationUrl}>
-        <div className="relative h-full bg-white dark:bg-[#2A2A2A] overflow-hidden hover:shadow-md transition-all border-t-4 border-[#B22234]">
+        <div className="relative h-full bg-white dark:bg-[#2A2A2A] overflow-hidden hover:shadow-md transition-all border-t-4 border-[#0000fe]">
           {/* Image with overlay */}
           <div className="relative h-64 overflow-hidden bg-[#F5F5F5] dark:bg-[#1A1A1A]">
             {/* Formation Image */}
@@ -50,7 +50,7 @@ export default function FormationCard({ formation, index = 0, centerSlug }: Form
             />
 
             {/* Duration badge */}
-            <div className="absolute top-4 right-4 bg-[#B22234] text-white px-4 py-2 text-sm font-medium flex items-center gap-2">
+            <div className="absolute top-4 right-4 bg-[#0000fe] text-white px-4 py-2 text-sm font-medium flex items-center gap-2">
               <Clock size={14} />
               {formation.duration}
             </div>
@@ -58,7 +58,7 @@ export default function FormationCard({ formation, index = 0, centerSlug }: Form
 
           {/* Content */}
           <div className="p-8">
-            <h3 className="text-xl font-bold text-[#4A4A4A] dark:text-white mb-4 group-hover:text-[#B22234] transition-colors">
+            <h3 className="text-xl font-bold text-[#4A4A4A] dark:text-white mb-4 group-hover:text-[#0000fe] transition-colors">
               {formation.title}
             </h3>
 
@@ -73,7 +73,7 @@ export default function FormationCard({ formation, index = 0, centerSlug }: Form
             </div>
 
             {/* CTA */}
-            <div className="flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
+            <div className="flex items-center gap-2 text-[#0000fe] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
               {t('common.learnMore')}
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
             </div>
@@ -98,7 +98,7 @@ export function FormationCardHorizontal({ formation, index = 0, centerSlug }: Fo
       className="group"
     >
       <Link href={formationUrl}>
-        <div className="relative bg-white dark:bg-[#2A2A2A] overflow-hidden hover:shadow-md transition-all flex flex-col md:flex-row h-full border-l-4 border-[#B22234]">
+        <div className="relative bg-white dark:bg-[#2A2A2A] overflow-hidden hover:shadow-md transition-all flex flex-col md:flex-row h-full border-l-4 border-[#0000fe]">
           {/* Image section */}
           <div className="relative w-full md:w-2/5 h-72 md:h-auto overflow-hidden bg-[#F5F5F5] dark:bg-[#1A1A1A]">
             <Image
@@ -110,7 +110,7 @@ export function FormationCardHorizontal({ formation, index = 0, centerSlug }: Fo
             />
 
             {/* Number indicator for featured */}
-            <div className="absolute top-6 left-6 w-12 h-12 bg-[#B22234] flex items-center justify-center text-white font-bold text-lg">
+            <div className="absolute top-6 left-6 w-12 h-12 bg-[#0000fe] flex items-center justify-center text-white font-bold text-lg">
               {(index + 1).toString().padStart(2, '0')}
             </div>
           </div>
@@ -119,7 +119,7 @@ export function FormationCardHorizontal({ formation, index = 0, centerSlug }: Fo
           <div className="flex-1 p-10 md:p-12 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 bg-[#B22234] flex items-center justify-center">
+                <div className="w-14 h-14 bg-[#0000fe] flex items-center justify-center">
                   <BookOpen className="text-white" size={26} />
                 </div>
                 <span className="px-4 py-2 bg-[#F5F5F5] dark:bg-[#3A3A3A] text-[#4A4A4A] dark:text-white text-sm font-medium">
@@ -127,7 +127,7 @@ export function FormationCardHorizontal({ formation, index = 0, centerSlug }: Fo
                 </span>
               </div>
 
-              <h3 className="text-3xl font-bold text-[#4A4A4A] dark:text-white mb-5 group-hover:text-[#B22234] transition-colors">
+              <h3 className="text-3xl font-bold text-[#4A4A4A] dark:text-white mb-5 group-hover:text-[#0000fe] transition-colors">
                 {formation.title}
               </h3>
 
@@ -152,7 +152,7 @@ export function FormationCardHorizontal({ formation, index = 0, centerSlug }: Fo
               <span className="text-sm font-medium text-[#4A4A4A]/70 dark:text-white/70">
                 {formation.career.length} {t('common.careers')}
               </span>
-              <div className="flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
+              <div className="flex items-center gap-2 text-[#0000fe] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide">
                 {t('common.learnMore')}
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
               </div>

@@ -102,7 +102,7 @@ export async function POST(request: Request) {
               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
             .header {
-              background: linear-gradient(135deg, #B22234 0%, #800020 100%);
+              background: linear-gradient(135deg, #0000fe 0%, #0000b3 100%);
               padding: 40px 30px;
               text-align: center;
             }
@@ -172,7 +172,7 @@ export async function POST(request: Request) {
             }
             .info-box {
               background-color: #f9fafb;
-              border-left: 4px solid #B22234;
+              border-left: 4px solid #0000fe;
               padding: 16px;
               margin: 20px 0;
               border-radius: 4px;
@@ -202,7 +202,7 @@ export async function POST(request: Request) {
               margin: 8px 0;
             }
             .footer-info a {
-              color: #B22234;
+              color: #0000fe;
               text-decoration: none;
             }
             .footer-info a:hover {
@@ -234,7 +234,7 @@ export async function POST(request: Request) {
               transition: background-color 0.3s;
             }
             .social-links a:hover {
-              background-color: #B22234;
+              background-color: #0000fe;
             }
             @media only screen and (max-width: 600px) {
               .email-container { border-radius: 0; }
@@ -300,7 +300,7 @@ export async function POST(request: Request) {
                 <p class="message">
                   <strong>Pour toute question, n'hésitez pas à nous contacter :</strong><br><br>
                   <strong>Téléphone :</strong> ${contactPhone}<br>
-                  <strong>Email :</strong> <a href="mailto:${contactEmail}" style="color: #B22234; text-decoration: none;">${contactEmail}</a>
+                  <strong>Email :</strong> <a href="mailto:${contactEmail}" style="color: #0000fe; text-decoration: none;">${contactEmail}</a>
                 </p>
               </div>
 

@@ -37,7 +37,7 @@ export default function Home() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#B22234] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-16 h-16 border-4 border-[#0000fe] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-[#4A4A4A] text-lg">Chargement...</p>
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section - Clean Stanford Style */}
-      <section className="py-20 bg-[#4A4A4A]">
+      <section className="py-20 bg-[#0000b3]">
         <div className="container mx-auto px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-6xl mx-auto">
             {stats.map((stat, index) => (
@@ -154,7 +154,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
               {t('home.programsTitle')}
             </h2>
-            <div className="w-20 h-1 bg-[#B22234]" />
+            <div className="w-20 h-1 bg-[#0000fe]" />
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
@@ -164,9 +164,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               whileHover={{ y: -4 }}
-              className="group bg-white p-8 border-l-4 border-[#B22234] hover:shadow-lg transition-all"
+              className="group bg-white p-8 border-l-4 border-[#0000fe] hover:shadow-lg transition-all"
             >
-              <div className="w-14 h-14 bg-[#B22234] flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-[#0000fe] flex items-center justify-center mb-6">
                 <Heart className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4">
@@ -177,7 +177,7 @@ export default function Home() {
               </p>
               <Link
                 href="/formations#sante"
-                className="inline-flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide"
+                className="inline-flex items-center gap-2 text-[#0000fe] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide"
               >
                 {t('common.learnMore')}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -191,9 +191,9 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               whileHover={{ y: -4 }}
-              className="group bg-white p-8 border-l-4 border-[#800020] hover:shadow-lg transition-all"
+              className="group bg-white p-8 border-l-4 border-[#0000b3] hover:shadow-lg transition-all"
             >
-              <div className="w-14 h-14 bg-[#800020] flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-[#0000b3] flex items-center justify-center mb-6">
                 <BookOpen className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4">
@@ -204,7 +204,7 @@ export default function Home() {
               </p>
               <Link
                 href="/formations#medical"
-                className="inline-flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide"
+                className="inline-flex items-center gap-2 text-[#0000fe] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide"
               >
                 {t('common.learnMore')}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -218,9 +218,9 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               whileHover={{ y: -4 }}
-              className="group bg-white p-8 border-l-4 border-[#CD5C5C] hover:shadow-lg transition-all"
+              className="group bg-white p-8 border-l-4 border-[#02baf4] hover:shadow-lg transition-all"
             >
-              <div className="w-14 h-14 bg-[#CD5C5C] flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-[#02baf4] flex items-center justify-center mb-6">
                 <Award className="text-white" size={28} />
               </div>
               <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4">
@@ -231,7 +231,7 @@ export default function Home() {
               </p>
               <Link
                 href="/formations#sciences"
-                className="inline-flex items-center gap-2 text-[#B22234] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide"
+                className="inline-flex items-center gap-2 text-[#0000fe] font-semibold group-hover:gap-3 transition-all text-sm uppercase tracking-wide"
               >
                 {t('common.learnMore')}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -256,7 +256,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
               {t('home.aboutTitle')}
             </h2>
-            <div className="w-20 h-1 bg-[#B22234]" />
+            <div className="w-20 h-1 bg-[#0000fe]" />
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-20">
@@ -270,9 +270,9 @@ export default function Home() {
                 whileHover={{ y: -4 }}
                 className="group"
               >
-                <div className="bg-white p-8 hover:shadow-md transition-all h-full border-t-4 border-[#B22234]">
+                <div className="bg-white p-8 hover:shadow-md transition-all h-full border-t-4 border-[#0000fe]">
                   {/* Icon */}
-                  <div className="w-14 h-14 bg-[#B22234] flex items-center justify-center mb-6">
+                  <div className="w-14 h-14 bg-[#0000fe] flex items-center justify-center mb-6">
                     {index === 0 && <Award className="text-white" size={28} />}
                     {index === 1 && <Target className="text-white" size={28} />}
                     {index === 2 && <Lightbulb className="text-white" size={28} />}
@@ -311,7 +311,7 @@ export default function Home() {
                   </h3>
 
                   <div className="space-y-6">
-                    <div className="flex items-start gap-4 border-l-2 border-[#B22234] pl-6">
+                    <div className="flex items-start gap-4 border-l-2 border-[#0000fe] pl-6">
                       <div>
                         <h4 className="font-bold text-[#4A4A4A] mb-2 text-lg">
                           {t('home.theoreticalTitle')}
@@ -322,7 +322,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4 border-l-2 border-[#800020] pl-6">
+                    <div className="flex items-start gap-4 border-l-2 border-[#0000b3] pl-6">
                       <div>
                         <h4 className="font-bold text-[#4A4A4A] mb-2 text-lg">
                           {t('home.practicalTitle')}
@@ -333,7 +333,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4 border-l-2 border-[#CD5C5C] pl-6">
+                    <div className="flex items-start gap-4 border-l-2 border-[#02baf4] pl-6">
                       <div>
                         <h4 className="font-bold text-[#4A4A4A] mb-2 text-lg">
                           {t('home.evaluationTitle')}
@@ -346,7 +346,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="bg-[#4A4A4A] p-10 text-white">
+                <div className="bg-[#0000b3] p-10 text-white">
                   <Users size={40} className="mb-6" />
                   <h4 className="text-2xl font-bold mb-8">{t('home.ourPartners')}</h4>
                   <ul className="space-y-3">
@@ -379,7 +379,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-[#4A4A4A] mb-6">
               {t('home.ourFormationsTitle')}
             </h2>
-            <div className="w-20 h-1 bg-[#B22234] mb-6" />
+            <div className="w-20 h-1 bg-[#0000fe] mb-6" />
             <p className="text-lg text-[#4A4A4A]/70 max-w-3xl leading-relaxed">
               {t('home.formationsDescription')}
             </p>
@@ -407,7 +407,7 @@ export default function Home() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setVisibleFormations(prev => Math.min(prev + 6, formations.length))}
-                className="inline-flex items-center gap-2 border-2 border-[#B22234] text-[#B22234] px-8 py-4 font-semibold text-base hover:bg-[#B22234] hover:text-white transition-colors group"
+                className="inline-flex items-center gap-2 border-2 border-[#0000fe] text-[#0000fe] px-8 py-4 font-semibold text-base hover:bg-[#0000fe] hover:text-white transition-colors group"
               >
                 <Plus className="group-hover:rotate-90 transition-transform" size={18} />
                 {t('common.viewMore')}

@@ -127,15 +127,15 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                         key={formation.id}
                         href={`/formations/${formation.slug}`}
                         onClick={onClose}
-                        className="block p-4 hover:bg-[#F5F5F5] dark:hover:bg-[#3A3A3A] transition-colors border-l-2 border-transparent hover:border-[#B22234] group"
+                        className="block p-4 hover:bg-[#F5F5F5] dark:hover:bg-[#3A3A3A] transition-colors border-l-2 border-transparent hover:border-[#0000fe] group"
                       >
                         <div className="flex items-start gap-3">
                           <GraduationCap
                             size={20}
-                            className="text-[#B22234] flex-shrink-0 mt-1"
+                            className="text-[#0000fe] flex-shrink-0 mt-1"
                           />
                           <div className="flex-1">
-                            <h4 className="font-bold text-[#4A4A4A] dark:text-white mb-1 group-hover:text-[#B22234] transition-colors">
+                            <h4 className="font-bold text-[#4A4A4A] dark:text-white mb-1 group-hover:text-[#0000fe] transition-colors">
                               {formation.title}
                             </h4>
                             <p className="text-sm text-[#4A4A4A]/70 dark:text-white/70">
@@ -144,7 +144,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           </div>
                           <ArrowRight
                             size={16}
-                            className="text-[#4A4A4A]/40 dark:text-white/40 group-hover:text-[#B22234] group-hover:translate-x-1 transition-all"
+                            className="text-[#4A4A4A]/40 dark:text-white/40 group-hover:text-[#0000fe] group-hover:translate-x-1 transition-all"
                           />
                         </div>
                       </Link>
@@ -165,15 +165,15 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                         key={page.href}
                         href={page.href}
                         onClick={onClose}
-                        className="block p-4 hover:bg-[#F5F5F5] dark:hover:bg-[#3A3A3A] transition-colors border-l-2 border-transparent hover:border-[#B22234] group"
+                        className="block p-4 hover:bg-[#F5F5F5] dark:hover:bg-[#3A3A3A] transition-colors border-l-2 border-transparent hover:border-[#0000fe] group"
                       >
                         <div className="flex items-start gap-3">
                           <FileText
                             size={20}
-                            className="text-[#B22234] flex-shrink-0 mt-1"
+                            className="text-[#0000fe] flex-shrink-0 mt-1"
                           />
                           <div className="flex-1">
-                            <h4 className="font-bold text-[#4A4A4A] dark:text-white mb-1 group-hover:text-[#B22234] transition-colors">
+                            <h4 className="font-bold text-[#4A4A4A] dark:text-white mb-1 group-hover:text-[#0000fe] transition-colors">
                               {page.title}
                             </h4>
                             <p className="text-sm text-[#4A4A4A]/70 dark:text-white/70">
@@ -182,7 +182,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           </div>
                           <ArrowRight
                             size={16}
-                            className="text-[#4A4A4A]/40 dark:text-white/40 group-hover:text-[#B22234] group-hover:translate-x-1 transition-all"
+                            className="text-[#4A4A4A]/40 dark:text-white/40 group-hover:text-[#0000fe] group-hover:translate-x-1 transition-all"
                           />
                         </div>
                       </Link>

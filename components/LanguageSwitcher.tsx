@@ -20,11 +20,11 @@ export default function LanguageSwitcher() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-10 h-10 bg-[#D3D3D3]/20 hover:bg-[#B22234]/10 flex items-center justify-center transition-colors group"
+        className="w-10 h-10 bg-[#D3D3D3]/20 hover:bg-[#0000fe]/10 flex items-center justify-center transition-colors group"
         aria-label={t('language.select')}
         title={t('language.select')}
       >
-        <Globe size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#B22234]" />
+        <Globe size={18} className="text-[#4A4A4A] dark:text-white group-hover:text-[#0000fe]" />
       </motion.button>
 
       <AnimatePresence>
@@ -53,14 +53,14 @@ export default function LanguageSwitcher() {
                   }}
                   className={`w-full px-4 py-3 flex items-center gap-3 hover:bg-[#F5F5F5] dark:hover:bg-[#3A3A3A] transition-colors text-left ${
                     locale === lang.code
-                      ? "bg-[#B22234]/10 text-[#B22234]"
+                      ? "bg-[#0000fe]/10 text-[#0000fe]"
                       : "text-[#4A4A4A] dark:text-white"
                   }`}
                 >
                   <span className="text-xl">{lang.flag}</span>
                   <span className="font-medium text-sm flex-1">{lang.name}</span>
                   {locale === lang.code && (
-                    <Check size={16} className="text-[#B22234]" />
+                    <Check size={16} className="text-[#0000fe]" />
                   )}
                 </button>
               ))}

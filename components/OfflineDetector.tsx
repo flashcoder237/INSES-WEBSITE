@@ -43,8 +43,8 @@ export default function OfflineDetector() {
       <div className="bg-white rounded-lg shadow-2xl max-w-md w-full p-8 text-center">
         {/* Icône */}
         <div className="flex justify-center mb-6">
-          <div className="w-20 h-20 bg-[#B22234] bg-opacity-10 rounded-full flex items-center justify-center">
-            <WifiOff className="w-10 h-10 text-[#B22234]" />
+          <div className="w-20 h-20 bg-[#0000fe] bg-opacity-10 rounded-full flex items-center justify-center">
+            <WifiOff className="w-10 h-10 text-[#0000fe]" />
           </div>
         </div>
 
@@ -73,7 +73,7 @@ export default function OfflineDetector() {
         {/* Bouton réessayer */}
         <button
           onClick={handleRetry}
-          className="w-full bg-[#B22234] hover:bg-[#800020] text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
+          className="w-full bg-[#0000fe] hover:bg-[#0000b3] text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2"
         >
           <RefreshCw className="w-5 h-5" />
           Réessayer

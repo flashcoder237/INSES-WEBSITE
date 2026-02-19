@@ -31,7 +31,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#4A4A4A] dark:bg-[#0A0A0A] text-white">
+    <footer className="bg-[#0000b3] dark:bg-[#0A0A0A] text-white">
       <div className="container mx-auto px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* About Section */}
@@ -41,7 +41,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-[#B22234] text-white font-bold text-lg px-5 py-2 inline-block mb-6">
+            <div className="bg-[#0000fe] text-white font-bold text-lg px-5 py-2 inline-block mb-6">
               INSES
             </div>
             <p className="text-white/80 mb-8 leading-relaxed text-[15px]">
@@ -54,7 +54,7 @@ export default function Footer() {
                   href={siteInfo.socialMedia.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 hover:bg-[#B22234] flex items-center justify-center transition-colors"
+                  className="w-10 h-10 bg-white/10 hover:bg-[#0000fe] flex items-center justify-center transition-colors"
                 >
                   <Facebook size={18} />
                 </motion.a>
@@ -65,7 +65,7 @@ export default function Footer() {
                   href={siteInfo.socialMedia.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 hover:bg-[#B22234] flex items-center justify-center transition-colors"
+                  className="w-10 h-10 bg-white/10 hover:bg-[#0000fe] flex items-center justify-center transition-colors"
                 >
                   <Twitter size={18} />
                 </motion.a>
@@ -76,7 +76,7 @@ export default function Footer() {
                   href={siteInfo.socialMedia.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 hover:bg-[#B22234] flex items-center justify-center transition-colors"
+                  className="w-10 h-10 bg-white/10 hover:bg-[#0000fe] flex items-center justify-center transition-colors"
                 >
                   <Instagram size={18} />
                 </motion.a>
@@ -87,7 +87,7 @@ export default function Footer() {
                   href={siteInfo.socialMedia.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 hover:bg-[#B22234] flex items-center justify-center transition-colors"
+                  className="w-10 h-10 bg-white/10 hover:bg-[#0000fe] flex items-center justify-center transition-colors"
                 >
                   <Linkedin size={18} />
                 </motion.a>
@@ -149,11 +149,11 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-6 text-white">{t('footer.contactUs')}</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-[#B22234] mt-1 flex-shrink-0" />
+                <MapPin size={18} className="text-[#02baf4] mt-1 flex-shrink-0" />
                 <span className="text-white/80 text-[15px]">{siteInfo.location}</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={18} className="text-[#B22234] flex-shrink-0" />
+                <Phone size={18} className="text-[#02baf4] flex-shrink-0" />
                 <div className="text-white/80 text-[15px]">
                   <a
                     href={`tel:${siteInfo.phone}`}
@@ -170,7 +170,7 @@ export default function Footer() {
                 </div>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={18} className="text-[#B22234] flex-shrink-0" />
+                <Mail size={18} className="text-[#02baf4] flex-shrink-0" />
                 <a
                   href={`mailto:${siteInfo.email}`}
                   className="text-white/80 hover:text-white transition-colors text-[15px]"

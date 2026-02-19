@@ -7,10 +7,13 @@
     --background: #ffffff;
     --foreground: #4A4A4A;
 
-    /* Stanford-inspired Institutional Red Palette */
+    /* INSES Institutional Red & Blue Palette */
     --red-primary: #B22234;
     --red-dark: #800020;
     --red-light: #CD5C5C;
+    --blue-primary: #0000fe;
+    --blue-dark: #0000b3;
+    --blue-accent: #02baf4;
     --gray-slate: #4A4A4A;
     --gray-pearl: #D3D3D3;
     --white: #FFFFFF;
